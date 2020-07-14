@@ -89,14 +89,13 @@ class _StartPageState extends State<StartPage> {
                   padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
-                      softWrap: true,
                       style: TextStyle(
                           fontSize: 28.0,
                           fontWeight: FontWeight.normal,
                           fontFamily: "Montserrat")),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0.0, 200.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(0.0, 160.0, 0.0, 0.0),
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -107,8 +106,83 @@ class _StartPageState extends State<StartPage> {
               ],
             ),
           ),
-        ]
-                // This trailing comma makes auto-formatting nicer for build methods.
-                )));
+          Container(
+              padding: EdgeInsets.only(top: 80.0, left: 45.0, right: 45.0),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 50.0),
+                  Container(
+                    height: 50.0,
+                    child: Material(
+                      borderRadius: BorderRadius.only(
+                          bottomRight: const Radius.circular(40.0)),
+                      shadowColor: Colors.grey,
+                      color: Colors.grey,
+                      elevation: 7.0,
+                      child: GestureDetector(
+                        onTap: () {
+                          print("Clicked!"); //TODO: swipe screen
+                        },
+                        child: Center(
+                          child: Text(
+                            'Мне нужна помощь',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'Montserrat'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  Container(
+                    height: 50.0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.grey,
+                              style: BorderStyle.solid,
+                              width: 1.0),
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.only(
+                              bottomRight: const Radius.circular(40.0))),
+                      child: GestureDetector(
+                        onTap: () {
+                          print("Clicked2!"); //TODO: swipe screen
+                        },
+                        child: Center(
+                          child: Text(
+                            'Я могу помочь',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontFamily: 'Montserrat'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+          SizedBox(height: 220),
+          Container(
+              padding: EdgeInsets.only(top: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  print("Я просто посмотреть");
+                },
+                child: Text(
+                  'Я просто посмотреть',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.normal,
+                      decoration: TextDecoration.underline),
+                ),
+              ))
+        ])));
+    // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
