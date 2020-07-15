@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_help/constants.dart';
 
 void main() {
   runApp(WeHelp());
@@ -21,7 +22,7 @@ class WeHelp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.grey,
+        primarySwatch: PrimaryColor,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
@@ -90,19 +91,15 @@ class _StartPageState extends State<StartPage> {
                   padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: "Montserrat")),
+                      style:
+                          TextStyle(fontSize: 28.0, fontFamily: "Montserrat")),
                 ),
                 SizedBox(height: 50.0),
                 Container(
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: "Montserrat")),
+                      style:
+                          TextStyle(fontSize: 28.0, fontFamily: "Montserrat")),
                 ),
               ],
             ),
@@ -116,8 +113,8 @@ class _StartPageState extends State<StartPage> {
                     child: Material(
                       borderRadius: BorderRadius.only(
                           bottomRight: const Radius.circular(40.0)),
-                      shadowColor: Colors.grey,
-                      color: Colors.grey,
+                      shadowColor: PrimaryColor,
+                      color: PrimaryColor,
                       elevation: 7.0,
                       child: GestureDetector(
                         onTap: () {
@@ -127,7 +124,7 @@ class _StartPageState extends State<StartPage> {
                           child: Text(
                             'Мне нужна помощь',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: PrimaryColorLight,
                                 fontSize: 18,
                                 fontFamily: 'Montserrat'),
                           ),
@@ -141,7 +138,7 @@ class _StartPageState extends State<StartPage> {
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: Colors.grey,
+                              color: PrimaryColor,
                               style: BorderStyle.solid,
                               width: 1.0),
                           color: Colors.transparent,
@@ -155,7 +152,7 @@ class _StartPageState extends State<StartPage> {
                           child: Text(
                             'Я могу помочь',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: PrimaryColorMainText,
                                 fontSize: 18,
                                 fontFamily: 'Montserrat'),
                           ),
@@ -175,7 +172,7 @@ class _StartPageState extends State<StartPage> {
                 child: Text(
                   'Политика конфиденциальности',
                   style: TextStyle(
-                      color: Colors.grey,
+                      color: PrimaryColor,
                       fontSize: 16,
                       fontFamily: 'Montserrat'),
                 ),
