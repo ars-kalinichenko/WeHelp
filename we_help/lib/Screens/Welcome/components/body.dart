@@ -61,15 +61,25 @@ class Body extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 50.0,
-                    child: Material(
-                      borderRadius: BorderRadius.only(
-                          bottomRight: const Radius.circular(40.0)),
-                      shadowColor: PrimaryColor,
-                      color: PrimaryColor,
-                      elevation: 7.0,
+                      height: 50.0,
                       child: GestureDetector(
-                        onTap: () { // TODO: Tap for all button
+                        child: Material(
+                          borderRadius: BorderRadius.only(
+                              bottomRight: const Radius.circular(40.0)),
+                          shadowColor: PrimaryColor,
+                          color: PrimaryColor,
+                          elevation: 7.0,
+                          child: Center(
+                            child: Text(
+                              'Мне нужна помощь',
+                              style: TextStyle(
+                                  color: PrimaryColorLight,
+                                  fontSize: 18,
+                                  fontFamily: 'Montserrat'),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -79,34 +89,20 @@ class Body extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Center(
-                          child: Text(
-                            'Мне нужна помощь',
-                            style: TextStyle(
-                                color: PrimaryColorLight,
-                                fontSize: 18,
-                                fontFamily: 'Montserrat'),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                      )),
                   SizedBox(height: 20.0),
                   Container(
                     height: 50.0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: PrimaryColor,
-                              style: BorderStyle.solid,
-                              width: 1.0),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.only(
-                              bottomRight: const Radius.circular(40.0))),
-                      child: GestureDetector(
-                        onTap: () {
-                          print("Clicked2!"); //TODO: swipe screen
-                        },
+                    child: GestureDetector(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: PrimaryColor,
+                                style: BorderStyle.solid,
+                                width: 1.0),
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: const Radius.circular(40.0))),
                         child: Center(
                           child: Text(
                             'Я могу помочь',
@@ -117,8 +113,11 @@ class Body extends StatelessWidget {
                           ),
                         ),
                       ),
+                      onTap: () {
+                        print("Clicked!"); //TODO: swipe screen
+                      },
                     ),
-                  ),
+                  )
                 ],
               )),
           SizedBox(height: 30),
