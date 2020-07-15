@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_help/Screens/HomeCustomer/home_customer_screen.dart';
 
 import '../../../constants.dart';
 
@@ -68,8 +69,15 @@ class Body extends StatelessWidget {
                       color: PrimaryColor,
                       elevation: 7.0,
                       child: GestureDetector(
-                        onTap: () {
-                          print("Clicked!"); //TODO: swipe screen
+                        onTap: () { // TODO: Tap for all button
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HomeCustomerScreen();
+                              },
+                            ),
+                          );
                         },
                         child: Center(
                           child: Text(
