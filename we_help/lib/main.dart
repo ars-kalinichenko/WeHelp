@@ -78,12 +78,13 @@ class _StartPageState extends State<StartPage> {
                 // center the children vertically; the main axis here is the vertical
                 // axis because Columns are vertical (the cross axis would be
                 // horizontal).
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
           Container(
-            child: Stack(
-              alignment: Alignment.topCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
@@ -94,8 +95,8 @@ class _StartPageState extends State<StartPage> {
                           fontWeight: FontWeight.normal,
                           fontFamily: "Montserrat")),
                 ),
+                SizedBox(height: 50.0),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0.0, 160.0, 0.0, 0.0),
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -107,10 +108,9 @@ class _StartPageState extends State<StartPage> {
             ),
           ),
           Container(
-              padding: EdgeInsets.only(top: 80.0, left: 45.0, right: 45.0),
+              padding: EdgeInsets.only(left: 45.0, right: 45.0),
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 50.0),
                   Container(
                     height: 50.0,
                     child: Material(
@@ -165,21 +165,19 @@ class _StartPageState extends State<StartPage> {
                   ),
                 ],
               )),
-          SizedBox(height: 220),
+          SizedBox(height: 30),
           Container(
-              padding: EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(bottom: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  print("Я просто посмотреть");
+                  print("Политика конфиденциальности");
                 },
                 child: Text(
-                  'Я просто посмотреть',
+                  'Политика конфиденциальности',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.underline),
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontFamily: 'Montserrat'),
                 ),
               ))
         ])));
