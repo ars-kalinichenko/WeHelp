@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:we_help/Screens/HomeCustomer/home_customer_screen.dart';
 import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
+import 'package:we_help/components/rounded_border_button.dart';
+import 'package:we_help/components/rounded_button.dart';
 
 import '../../../constants.dart';
 
@@ -47,14 +49,16 @@ class Body extends StatelessWidget {
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 28.0, fontFamily: PrimaryFontFamily)),
+                          fontSize: HeadersFontSize,
+                          fontFamily: PrimaryFontFamily)),
                 ),
                 SizedBox(height: 50.0),
                 Container(
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 28.0, fontFamily: PrimaryFontFamily)),
+                          fontSize: HeadersFontSize,
+                          fontFamily: PrimaryFontFamily)),
                 ),
               ],
             ),
@@ -63,64 +67,28 @@ class Body extends StatelessWidget {
               padding: EdgeInsets.only(left: 45.0, right: 45.0),
               child: Column(
                 children: <Widget>[
-                  Container(
-                      height: 50.0,
-                      child: GestureDetector(
-                        child: Material(
-                          borderRadius: BorderRadius.only(
-                              bottomRight: const Radius.circular(40.0)),
-                          shadowColor: PrimaryColor,
-                          color: PrimaryColor,
-                          elevation: 7.0,
-                          child: Center(
-                            child: Text(
-                              'Мне нужна помощь',
-                              style: TextStyle(
-                                  color: PrimaryColorLight,
-                                  fontSize: 18,
-                                  fontFamily: PrimaryFontFamily),
-                            ),
+                  RoundedButton(
+                      text: "Войти",
+                      color: PrimaryColor,
+                      textColor: PrimaryColorLight,
+                      width: 0.9,
+                      height: 0.08,
+                      press: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return HomeCustomerScreen();
+                            },
                           ),
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return HomeCustomerScreen();
-                              },
-                            ),
-                          );
-                        },
-                      )),
+                        );
+                      }),
                   SizedBox(height: 20.0),
-                  Container(
-                    height: 50.0,
-                    child: GestureDetector(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: PrimaryColor,
-                                style: BorderStyle.solid,
-                                width: 1.0),
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: const Radius.circular(40.0))),
-                        child: Center(
-                          child: Text(
-                            "Я могу помочь",
-                            style: TextStyle(
-                                color: PrimaryColorMainText,
-                                fontSize: 18,
-                                fontFamily: PrimaryFontFamily),
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        log("Switches to worker screen"); //TODO: swipe screen
-                      },
-                    ),
-                  )
+                  RoundedBorderButton(
+                      text: "Зарегистрироваться",
+                      press: () {},
+                      color: Colors.transparent,
+                      textColor: PrimaryColor)
                 ],
               )),
           SizedBox(height: 30),
@@ -142,7 +110,7 @@ class Body extends StatelessWidget {
                   'Политика конфиденциальности',
                   style: TextStyle(
                       color: PrimaryColor,
-                      fontSize: 16,
+                      fontSize: TextFontSize,
                       fontFamily: PrimaryFontFamily),
                 ),
               ))

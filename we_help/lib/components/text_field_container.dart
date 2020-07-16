@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+
+import '../constants.dart';
+
+class TextFieldContainer extends StatelessWidget {
+  final Widget child;
+  final double width; // Relative value for adaptive width
+
+  const TextFieldContainer({
+    Key key,
+    this.child,
+    this.width = 0.8,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      width: size.width * width,
+      decoration: BoxDecoration(
+          color: PrimaryColorLight,
+          borderRadius:
+              BorderRadius.only(bottomRight: const Radius.circular(70.0)),
+          border: Border.all(
+              color: PrimaryColor, style: BorderStyle.solid, width: 1.5)),
+      child: child,
+    );
+  }
+}

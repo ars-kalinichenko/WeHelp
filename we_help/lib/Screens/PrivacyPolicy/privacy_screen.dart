@@ -49,8 +49,8 @@ class PrivacyState extends State<PrivacyScreen> {
                   child: SingleChildScrollView(
                     child: Text(
                       privacyText,
-                      style:
-                          TextStyle(fontSize: 16, color: PrimaryColorMainText),
+                      style: TextStyle(
+                          fontSize: TextFontSize, color: PrimaryColorMainText),
                     ),
                   ),
                 ),
