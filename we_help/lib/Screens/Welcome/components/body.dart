@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:we_help/Screens/HomeCustomer/home_customer_screen.dart';
+import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
 
 import '../../../constants.dart';
 
@@ -43,15 +46,15 @@ class Body extends StatelessWidget {
                   padding: EdgeInsets.only(top: 70),
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 28.0, fontFamily: "Montserrat")),
+                      style: TextStyle(
+                          fontSize: 28.0, fontFamily: PrimaryFontFamily)),
                 ),
                 SizedBox(height: 50.0),
                 Container(
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 28.0, fontFamily: "Montserrat")),
+                      style: TextStyle(
+                          fontSize: 28.0, fontFamily: PrimaryFontFamily)),
                 ),
               ],
             ),
@@ -75,7 +78,7 @@ class Body extends StatelessWidget {
                               style: TextStyle(
                                   color: PrimaryColorLight,
                                   fontSize: 18,
-                                  fontFamily: 'Montserrat'),
+                                  fontFamily: PrimaryFontFamily),
                             ),
                           ),
                         ),
@@ -105,16 +108,16 @@ class Body extends StatelessWidget {
                                 bottomRight: const Radius.circular(40.0))),
                         child: Center(
                           child: Text(
-                            'Я могу помочь',
+                            "Я могу помочь",
                             style: TextStyle(
                                 color: PrimaryColorMainText,
                                 fontSize: 18,
-                                fontFamily: 'Montserrat'),
+                                fontFamily: PrimaryFontFamily),
                           ),
                         ),
                       ),
                       onTap: () {
-                        print("Clicked!"); //TODO: swipe screen
+                        log("Switches to worker screen"); //TODO: swipe screen
                       },
                     ),
                   )
@@ -125,14 +128,22 @@ class Body extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 20.0),
               child: GestureDetector(
                 onTap: () {
-                  print("Политика конфиденциальности");
+                  log("Switches to privacy screen");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return PrivacyScreen();
+                      },
+                    ),
+                  );
                 },
                 child: Text(
                   'Политика конфиденциальности',
                   style: TextStyle(
                       color: PrimaryColor,
                       fontSize: 16,
-                      fontFamily: 'Montserrat'),
+                      fontFamily: PrimaryFontFamily),
                 ),
               ))
         ])));

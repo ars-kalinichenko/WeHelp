@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -42,14 +43,14 @@ class Body extends StatelessWidget {
                   child: Text('Сотни людей уже \nготовы помочь вам',
                       textAlign: TextAlign.left,
                       style:
-                          TextStyle(fontSize: 28.0, fontFamily: "Montserrat")),
+                      TextStyle(fontSize: 28.0, fontFamily: PrimaryFontFamily)),
                 ),
                 SizedBox(height: 50.0),
                 Container(
                   child: Text('Опишите вашу проблему \nв 5 - 10 словах',
                       textAlign: TextAlign.left,
                       style:
-                          TextStyle(fontSize: 16.0, fontFamily: "Montserrat")),
+                      TextStyle(fontSize: 16.0, fontFamily: PrimaryFontFamily)),
                 ),
               ],
             ),

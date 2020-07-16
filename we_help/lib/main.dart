@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:we_help/Screens/Welcome/welcome_screen.dart';
 import 'package:we_help/constants.dart';
 
+import 'components/behavior_elements.dart';
+
 void main() {
   runApp(WeHelp());
 }
@@ -29,6 +31,12 @@ class WeHelp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        builder: (context, child) {
+          return ScrollConfiguration(
+            behavior: PagingBehavior(),
+            child: child,
+          );
+        },
         home: WelcomeScreen());
   }
 }
