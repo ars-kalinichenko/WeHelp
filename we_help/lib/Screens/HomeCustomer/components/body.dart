@@ -12,10 +12,9 @@ class Body extends StatelessWidget {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        body: Center(
+        body: Column(
             // Center is a layout widget. It takes a single child and positions it
             // in the middle of the parent.
-            child: Column(
                 // Column is also a layout widget. It takes a list of children and
                 // arranges them vertically. By default, it sizes itself to fit its
                 // children horizontally, and tries to be as tall as its parent.
@@ -31,7 +30,7 @@ class Body extends StatelessWidget {
                 // axis because Columns are vertical (the cross axis would be
                 // horizontal).
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
           Container(
             child: Column(
@@ -55,7 +54,7 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
-        ])));
+        ]));
     // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
