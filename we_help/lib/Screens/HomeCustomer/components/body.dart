@@ -30,22 +30,23 @@ class Body extends StatelessWidget {
                 // axis because Columns are vertical (the cross axis would be
                 // horizontal).
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
           Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(top: 90),
+                  padding: EdgeInsets.only(top: 110, left: 30),
                   child: Text('Сотни людей уже \nготовы помочь вам',
                       textAlign: TextAlign.left,
-                      style:
-                      TextStyle(fontSize: 28.0, fontFamily: PrimaryFontFamily)),
+                      style: TextStyle(
+                          fontSize: 28.0, fontFamily: PrimaryFontFamily)),
                 ),
                 SizedBox(height: 50.0),
                 Container(
+                  padding: EdgeInsets.only(left: 30),
                   child: Text('Опишите вашу проблему \nв 5 - 10 словах',
                       textAlign: TextAlign.left,
                       style:
