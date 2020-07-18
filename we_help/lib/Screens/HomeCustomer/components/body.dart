@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:we_help/Screens/Search/search_screen.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_input_field.dart';
 
@@ -9,6 +10,8 @@ import '../../../constants.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String searchText = "";
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -55,7 +58,7 @@ class Body extends StatelessWidget {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(top: 50, left: 30),
-                  child: Text('Сотни людей уже \nготовы помочь вам',
+                  child: Text("Сотни людей уже \nготовы помочь вам",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontSize: HeadersFontSize,
@@ -64,7 +67,7 @@ class Body extends StatelessWidget {
                 SizedBox(height: 40.0),
                 Container(
                   padding: EdgeInsets.only(left: 30),
-                  child: Text('Опишите вашу проблему \nв 5 - 10 словах',
+                  child: Text("Опишите вашу проблему \nв 5 - 10 словах",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontSize: TextFontSize,
@@ -81,12 +84,24 @@ class Body extends StatelessWidget {
                   children: <Widget>[
                     RoundedInputField(
                         hintText: "Не могу побороть лень",
-                        icon: Icons.all_inclusive),
+                        height: 0.07,
+                        keyboardMode: TextCapitalization.sentences,
+                        onChanged: (value) {
+                          searchText = value;
+                        }),
                     SizedBox(height: 10),
                     RoundedButton(
                       text: "Найти",
                       press: () {
-                        log("Searching: ...");
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SearchScreen(searchText);
+                            },
+                          ),
+                        );
+                        log("Searching: $searchText"); //TODO: push to server
                       },
                     ),
                   ])),

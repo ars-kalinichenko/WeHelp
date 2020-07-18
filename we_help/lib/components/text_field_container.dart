@@ -4,20 +4,23 @@ import '../constants.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
-  final double width; // Relative value for adaptive width
+  final double width;
+  final double height; // Relative value for adaptive width
 
   const TextFieldContainer({
     Key key,
     this.child,
     this.width = 0.8,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       width: size.width * width,
+      height: size.height * height,
       decoration: BoxDecoration(
           color: PrimaryColorLight,
           borderRadius:

@@ -68,7 +68,7 @@ class Body extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   RoundedButton(
-                      text: "Войти",
+                      text: "Мне нужна помощь",
                       color: PrimaryColor,
                       textColor: PrimaryColorLight,
                       width: 0.9,
@@ -85,7 +85,7 @@ class Body extends StatelessWidget {
                       }),
                   SizedBox(height: 20.0),
                   RoundedBorderButton(
-                      text: "Зарегистрироваться",
+                      text: "Я могу помочь",
                       press: () {},
                       color: Colors.transparent,
                       textColor: PrimaryColor)
