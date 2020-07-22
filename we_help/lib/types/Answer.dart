@@ -1,1 +1,1 @@
-
+class Answer {}
