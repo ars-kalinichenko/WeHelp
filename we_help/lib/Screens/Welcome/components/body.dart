@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:we_help/Screens/HomeCustomer/home_customer_screen.dart';
 import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
@@ -66,30 +65,17 @@ class Body extends StatelessWidget {
                 children: <Widget>[
                   RoundedButton(
                       text: "Зарегистрироваться",
-                      color: Theme
-                          .of(context)
-                          .primaryColor,
-                      textColor: Colors.white,
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white, // TODO: create adaptive color
                       width: 0.9,
                       height: 0.08,
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return HomeCustomerScreen();
-                            },
-                          ),
-                        );
-                      }),
+                      press: () {}),
                   SizedBox(height: 20.0),
                   RoundedGradientButton(
                       text: "Войти",
                       press: () {},
                       color: Colors.transparent,
-                      textColor: Theme
-                          .of(context)
-                          .primaryColor)
+                      textColor: Theme.of(context).primaryColor)
                 ],
               )),
           SizedBox(height: 30),
@@ -109,10 +95,7 @@ class Body extends StatelessWidget {
                 },
                 child: Text(
                   'Политика конфиденциальности',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .bodyText2,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ))
         ])));

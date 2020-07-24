@@ -18,7 +18,7 @@ class PrivacyState extends State<PrivacyScreen> {
   String filePath = "assets/privacy_police.txt";
   String privacyText = "";
 
-//  Function for reading text from a file and writing to a mutable widget.
+///  Function for reading text from a file and writing to a mutable widget.
   readText(filePath) async {
     String text = await rootBundle.loadString(filePath);
     log("The privacy text was received.");
@@ -30,7 +30,7 @@ class PrivacyState extends State<PrivacyScreen> {
   @override
   void initState() {
     super.initState();
-//    When the screen is created, the text read function is called.
+//   When the screen is created, the text read function is called.
     readText(filePath);
   }
 

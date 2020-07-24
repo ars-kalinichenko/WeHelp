@@ -6,7 +6,7 @@ class RoundedButton extends StatelessWidget {
   final double height; // Relative value for adaptive height
   final Function press; // Function that will fire when clicked
   final Color color, textColor; // Button color and text color
-  final double fontSize;
+  final double fontSize; // Size of text
 
   const RoundedButton({
     Key key,
