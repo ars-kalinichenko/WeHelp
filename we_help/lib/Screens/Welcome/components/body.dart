@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
-import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
+import 'package:we_help/components/text_button.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -42,12 +40,12 @@ class Body extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(top: 70),
+                  padding: EdgeInsets.only(top: 80),
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline1),
                 ),
-                SizedBox(height: 50.0),
+                SizedBox(height: 60.0),
                 Container(
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
@@ -60,44 +58,43 @@ class Body extends StatelessWidget {
             ),
           ),
           Container(
-              padding: EdgeInsets.only(left: 45.0, right: 45.0),
+              padding: EdgeInsets.only(left: 45.0, right: 45.0, top: 50),
               child: Column(
                 children: <Widget>[
-                  RoundedButton(
-                      text: "Зарегистрироваться",
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white, // TODO: create adaptive color
-                      width: 0.9,
-                      height: 0.08,
-                      press: () {}),
-                  SizedBox(height: 20.0),
                   RoundedGradientButton(
                       text: "Войти",
                       press: () {},
                       color: Colors.transparent,
-                      textColor: Theme.of(context).primaryColor)
+                      textColor: Theme.of(context).primaryColor),
+                  SizedBox(height: 20.0),
+
+                  TextButton(
+                      text: "Зарегистрироваться",
+                      textColor: Theme.of(context).textTheme.headline3.color,
+                      fontSize: Theme.of(context).textTheme.headline3.fontSize,
+                      fontFamily: Theme.of(context).textTheme.headline3.fontFamily,
+                      fontWeight: FontWeight.w600,
+                      underline: true,
+                      onPressed: () {}),
                 ],
               )),
-          SizedBox(height: 30),
-          Container(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  log("Switches to privacy screen");
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return PrivacyScreen();
-                      },
-                    ),
-                  );
-                },
-                child: Text(
-                  'Политика конфиденциальности',
-                  style: Theme.of(context).textTheme.bodyText2,
+          SizedBox(height: 40),
+          TextButton(
+            text: "Политика конфиденциальности",
+            textColor: Colors.black26,
+            fontSize: Theme.of(context).textTheme.headline5.fontSize,
+            fontFamily: Theme.of(context).textTheme.headline5.fontFamily,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return PrivacyScreen();
+                  },
                 ),
-              ))
+              );
+            },
+          ),
         ])));
     // This trailing comma makes auto-formatting nicer for build methods.
   }

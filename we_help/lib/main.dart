@@ -12,7 +12,6 @@ class WeHelp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print(appLightTheme.textTheme);
     return MaterialApp(
         title: 'WeHelp',
         debugShowCheckedModeBanner: false,
