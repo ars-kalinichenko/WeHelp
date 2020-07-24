@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:we_help/Screens/HomeCustomer/home_customer_screen.dart';
 import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
-import 'package:we_help/components/rounded_border_button.dart';
 import 'package:we_help/components/rounded_button.dart';
+import 'package:we_help/components/rounded_gradient_button.dart';
 
 import '../../../constants.dart';
 
@@ -50,7 +50,8 @@ class Body extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: HeadersFontSize,
-                          fontFamily: PrimaryFontFamily)),
+                          fontFamily: PrimaryFontFamily,
+                          fontWeight: FontWeight.w500)),
                 ),
                 SizedBox(height: 50.0),
                 Container(
@@ -84,7 +85,7 @@ class Body extends StatelessWidget {
                         );
                       }),
                   SizedBox(height: 20.0),
-                  RoundedBorderButton(
+                  RoundedGradientButton(
                       text: "Я могу помочь",
                       press: () {},
                       color: Colors.transparent,

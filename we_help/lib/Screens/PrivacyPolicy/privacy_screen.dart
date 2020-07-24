@@ -6,6 +6,7 @@ import 'package:we_help/components/behavior_elements.dart';
 import 'package:we_help/constants.dart';
 
 PrivacyState pageState;
+
 class PrivacyScreen extends StatefulWidget {
   @override
   PrivacyState createState() {
