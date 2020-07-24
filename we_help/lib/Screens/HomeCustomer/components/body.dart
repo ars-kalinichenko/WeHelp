@@ -5,8 +5,6 @@ import 'package:we_help/Screens/Search/search_screen.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_input_field.dart';
 
-import '../../../constants.dart';
-
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,18 +58,14 @@ class Body extends StatelessWidget {
                   padding: EdgeInsets.only(top: 50, left: 30),
                   child: Text("Сотни людей уже \nготовы помочь вам",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: HeadersFontSize,
-                          fontFamily: PrimaryFontFamily)),
+                      style: Theme.of(context).textTheme.headline1),
                 ),
                 SizedBox(height: 40.0),
                 Container(
                   padding: EdgeInsets.only(left: 30),
                   child: Text("Опишите вашу проблему \nв 5 - 10 словах",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: TextFontSize,
-                          fontFamily: PrimaryFontFamily)),
+                    textAlign: TextAlign.left,
+                  ),
                 ),
               ],
             ),

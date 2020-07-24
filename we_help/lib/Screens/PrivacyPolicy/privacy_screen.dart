@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:we_help/components/behavior_elements.dart';
-import 'package:we_help/constants.dart';
 
 PrivacyState pageState;
 
@@ -48,11 +47,8 @@ class PrivacyState extends State<PrivacyScreen> {
                 child: ScrollConfiguration(
                   behavior: PagingBehavior(),
                   child: SingleChildScrollView(
-                    child: Text(
-                      privacyText,
-                      style: TextStyle(
-                          fontSize: TextFontSize, color: PrimaryColorMainText),
-                    ),
+                    child: Text(privacyText,
+                        style: Theme.of(context).textTheme.bodyText2),
                   ),
                 ),
               ),

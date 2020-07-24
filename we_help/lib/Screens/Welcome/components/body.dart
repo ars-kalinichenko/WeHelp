@@ -6,8 +6,6 @@ import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 
-import '../../../constants.dart';
-
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -48,18 +46,16 @@ class Body extends StatelessWidget {
                   padding: EdgeInsets.only(top: 70),
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: HeadersFontSize,
-                          fontFamily: PrimaryFontFamily,
-                          fontWeight: FontWeight.w500)),
+                      style: Theme.of(context).textTheme.headline1),
                 ),
                 SizedBox(height: 50.0),
                 Container(
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: HeadersFontSize,
-                          fontFamily: PrimaryFontFamily)),
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headline2),
                 ),
               ],
             ),
@@ -69,9 +65,11 @@ class Body extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   RoundedButton(
-                      text: "Мне нужна помощь",
-                      color: PrimaryColor,
-                      textColor: PrimaryColorLight,
+                      text: "Зарегистрироваться",
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
+                      textColor: Colors.white,
                       width: 0.9,
                       height: 0.08,
                       press: () {
@@ -86,10 +84,12 @@ class Body extends StatelessWidget {
                       }),
                   SizedBox(height: 20.0),
                   RoundedGradientButton(
-                      text: "Я могу помочь",
+                      text: "Войти",
                       press: () {},
                       color: Colors.transparent,
-                      textColor: PrimaryColor)
+                      textColor: Theme
+                          .of(context)
+                          .primaryColor)
                 ],
               )),
           SizedBox(height: 30),
@@ -109,10 +109,10 @@ class Body extends StatelessWidget {
                 },
                 child: Text(
                   'Политика конфиденциальности',
-                  style: TextStyle(
-                      color: PrimaryColor,
-                      fontSize: TextFontSize,
-                      fontFamily: PrimaryFontFamily),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyText2,
                 ),
               ))
         ])));

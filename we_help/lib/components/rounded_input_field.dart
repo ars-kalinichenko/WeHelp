@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/text_field_container.dart';
-import 'package:we_help/constants.dart';
 
-// TODO: fix text aligment
+// TODO: fix text alignment
 class RoundedInputField extends StatelessWidget {
   final String hintText;
   final IconData icon;
@@ -11,6 +10,7 @@ class RoundedInputField extends StatelessWidget {
   final TextCapitalization keyboardMode;
   final String startText;
   final double height;
+  final Color primaryColor;
 
   const RoundedInputField(
       {Key key,
@@ -19,7 +19,8 @@ class RoundedInputField extends StatelessWidget {
       this.onChanged,
       this.keyboardMode = TextCapitalization.none,
       this.startText = "",
-      this.height = 0.07})
+      this.height = 0.07,
+      this.primaryColor = Colors.black})
       : super(key: key);
 
   @override
@@ -31,14 +32,15 @@ class RoundedInputField extends StatelessWidget {
     return TextFieldContainer(
       height: height,
       child: TextField(
+        textAlignVertical: TextAlignVertical.center,
         onChanged: onChanged,
         controller: controller,
-        cursorColor: PrimaryColor,
+        cursorColor: primaryColor,
         textCapitalization: keyboardMode,
         decoration: InputDecoration(
           icon: Icon(
             icon,
-            color: PrimaryColor,
+            color: primaryColor,
           ),
           hintText: hintText,
           border: InputBorder.none,

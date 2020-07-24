@@ -7,6 +7,7 @@ class RoundedGradientButton extends StatelessWidget {
   final Function press; // Function that will fire when clicked
   final Color color, textColor; // Button color and text color
   final double border;
+  final double textSize;
 
   const RoundedGradientButton(
       {Key key,
@@ -16,7 +17,8 @@ class RoundedGradientButton extends StatelessWidget {
       this.press,
       this.color = Colors.white,
       this.textColor = Colors.black,
-      this.border = 1.5})
+      this.border = 1.5,
+      this.textSize = 18})
       : super(key: key);
 
   @override
@@ -38,7 +40,7 @@ class RoundedGradientButton extends StatelessWidget {
                 color: Colors.white, style: BorderStyle.solid, width: border),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
+                color: Colors.grey.withOpacity(0.09),
                 spreadRadius: 3,
                 blurRadius: 2,
                 offset: Offset(0, 3),
@@ -52,8 +54,8 @@ class RoundedGradientButton extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.black54,
-                fontSize: 18,
+                color: textColor,
+                fontSize: textSize,
               ),
             ),
           ),
