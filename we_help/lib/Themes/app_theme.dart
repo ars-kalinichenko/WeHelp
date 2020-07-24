@@ -15,14 +15,14 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
 //    Theme for headlines with bolt weight
       headline1: TextStyle(
           fontSize: 28.0,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
 //    Theme for headlines with regular weight
       headline2: TextStyle(
           fontSize: 28.0,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w300,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 

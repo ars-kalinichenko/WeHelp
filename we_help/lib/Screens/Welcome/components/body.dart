@@ -6,6 +6,8 @@ import 'package:we_help/components/text_button.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double sizeHeight = MediaQuery.of(context).size.height;
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -36,16 +38,16 @@ class Body extends StatelessWidget {
                 children: <Widget>[
           Container(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(top: 80),
+                  padding: EdgeInsets.only(top: sizeHeight*0.15),
                   child: Text('WeHelp',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.headline1),
                 ),
-                SizedBox(height: 60.0),
+                SizedBox(height: sizeHeight*0.1),
                 Container(
                   child: Text('Решение есть',
                       textAlign: TextAlign.center,
@@ -58,15 +60,17 @@ class Body extends StatelessWidget {
             ),
           ),
           Container(
-              padding: EdgeInsets.only(left: 45.0, right: 45.0, top: 50),
+              padding: EdgeInsets.only(left: 45.0, right: 45.0, top: 10),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   RoundedGradientButton(
                       text: "Войти",
                       press: () {},
                       color: Colors.transparent,
                       textColor: Theme.of(context).primaryColor),
-                  SizedBox(height: 20.0),
+
+                  SizedBox(height: sizeHeight*0.03),
 
                   TextButton(
                       text: "Зарегистрироваться",
@@ -76,25 +80,24 @@ class Body extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       underline: true,
                       onPressed: () {}),
-                ],
-              )),
-          SizedBox(height: 40),
-          TextButton(
-            text: "Политика конфиденциальности",
-            textColor: Colors.black26,
-            fontSize: Theme.of(context).textTheme.headline5.fontSize,
-            fontFamily: Theme.of(context).textTheme.headline5.fontFamily,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return PrivacyScreen();
+                SizedBox(height: sizeHeight*0.2),
+                TextButton(
+                  text: "Политика конфиденциальности",
+                  textColor: Colors.black26,
+                  fontSize: Theme.of(context).textTheme.headline5.fontSize,
+                  fontFamily: Theme.of(context).textTheme.headline5.fontFamily,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return PrivacyScreen();
+                        },
+                      ),
+                    );
                   },
-                ),
-              );
-            },
-          ),
+                )
+                ]))
         ])));
     // This trailing comma makes auto-formatting nicer for build methods.
   }
