@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TextButton extends StatelessWidget {
@@ -30,11 +31,10 @@ class TextButton extends StatelessWidget {
     }
 
     Container container = Container(
+        alignment: Alignment.center,
         padding: EdgeInsets.only(top: 10, bottom: 10),
-        child: GestureDetector(
-          onTap: () {
-            onPressed();
-          },
+        child: InkWell(
+          onTap: onPressed,
           child: Text(
             text,
             style: TextStyle(

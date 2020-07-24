@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_help/Screens/PrivacyPolicy/privacy_screen.dart';
+import 'package:we_help/Screens/Registration/registration.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/text_button.dart';
 
@@ -54,7 +55,7 @@ class Body extends StatelessWidget {
                       style: Theme
                           .of(context)
                           .textTheme
-                          .headline2),
+                          .headline3),
                 ),
               ],
             ),
@@ -74,18 +75,20 @@ class Body extends StatelessWidget {
 
                   TextButton(
                       text: "Зарегистрироваться",
-                      textColor: Theme.of(context).textTheme.headline3.color,
-                      fontSize: Theme.of(context).textTheme.headline3.fontSize,
-                      fontFamily: Theme.of(context).textTheme.headline3.fontFamily,
+                      textColor: Theme.of(context).textTheme.headline4.color,
+                      fontSize: Theme.of(context).textTheme.headline4.fontSize,
+                      fontFamily: Theme.of(context).textTheme.headline4.fontFamily,
                       fontWeight: FontWeight.w600,
                       underline: true,
-                      onPressed: () {}),
+                      onPressed: () {
+                        Registration(context).startRegistration();
+                      }),
                 SizedBox(height: sizeHeight*0.2),
                 TextButton(
                   text: "Политика конфиденциальности",
                   textColor: Colors.black26,
-                  fontSize: Theme.of(context).textTheme.headline5.fontSize,
-                  fontFamily: Theme.of(context).textTheme.headline5.fontFamily,
+                  fontSize: Theme.of(context).textTheme.headline6.fontSize,
+                  fontFamily: Theme.of(context).textTheme.headline6.fontFamily,
                   onPressed: () {
                     Navigator.push(
                       context,

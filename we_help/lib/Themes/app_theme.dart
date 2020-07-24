@@ -19,31 +19,31 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
-//    Theme for headlines with regular weight
+//    Theme for headlines with medium weight
       headline2: TextStyle(
           fontSize: 28.0,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w400,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
-//    Theme for button text with bolt weight
+//    Theme for headlines with regular weight
       headline3: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.w600,
+          fontSize: 28.0,
+          fontWeight: FontWeight.w300,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
 //    Theme for button text with regular weight
       headline4: TextStyle(
           fontSize: 18.0,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w600,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
 //    Theme for remarks with bolt weight
       headline5: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.w600,
+          fontSize: 18.0,
+          fontWeight: FontWeight.normal,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
