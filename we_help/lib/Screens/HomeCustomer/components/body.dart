@@ -10,7 +10,7 @@ import '../../../constants.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String searchText = "";
+    String _searchText = "";
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -87,7 +87,7 @@ class Body extends StatelessWidget {
                         height: 0.07,
                         keyboardMode: TextCapitalization.sentences,
                         onChanged: (value) {
-                          searchText = value;
+                          _searchText = value;
                         }),
                     SizedBox(height: 10),
                     RoundedButton(
@@ -97,11 +97,11 @@ class Body extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return SearchScreen(searchText);
+                              return SearchScreen(_searchText);
                             },
                           ),
                         );
-                        log("Searching: $searchText"); //TODO: push to server
+                        log("Searching: $_searchText"); //TODO: push to server
                       },
                     ),
                   ])),
