@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_help/Screens/Registration/phone_check_screen.dart';
 import 'package:we_help/components/phone_input_field.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
+import 'package:we_help/services/text_processing.dart';
 
 class PhoneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class PhoneScreen extends StatelessWidget {
           PhoneInputField(
             color: Theme.of(context).primaryColor,
             onChanged: (value) {
-              _phoneNumber = value.replaceAll(RegExp("[^0-9]"), '');
+              _phoneNumber = deleteMask(RegExp("[^0-9,+]"), value);
             },
           ),
           RoundedGradientButton(
