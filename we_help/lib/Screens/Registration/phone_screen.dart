@@ -27,6 +27,8 @@ class PhoneScreen extends StatelessWidget {
           ),
           RoundedGradientButton(
               text: "Продолжить",
+              color: Colors.transparent,
+              textColor: Theme.of(context).primaryColor,
               press: () {
                 print(_phoneNumber);
                 Navigator.push(
@@ -37,9 +39,7 @@ class PhoneScreen extends StatelessWidget {
                     },
                   ),
                 );
-              },
-              color: Colors.transparent,
-              textColor: Theme.of(context).primaryColor)
+              })
         ],
       ),
     );

@@ -6,11 +6,8 @@ const AccentColor = Colors.grey;
 ThemeData appLightTheme = ThemeData.light().copyWith(
   primaryColor: PrimaryColor,
   accentColor: AccentColor,
-  // Define the default brightness and colors.
   brightness: Brightness.light,
-  // Define the default font family.
-  // Define the default TextTheme. Use this to specify the default
-  // text styling for headlines, titles, bodies of text, and more.
+
   textTheme: TextTheme(
 //    Theme for headlines with bolt weight
       headline1: TextStyle(

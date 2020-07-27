@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
+  ///Rounded button widget with specified dimensions (percent of screen size)
+  /// and specified text parameters. When pressed, the press () function is called.
+
   final String text; // Text in button
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height

@@ -8,7 +8,6 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double sizeHeight = MediaQuery.of(context).size.height;
-
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //

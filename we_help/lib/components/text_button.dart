@@ -4,12 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TextButton extends StatelessWidget {
+  /// Clickable text that calls onPressed () when you click on it.
+
   final String text;
   final double fontSize;
   final Color textColor;
   final String fontFamily;
   final FontWeight fontWeight;
-  final bool underline;
+  final bool underline; // Whether the text will be underlined: True or False
   final Function onPressed;
 
   const TextButton(

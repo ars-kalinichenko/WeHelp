@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 class RoundedGradientButton extends StatelessWidget {
+  /// Rounded button widget with gradient.
+
   final String text; // Text in button
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
@@ -26,46 +28,46 @@ class RoundedGradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     Container container = Container(
-      width: size.width * width,
+        width: size.width * width,
         height: size.height * height,
         child: InkWell(
-          onTap: press,
+            onTap: press,
             child: ClipRect(
-          child: Ink(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xF4F4F4), Colors.white],
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-              ),
-              borderRadius: BorderRadius.circular(32),
-              border: Border.all(
-                  color: Colors.white,
-                  style: BorderStyle.solid,
-                  width: borderSize),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
-                  spreadRadius: 3,
-                  blurRadius: 2,
-                  offset: Offset(0, 3),
-                ) // changes position of shadow
-              ],
-            ),
-            child: Container(
-              constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-              alignment: Alignment.center,
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: textSize,
+              child: Ink(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xF4F4F4), Colors.white],
+                    begin: Alignment.centerRight,
+                    end: Alignment.centerLeft,
+                  ),
+                  borderRadius: BorderRadius.circular(32),
+                  border: Border.all(
+                      color: Colors.white,
+                      style: BorderStyle.solid,
+                      width: borderSize),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 3,
+                      blurRadius: 2,
+                      offset: Offset(0, 3),
+                    ) // changes position of shadow
+                  ],
+                ),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                  alignment: Alignment.center,
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: textSize,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        )));
+            )));
     return container;
   }
 }
