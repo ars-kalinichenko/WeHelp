@@ -1,21 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SimpleInputField extends StatelessWidget {
+class StandardInputField extends StatelessWidget {
   /// Simple text field for entering email, description, etc.
 
   final String hintText; // Help text
   final TextCapitalization keyboardMode; // Uppercase or lowercase first letters
+  final bool obscure; //
   final Color color; // Text and cursor color
   final int maxLength; // Max Length of text
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
 
-  const SimpleInputField(
+  const StandardInputField(
       {Key key,
       this.hintText,
       this.keyboardMode = TextCapitalization.none,
+      this.obscure = false,
       this.color = Colors.grey,
       this.maxLength = 40,
       this.width = 0.7,
@@ -34,6 +36,7 @@ class SimpleInputField extends StatelessWidget {
       child: TextFormField(
           textAlign: TextAlign.left,
           textCapitalization: keyboardMode,
+          obscureText: obscure,
           style: Theme
               .of(context)
               .textTheme

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
-import 'package:we_help/components/simple_input_filed.dart';
+import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Registration/password_screen.dart';
 
 class EmailScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class EmailScreen extends StatelessWidget {
               child: Text("Введите почту",
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.center)),
-          SimpleInputField(
+          StandardInputField(
             color: Theme.of(context).primaryColor,
             hintText: "example@gmail.com",
             onChanged: (value) {

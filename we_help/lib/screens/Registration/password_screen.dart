@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
-import 'package:we_help/components/simple_input_filed.dart';
+import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Registration/name_screen.dart';
 
 class PasswordScreen extends StatelessWidget {
@@ -22,16 +22,18 @@ class PasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SimpleInputField(
+              StandardInputField(
                 color: Theme.of(context).primaryColor,
+                obscure: true,
                 hintText: "Введите пароль",
                 onChanged: (value) {
                   _password = value;
                 },
               ),
               SizedBox(height: 20),
-              SimpleInputField(
+              StandardInputField(
                 color: Theme.of(context).primaryColor,
+                obscure: true,
                 hintText: "Повторите пароль",
                 onChanged: (value) {
                   _passwordConfirm = value;
