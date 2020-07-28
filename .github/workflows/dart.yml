@@ -11,9 +11,10 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.9.1+hotfix.6'
+          flutter-version: '1.17.5'
 
       - run: flutter upgrade
       - run: flutter doctor
       - run: flutter pub get
       - run: flutter build apk
+      - run: flutter test
