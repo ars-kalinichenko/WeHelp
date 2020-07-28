@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:we_help/Screens/Welcome/welcome_screen.dart';
+import 'package:we_help/screens/Welcome/welcome_screen.dart';
 
-import 'Themes/app_theme.dart';
 import 'components/behavior_elements.dart';
+import 'themes/app_theme.dart';
 
 void main() {
   runApp(WeHelp());

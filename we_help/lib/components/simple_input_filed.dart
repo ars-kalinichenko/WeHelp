@@ -5,6 +5,7 @@ class SimpleInputField extends StatelessWidget {
   /// Simple text field for entering email, description, etc.
 
   final String hintText; // Help text
+  final TextCapitalization keyboardMode; // Uppercase or lowercase first letters
   final Color color; // Text and cursor color
   final int maxLength; // Max Length of text
   final double width; // Relative value for adaptive width
@@ -14,6 +15,7 @@ class SimpleInputField extends StatelessWidget {
   const SimpleInputField(
       {Key key,
       this.hintText,
+      this.keyboardMode = TextCapitalization.none,
       this.color = Colors.grey,
       this.maxLength = 40,
       this.width = 0.7,
@@ -31,7 +33,11 @@ class SimpleInputField extends StatelessWidget {
       alignment: Alignment.center,
       child: TextFormField(
           textAlign: TextAlign.left,
-          style: Theme.of(context).textTheme.headline3,
+          textCapitalization: keyboardMode,
+          style: Theme
+              .of(context)
+              .textTheme
+              .headline6,
           textAlignVertical: TextAlignVertical.center,
           cursorColor: color,
           maxLength: maxLength,

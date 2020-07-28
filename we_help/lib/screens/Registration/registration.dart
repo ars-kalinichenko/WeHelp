@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:we_help/Screens/Registration/phone_screen.dart';
+import 'package:we_help/screens/Registration/phone_screen.dart';
 
 class Registration {
   final BuildContext context;

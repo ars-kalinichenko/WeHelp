@@ -3,39 +3,38 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/simple_input_filed.dart';
 
-class EmailScreen extends StatelessWidget {
+class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    String _code;
+    String _name;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Center(
-              child: Text("Введите почту",
+              child: Text("Как вас зовут?",
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.center)),
+
           SimpleInputField(
-            color: Theme.of(context).primaryColor,
-            hintText: "jfdm@kd.ru",
+            color: Theme
+                .of(context)
+                .primaryColor,
+            keyboardMode: TextCapitalization.words,
+            hintText: "Фамилия Имя",
             onChanged: (value) {
               print(value);
             },
           ),
+
           RoundedGradientButton(
-              text: "Продолжить",
+              text: "Далее",
               color: Colors.transparent,
-              textColor: Theme.of(context).primaryColor,
+              textColor: Theme
+                  .of(context)
+                  .primaryColor,
               press: () {
-                print(_code);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return EmailScreen();
-                    },
-                  ),
-                );
+                print(_name);
               })
         ],
       ),
