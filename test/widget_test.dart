@@ -20,12 +20,9 @@ void main() {
     expect(find.text("Решение есть"), findsOneWidget);
 
     // Tap the 'registration' button and trigger a frame.
-    await tester.tap(find.byElementType(TextButton));
-    await tester.pump();
+//    await tester.tap(find.byElementType(TextButton));
+//    await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
   });
 
 }
