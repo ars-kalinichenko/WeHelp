@@ -1,0 +1,29 @@
+on:
+  push:
+    tags:
+      - v1             # Push events to v1 tag
+      - v0.*           # Push events to v1.0, v1.1, and v1.9 tags
+name: Release CI
+jobs:
+  build:
+    name: Build apk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.17.5'
+
+      - run: flutter upgrade
+      - run: flutter doctor
+      - run: flutter pub get
+      - run: flutter build apk --debug --split-per-abi
+      - run: flutter test
+      - name: Create a Release APK
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/debug/*.apk"
+          token: ${{ secrets.WEHELP_TOKEN }}
