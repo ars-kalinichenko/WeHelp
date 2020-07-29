@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/text_button.dart';
 
 import 'package:we_help/main.dart';
@@ -18,11 +19,14 @@ void main() {
 
     expect(find.text('WeHelp'), findsOneWidget);
     expect(find.text("Решение есть"), findsOneWidget);
+    expect(find.widgetWithText(TextButton, "Политика конфиденциальности"), findsOneWidget);
+    expect(find.widgetWithText(TextButton, "Зарегистрироваться"), findsOneWidget);
+    expect(find.byType(RoundedGradientButton), findsOneWidget);
 
     // Tap the 'registration' button and trigger a frame.
-//    await tester.tap(find.byElementType(TextButton));
+//    await tester.tap(find.widgetWithText(TextButton, "Зарегистрироваться"));
 //    await tester.pump();
-
+//    expect(find.widgetWithText(RoundedGradientButton, "Продолжить"), findsOneWidget);
   });
 
 }
