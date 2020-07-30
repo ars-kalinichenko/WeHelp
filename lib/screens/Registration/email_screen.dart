@@ -31,7 +31,7 @@ class EmailScreen extends StatelessWidget {
                   .primaryColor,
               press: () {
                 print(_code);
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) {

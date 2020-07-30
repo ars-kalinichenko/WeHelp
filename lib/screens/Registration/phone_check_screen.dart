@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/code_input_field.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/screens/Registration/email_screen.dart';
+import 'package:we_help/services/validator.dart';
 
 class PhoneCheckScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    String _code;
+    String _code = "";
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,14 +29,15 @@ class PhoneCheckScreen extends StatelessWidget {
               textColor: Theme.of(context).primaryColor,
               press: () {
                 print(_code);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return EmailScreen();
-                    },
-                  ),
-                );
+                if (validateCode(_code))
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return EmailScreen();
+                      },
+                    ),
+                  );
               })
         ],
       ),
