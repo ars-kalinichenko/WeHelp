@@ -47,7 +47,7 @@ class PasswordScreen extends StatelessWidget {
               textColor: Theme.of(context).primaryColor,
               press: () {
                 print("Password: $_password, confirm: $_passwordConfirm");
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {

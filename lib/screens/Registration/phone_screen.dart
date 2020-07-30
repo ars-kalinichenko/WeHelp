@@ -24,7 +24,7 @@ class PhoneScreen extends StatelessWidget {
           PhoneInputField(
             color: Theme.of(context).primaryColor,
             onChanged: (value) {
-              _phoneNumber = deleteMask(RegExp("[^0-9,+]"), value);
+              _phoneNumber = value;
             },
           ),
           RoundedGradientButton(
@@ -32,9 +32,10 @@ class PhoneScreen extends StatelessWidget {
               color: Colors.transparent,
               textColor: Theme.of(context).primaryColor,
               press: () {
-                print(_phoneNumber);
-                if (validateNumber(_phoneNumber)) {
-                  Navigator.pushReplacement(
+                String _phoneWithoutMask = deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
+                print(_phoneWithoutMask);
+                if (validateNumber(_phoneWithoutMask)) {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {

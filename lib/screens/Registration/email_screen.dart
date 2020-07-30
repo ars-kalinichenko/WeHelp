@@ -6,7 +6,8 @@ import 'package:we_help/screens/Registration/password_screen.dart';
 
 class EmailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    String _code;
+    String _email;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,7 +21,7 @@ class EmailScreen extends StatelessWidget {
             color: Theme.of(context).primaryColor,
             hintText: "example@gmail.com",
             onChanged: (value) {
-              print(value);
+              _email = value;
             },
           ),
           RoundedGradientButton(
@@ -30,8 +31,8 @@ class EmailScreen extends StatelessWidget {
                   .of(context)
                   .primaryColor,
               press: () {
-                print(_code);
-                Navigator.pushReplacement(
+                print(_email);
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {

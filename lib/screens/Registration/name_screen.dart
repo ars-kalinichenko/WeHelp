@@ -22,7 +22,7 @@ class NameScreen extends StatelessWidget {
             keyboardMode: TextCapitalization.words,
             hintText: "Фамилия Имя",
             onChanged: (value) {
-              print(value);
+              _name = value;
             },
           ),
 
