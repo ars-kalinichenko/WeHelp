@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:we_help/components/rounded_gradient_button.dart';
+import 'package:we_help/components/standard_input_filed.dart';
 
 class LogInScreen extends StatelessWidget {
   @override
@@ -28,12 +30,44 @@ class LogInScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 32.0),
                       child: Text("Log In",
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline2),
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline2),
                     ),
                   ),
                 ],
               )),
-        ])));
+                  SizedBox(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Имя пользователя"),
+                      StandardInputField(
+                          color: Theme
+                              .of(context)
+                              .primaryColor,
+                          hintText: "example@gmail.com"),
+                      SizedBox(height: 10),
+                      Text("Пароль"),
+                      StandardInputField(
+                        color: Theme
+                            .of(context)
+                            .primaryColor,
+                        obscure: true,
+                        hintText: "Введите пароль",
+                      ),
+                      SizedBox(height: sizeHeight * 0.1),
+                      Text("Войти через соц.сеть"),
+                    ],
+                  ),
+                  Row(children: <Widget>[
+                  ],),
+                  SizedBox(height: 10),
+                  RoundedGradientButton(text: "Войти",),
+                  SizedBox(height: 10,)
+                ])));
     // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
