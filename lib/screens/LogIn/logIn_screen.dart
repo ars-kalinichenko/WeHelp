@@ -30,7 +30,7 @@ class LogInScreen extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(right: 40.0),
-                      child: Text("Log In",
+                      child: Text("Вход",
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.headline2),
                     ),
