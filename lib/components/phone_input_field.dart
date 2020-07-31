@@ -17,7 +17,7 @@ class PhoneInputField extends StatelessWidget {
       {Key key,
       this.hintText = "7 (999) 999-99-99",
       this.color = Colors.grey,
-      this.width = 0.7,
+      this.width = 0.8,
       this.height = 0.07,
       this.onChanged})
       : super(key: key);

@@ -32,10 +32,10 @@ class NameScreen extends StatelessWidget {
               textColor: Theme.of(context).primaryColor,
               press: () {
                 print(_name);
-                Navigator.pushReplacement(context,
+                Navigator.pushAndRemoveUntil(context,
                     MaterialPageRoute(builder: (context) {
                   return LogInScreen();
-                }));
+                }), (Route<dynamic> route) => true);
               })
         ],
       ),
