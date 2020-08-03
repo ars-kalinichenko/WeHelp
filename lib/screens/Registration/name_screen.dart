@@ -59,7 +59,7 @@ class NameScreen extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(context,
                     MaterialPageRoute(builder: (context) {
                   return LogInScreen();
-                    }), (Route<dynamic> route) => true);
+                    }), (Route<dynamic> route) => false);
               })
         ],
       ),

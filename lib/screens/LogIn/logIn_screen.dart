@@ -3,8 +3,12 @@ import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Home/home_screen.dart';
+import 'package:we_help/services/rest_api.dart';
 
 class LogInScreen extends StatelessWidget {
+  static String _login;
+  static String _password;
+
   @override
   Widget build(BuildContext context) {
     double sizeHeight = MediaQuery.of(context).size.height;
@@ -16,27 +20,27 @@ class LogInScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-          Container(
-              padding: EdgeInsets.only(
-                  top: sizeHeight * 0.11,
-                  left: sizeWeight * 0.1,
-                  right: sizeWeight * 0.1),
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(LogInIcons.eva_arrow_ios_back_fill),
-                      iconSize: 40.0,
-                      onPressed: () => Navigator.of(context).pop()),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 40.0),
-                      child: Text("Вход",
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline2),
-                    ),
-                  ),
-                ],
-              )),
+                  Container(
+                      padding: EdgeInsets.only(
+                          top: sizeHeight * 0.11,
+                          left: sizeWeight * 0.1,
+                          right: sizeWeight * 0.1),
+                      child: Row(
+                        children: <Widget>[
+                          IconButton(
+                              icon: Icon(LogInIcons.eva_arrow_ios_back_fill),
+                              iconSize: 40.0,
+                              onPressed: () => Navigator.of(context).pop()),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 40.0),
+                              child: Text("Вход",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context).textTheme.headline2),
+                            ),
+                          ),
+                        ],
+                      )),
                   SizedBox(height: sizeHeight*0.07,),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,7 +51,10 @@ class LogInScreen extends StatelessWidget {
                           color: Theme
                               .of(context)
                               .primaryColor,
-                          hintText: "example@gmail.com"),
+                          hintText: "example@gmail.com",
+                          onChanged: (value) {
+                            _login = value;
+                          }),
                       SizedBox(height: sizeHeight * 0.07),
                       Text("Пароль"),
                       StandardInputField(
@@ -56,6 +63,9 @@ class LogInScreen extends StatelessWidget {
                             .primaryColor,
                         obscure: true,
                         hintText: "Введите пароль",
+                        onChanged: (value) {
+                          _password = value;
+                        },
                       ),
                       SizedBox(height: sizeHeight * 0.1),
                       Text("Войти через соц.сеть"),
@@ -82,6 +92,12 @@ class LogInScreen extends StatelessWidget {
                       color: Colors.transparent,
                       textColor: Theme.of(context).primaryColor,
                       press: () {
+                        Map<String, String> data = {
+                          "email": _login,
+                          "password": _password
+                        };
+                        print(data);
+                        RestApi.logInUser(data);
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) {
                               return HomeScreen();
