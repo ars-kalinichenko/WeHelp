@@ -3,17 +3,18 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:we_help/models/user.dart';
 
-class UsersApi {
-  static const String url = 'https://jsonplaceholder.typicode.com/users';
+class RestApi {
+  static const String baseUrl = 'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
 
-  static Future<List<User>> getUsers() async {
+  static void registerUser(Map<String, dynamic> data) async {
     try {
-      final response = await http.get(url);
-      if (response.statusCode == 200) {
-        List<User> list = parseUsers(response.body);
-        return list;
+      final response = await http.post('$baseUrl/api/auth/registration', body: data);
+      print("Response status: ${response.statusCode}");
+      print("Response body: ${response.body}");
+      if (response.statusCode == 201) {
+        print("Success");
       } else {
-        throw Exception("Error when requesting users (status! = 200)");
+        throw Exception("Error when requesting users (status! = 201)");
       }
     } catch (e) {
       throw Exception(e.toString());

@@ -37,7 +37,6 @@ class PhoneScreen extends StatelessWidget {
               textColor: Theme.of(context).primaryColor,
               press: () {
                 String _phoneWithoutMask = deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
-                print(_phoneWithoutMask);
                 if (validateNumber(_phoneWithoutMask)) {
                   registrationState.phoneNumber = _phoneWithoutMask;
                   print(registrationState.phoneNumber);
