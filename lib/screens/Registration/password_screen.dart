@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Registration/name_screen.dart';
+import 'package:we_help/screens/Registration/registration.dart';
 
 class PasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String _password;
     String _passwordConfirm;
+    final registrationState =
+        Provider.of<RegistrationState>(context, listen: false);
 
     return Scaffold(
       body: Column(
@@ -46,7 +50,10 @@ class PasswordScreen extends StatelessWidget {
               color: Colors.transparent,
               textColor: Theme.of(context).primaryColor,
               press: () {
-                print("Password: $_password, confirm: $_passwordConfirm");
+                registrationState.password = _password;
+                registrationState.passwordConfirm = _passwordConfirm;
+                print("Password: ${registrationState.password}");
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(

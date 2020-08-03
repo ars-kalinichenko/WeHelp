@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:we_help/components/phone_input_field.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/screens/Registration/phone_check_screen.dart';
+import 'package:we_help/screens/Registration/registration.dart';
 import 'package:we_help/services/text_processing.dart';
 import 'package:we_help/services/validator.dart';
 
 class PhoneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String _phoneNumber = "";
+    final registrationState =
+        Provider.of<RegistrationState>(context, listen: false);
 
     return Scaffold(
       body: Column(
@@ -35,6 +39,9 @@ class PhoneScreen extends StatelessWidget {
                 String _phoneWithoutMask = deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
                 print(_phoneWithoutMask);
                 if (validateNumber(_phoneWithoutMask)) {
+                  registrationState.phoneNumber = _phoneWithoutMask;
+                  print(registrationState.phoneNumber);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(

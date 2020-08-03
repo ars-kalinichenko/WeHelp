@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Registration/password_screen.dart';
+import 'package:we_help/screens/Registration/registration.dart';
 
 class EmailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String _email;
+    final registrationState =
+        Provider.of<RegistrationState>(context, listen: false);
 
     return Scaffold(
       body: Column(
@@ -31,7 +35,9 @@ class EmailScreen extends StatelessWidget {
                   .of(context)
                   .primaryColor,
               press: () {
-                print(_email);
+                registrationState.email = _email;
+                print(registrationState.email);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(

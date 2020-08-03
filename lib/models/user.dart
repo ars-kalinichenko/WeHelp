@@ -1,36 +1,40 @@
+import 'package:we_help/models/reviewRequest.dart';
+import 'package:we_help/models/tag.dart';
+
 class User {
+  /// User of our app (full view after searching)
   int id;
-  String fullName;
-  String email;
-  String selfDescription;
+  String name;
+  String surname;
+  String aboutMe;
+  String educationDescription;
   String image;
   int rating;
+  List<ReviewRequest> reviews;
+  List<Tag> tags;
 
   User(
       {this.id,
-      this.fullName,
-      this.email,
-      this.selfDescription,
+      this.name,
+      this.surname,
+      this.aboutMe,
+      this.educationDescription,
       this.image,
-      this.rating});
+      this.rating,
+      this.reviews,
+      this.tags});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
         id: json["id"] as int,
-        fullName: json["name"] as String,
-        email: json["email"] as String,
-
-        // TODO: change to dynamic
-        selfDescription:
-            "I am passionate about my work. Because I love what I do,"
-            " I have a steady source of motivation that drives me to do my best. "
-            "In my last job, this passion led me to challenge myself daily and learn"
-            " new skills that helped me to do better work. For example, I taught myself how to use Photoshop to improve"
-            " the quality of our photos and graphics. I soon became the go-to person for any design needs.",
-        // TODO: change to dynamic
-        image:
-            "https://static.tildacdn.com/tild3231-6132-4932-a434-306139333666/Grooming_manbeard.jpg",
-        // TODO: change to dynamic
-        rating: 5);
+        name: json["name"] as String,
+        surname: json["surname"] as String,
+        aboutMe: json["about_me"] as String,
+        educationDescription: json["education_description"] as String,
+        image: json["image"] as String,
+        rating: json["rating"] as int,
+        reviews: json["reviews"] as List<ReviewRequest>,
+        tags: json["tags"] as List<Tag>
+    );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/text_button.dart';
 import 'package:we_help/screens//PrivacyPolicy/privacy_screen.dart';
-import 'package:we_help/screens//Registration/registration.dart';
 import 'package:we_help/screens/LogIn/logIn_screen.dart';
+import 'package:we_help/screens/Registration/registration.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
