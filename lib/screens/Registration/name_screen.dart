@@ -9,6 +9,9 @@ import 'package:we_help/screens/Registration/registration.dart';
 class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String _name;
+    String _surname;
+    double sizeHeight = MediaQuery.of(context).size.height;
+
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
 
@@ -21,26 +24,39 @@ class NameScreen extends StatelessWidget {
               child: Text("Как вас зовут?",
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.center)),
-          StandardInputField(
-            color: Theme.of(context).primaryColor,
-            keyboardMode: TextCapitalization.words,
-            hintText: "Фамилия Имя",
-            onChanged: (value) {
-              _name = value;
-            },
-          ),
-
+          Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                StandardInputField(
+                  color: Theme.of(context).primaryColor,
+                  keyboardMode: TextCapitalization.words,
+                  hintText: "Фамилия",
+                  onChanged: (value) {
+                    _name = value;
+                  },
+                ),
+                SizedBox(height: sizeHeight*0.02),
+                StandardInputField(
+                  color: Theme.of(context).primaryColor,
+                  keyboardMode: TextCapitalization.words,
+                  hintText: "Имя",
+                  onChanged: (value) {
+                    _surname = value;
+                  },
+                ),
+              ]),
           RoundedGradientButton(
               text: "Далее",
               color: Colors.transparent,
               textColor: Theme.of(context).primaryColor,
               press: () {
                 registrationState.name = _name;
-                print(registrationState.name);
+                registrationState.surname = _surname;
                 print(registrationState.getValues());
+
                 Navigator.pushAndRemoveUntil(context,
                     MaterialPageRoute(builder: (context) {
-                      return LogInScreen();
+                  return LogInScreen();
                     }), (Route<dynamic> route) => true);
               })
         ],

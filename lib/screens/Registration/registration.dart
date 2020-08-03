@@ -25,13 +25,15 @@ class RegistrationState {
   String password;
   String passwordConfirm;
   String name;
+  String surname;
 
   RegistrationState(
       {this.phoneNumber,
       this.email,
       this.password,
       this.passwordConfirm,
-      this.name});
+      this.name,
+      this.surname});
 
   Map<String, dynamic> getValues() {
     return {
@@ -39,7 +41,8 @@ class RegistrationState {
       "email": this.email,
       "password1": this.password,
       "password2": this.passwordConfirm,
-      "name": this.name
+      "name": this.name,
+      "surname": this.surname
     };
   }
 }
