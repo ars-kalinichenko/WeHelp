@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
@@ -8,6 +9,31 @@ import 'package:we_help/services/rest_api.dart';
 class LogInScreen extends StatelessWidget {
   static String _login;
   static String _password;
+
+  static void logIn(BuildContext context) {
+    Map<String, String> data = {"email": _login, "password": _password};
+    print(data);
+    try {
+      RestApi.logInUser(data);
+      ToastUtils.showCustomToast(
+          context,
+          "Все верно!",
+          Icon(Icons.check, color: Colors.white),
+          Colors.white,
+          Color(0xff3EE896));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+        return HomeScreen();
+      }));
+    } catch (e) {
+      print(e.toString());
+      ToastUtils.showCustomToast(
+          context,
+          "Попробуйте ещё раз.",
+          Icon(Icons.clear, color: Colors.white),
+          Colors.white,
+          Color(0xffF14E4E));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +46,10 @@ class LogInScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.only(
-                          top: sizeHeight * 0.11,
-                          left: sizeWeight * 0.1,
+          Container(
+              padding: EdgeInsets.only(
+                  top: sizeHeight * 0.11,
+                  left: sizeWeight * 0.1,
                           right: sizeWeight * 0.1),
                       child: Row(
                         children: <Widget>[
@@ -86,24 +112,17 @@ class LogInScreen extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: sizeHeight*0.07),
+                  SizedBox(height: sizeHeight * 0.07),
                   RoundedGradientButton(
                       text: "Войти",
                       color: Colors.transparent,
-                      textColor: Theme.of(context).primaryColor,
+                      textColor: Theme
+                          .of(context)
+                          .primaryColor,
                       press: () {
-                        Map<String, String> data = {
-                          "email": _login,
-                          "password": _password
-                        };
-                        print(data);
-                        RestApi.logInUser(data);
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) {
-                              return HomeScreen();
-                            }));
+                        logIn(context);
                       }),
-                  SizedBox(height: sizeHeight*0.07)
+                  SizedBox(height: sizeHeight * 0.07)
                 ])));
     // This trailing comma makes auto-formatting nicer for build methods.
   }

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
-import 'package:we_help/screens/LogIn/logIn_screen.dart';
 import 'package:we_help/screens/Registration/registration.dart';
-import 'package:we_help/services/rest_api.dart';
 
 class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -53,13 +51,8 @@ class NameScreen extends StatelessWidget {
               press: () {
                 registrationState.name = _name;
                 registrationState.surname = _surname;
-                print(registrationState.getValues());
-                RestApi.registerUser(registrationState.getValues());
-
-                Navigator.pushAndRemoveUntil(context,
-                    MaterialPageRoute(builder: (context) {
-                  return LogInScreen();
-                    }), (Route<dynamic> route) => false);
+                Registration.pushRegistration(
+                    context, registrationState.getValues());
               })
         ],
       ),

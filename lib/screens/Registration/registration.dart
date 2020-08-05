@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:we_help/components/custom_toast.dart';
+import 'package:we_help/screens/LogIn/logIn_screen.dart';
 import 'package:we_help/screens/Registration/phone_screen.dart';
+import 'package:we_help/services/rest_api.dart';
 
 class Registration {
   final BuildContext context;
@@ -16,6 +19,31 @@ class Registration {
         },
       ),
     );
+  }
+
+  static void pushRegistration(
+      BuildContext context, Map<String, dynamic> data) {
+    try {
+      RestApi.registerUser(data);
+      ToastUtils.showCustomToast(
+          context,
+          "Все верно!",
+          Icon(Icons.check, color: Colors.white),
+          Colors.white,
+          Color(0xff3EE896));
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
+        return LogInScreen();
+      }), (Route<dynamic> route) => false);
+    } catch (e) {
+      ToastUtils.showCustomToast(
+          context,
+          "Попробуйте ещё раз.",
+          Icon(Icons.clear, color: Colors.white),
+          Colors.white,
+          Color(0xffF14E4E));
+      print(e.toString());
+    }
   }
 }
 

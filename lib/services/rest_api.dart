@@ -4,7 +4,6 @@ class RestApi {
   static const String baseUrl = 'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
 
   static void registerUser(Map<String, dynamic> data) async {
-    try {
       final response = await http.post('$baseUrl/api/auth/registration', body: data);
       print("Response status: ${response.statusCode}");
       print("Response body: ${response.body}");
@@ -13,13 +12,9 @@ class RestApi {
       } else {
         throw Exception("Error when requesting users (status! = 201)");
       }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
   }
 
   static void logInUser(Map<String, String> data) async {
-    try {
       final response = await http.post('$baseUrl/api/auth/login', body: data);
       print("Response status: ${response.statusCode}");
       print("Response body: ${response.body}");
@@ -28,8 +23,5 @@ class RestApi {
       } else {
         throw Exception("Error when requesting users (status! = 200)");
       }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
   }
 }
