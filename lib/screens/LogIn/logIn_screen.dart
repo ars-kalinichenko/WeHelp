@@ -116,9 +116,6 @@ class LogInScreen extends StatelessWidget {
                   RoundedGradientButton(
                       text: "Войти",
                       color: Colors.transparent,
-                      textColor: Theme
-                          .of(context)
-                          .primaryColor,
                       press: () {
                         logIn(context);
                       }),

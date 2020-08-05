@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_help/components/phone_input_field.dart';
+import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/screens/Registration/phone_check_screen.dart';
 import 'package:we_help/screens/Registration/registration.dart';
@@ -31,10 +32,10 @@ class PhoneScreen extends StatelessWidget {
               _phoneNumber = value;
             },
           ),
-          RoundedGradientButton(
+          RoundedButton(
               text: "Продолжить",
               color: Colors.transparent,
-              textColor: Theme.of(context).primaryColor,
+              textColor: Color(0xff00C6FF),
               press: () {
                 String _phoneWithoutMask = deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
                 if (validateNumber(_phoneWithoutMask)) {

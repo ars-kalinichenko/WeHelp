@@ -21,7 +21,7 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
 //    Theme for headlines with medium weight
       headline2: TextStyle(
           fontSize: 28.0,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.normal,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 
@@ -35,7 +35,7 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
 //    Theme for button text with regular weight
       headline4: TextStyle(
           fontSize: 18.0,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           fontFamily: "Montserrat",
           color: PrimaryColor),
 

@@ -14,7 +14,7 @@ class RoundedButton extends StatelessWidget {
   const RoundedButton({
     Key key,
     this.text,
-    this.width = 0.8,
+    this.width = 0.66,
     this.height = 0.07,
     this.press,
     this.color = Colors.white,
@@ -28,9 +28,12 @@ class RoundedButton extends StatelessWidget {
     Container container = Container(
       width: size.width * width,
       height: size.height * height,
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(100.0)),
         child: FlatButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+              side: BorderSide(color: Color(0xff00C6FF), width: 2.5),
+
+          ),
           color: color,
           splashColor: Colors.transparent,
           onPressed: press,
@@ -39,7 +42,6 @@ class RoundedButton extends StatelessWidget {
             style: TextStyle(color: textColor, fontSize: fontSize),
           ),
         ),
-      ),
     );
     return container;
   }

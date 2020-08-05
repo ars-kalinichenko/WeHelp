@@ -51,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
               Container(
                 child: Text('Решение есть',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline3),
+                    style: Theme.of(context).textTheme.headline2),
               ),
             ],
           ),
@@ -62,6 +62,8 @@ class WelcomeScreen extends StatelessWidget {
                   children: <Widget>[
                     RoundedGradientButton(
                         text: "Войти",
+                        width: 0.65,
+                        textColor: Colors.white,
                         press: () {
                           Navigator.push(
                             context,
@@ -72,9 +74,8 @@ class WelcomeScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        color: Colors.transparent,
-                        textColor: Theme.of(context).primaryColor),
-                    SizedBox(height: sizeHeight * 0.03),
+                        color: Colors.transparent),
+                    SizedBox(height: sizeHeight * 0.02),
                     TextButton(
                         text: "Зарегистрироваться",
                         textColor: Theme.of(context).textTheme.headline4.color,
@@ -112,7 +113,8 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         );
                       },
-                    )
+                    ),
+                    SizedBox(height: sizeHeight*0.02)
                   ]))
         ])));
     // This trailing comma makes auto-formatting nicer for build methods.

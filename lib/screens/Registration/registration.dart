@@ -42,6 +42,7 @@ class Registration {
           Icon(Icons.clear, color: Colors.white),
           Colors.white,
           Color(0xffF14E4E));
+      print("FFFF");
       print(e.toString());
     }
   }

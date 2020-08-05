@@ -19,7 +19,7 @@ class RoundedGradientButton extends StatelessWidget {
       this.height = 0.08,
       this.press,
       this.color = Colors.white,
-      this.textColor = Colors.black,
+      this.textColor = Colors.white,
       this.borderSize = 1.5,
       this.textSize = 18})
       : super(key: key);
@@ -36,15 +36,15 @@ class RoundedGradientButton extends StatelessWidget {
               child: Ink(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0xF4F4F4), Colors.white],
+                    colors: [Color(0xff0072FF), Color(0xff00C6FF)],
                     begin: Alignment.centerRight,
                     end: Alignment.centerLeft,
                   ),
                   borderRadius: BorderRadius.circular(32),
-                  border: Border.all(
-                      color: Colors.white,
-                      style: BorderStyle.solid,
-                      width: borderSize),
+                    border: Border.all(
+                        color: Colors.white,
+                        style: BorderStyle.solid,
+                        width: borderSize),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.08),

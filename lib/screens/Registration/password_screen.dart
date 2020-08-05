@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Registration/name_screen.dart';
@@ -45,10 +46,10 @@ class PasswordScreen extends StatelessWidget {
               ),
             ],
           ),
-          RoundedGradientButton(
+          RoundedButton(
               text: "Продолжить",
               color: Colors.transparent,
-              textColor: Theme.of(context).primaryColor,
+              textColor: Color(0xff00C6FF),
               press: () {
                 registrationState.password = _password;
                 registrationState.passwordConfirm = _passwordConfirm;
