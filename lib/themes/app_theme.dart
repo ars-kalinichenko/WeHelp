@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const PrimaryColor = Color(0xFF3F3D56);
-const AccentColor = Colors.grey;
+const AccentColor = Color(0xff00C6FF);
 
 ThemeData appLightTheme = ThemeData.light().copyWith(
   primaryColor: PrimaryColor,
@@ -9,7 +9,6 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
   brightness: Brightness.light,
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
-
   textTheme: TextTheme(
 //    Theme for headlines with bolt weight
       headline1: TextStyle(

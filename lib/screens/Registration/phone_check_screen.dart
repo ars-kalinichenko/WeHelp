@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/code_input_field.dart';
 import 'package:we_help/components/rounded_button.dart';
-import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/screens/Registration/email_screen.dart';
 import 'package:we_help/services/validator.dart';
 
@@ -27,7 +26,7 @@ class PhoneCheckScreen extends StatelessWidget {
           RoundedButton(
               text: "Продолжить",
               color: Colors.transparent,
-              textColor: Color(0xff00C6FF),
+              textColor: Theme.of(context).accentColor,
               press: () {
                 print(_code);
                 if (validateCode(_code))
