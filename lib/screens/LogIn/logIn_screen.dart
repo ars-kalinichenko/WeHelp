@@ -3,7 +3,7 @@ import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_gradient_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
-import 'package:we_help/screens/Home/home_screen.dart';
+import 'package:we_help/screens/main_page.dart';
 import 'package:we_help/services/rest_api.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class LogInScreen extends StatelessWidget {
           Colors.white,
           Color(0xff3EE896));
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return HomeScreen();
+        return MainPage();
       }));
     } catch (e) {
       print(e.toString());
