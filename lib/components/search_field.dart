@@ -15,7 +15,7 @@ class SearchInputField extends StatelessWidget {
       {Key key,
       this.hintText,
       this.color = Colors.grey,
-      this.maxLength = 40,
+      this.maxLength = 255,
       this.width = 0.7,
       this.height = 0.07,
       this.onChanged})
@@ -25,9 +25,9 @@ class SearchInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final OutlineInputBorder borderStyle = OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18.0),
+        borderRadius: BorderRadius.circular(100.0),
         borderSide:
-            BorderSide(color: Theme.of(context).accentColor, width: 1.5));
+            BorderSide(color: Color(0xff0574E5), width: 1.5));
 
     Container container = Container(
       width: size.width * width,

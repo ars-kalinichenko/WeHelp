@@ -10,11 +10,11 @@ class LogInScreen extends StatelessWidget {
   static String _login;
   static String _password;
 
-  static void logIn(BuildContext context) {
+  static void logIn(BuildContext context) async {
     Map<String, String> data = {"email": _login, "password": _password};
     print(data);
     try {
-      RestApi.logInUser(data);
+      await RestApi.logInUser(data);
       ToastUtils.showCustomToast(
           context,
           "Все верно!",

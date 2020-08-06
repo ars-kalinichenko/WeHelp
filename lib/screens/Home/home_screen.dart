@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/article_preview.dart';
 import 'package:we_help/components/search_field.dart';
+import 'package:we_help/components/tips_with_background.dart';
 import 'package:we_help/models/tag.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWeight = MediaQuery.of(context).size.width;
-    List<Widget> items = [
+    List<Widget> samples = [
       ArticlePreview(
         author: "Евгений Моховский",
         title: "Что делать если на тебя напал дикий еж?",
@@ -26,12 +27,23 @@ class HomeScreen extends StatelessWidget {
           Tag(id: 0, name: " #кулинария ", color: "grey"),
           Tag(id: 1, name: " #еда ", color: "grey"),
           Tag(id: 0, name: " #национальная кухня ", color: "grey"),
-
         ],
         date: "24.07.2020",
         time: "23:46",
         answersCount: 11,
-      )
+      ),
+      ArticlePreview(
+        author: "Арсений Калиниченко",
+        title: "Как создать звезду смерти?",
+        description: "На меня голуби в парке напали. Хочу отомстить!",
+        tags: [
+          Tag(id: 4, name: " #инженерия ", color: "grey"),
+          Tag(id: 6, name: " #философия ", color: "grey")
+        ],
+        date: "04.08.2020",
+        time: "18:22",
+        answersCount: 217,
+      ),
     ];
 
     return Scaffold(
@@ -40,17 +52,33 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: sizeHeight * 0.03),
+              SizedBox(height: sizeHeight * 0.045),
               Container(
-                  height: sizeHeight * 0.17,
+                  height: sizeHeight * 0.14,
                   child: ListView(
+                    padding: EdgeInsets.all(0),
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      //TODO: add tips
+                      TipsWithBackground(
+                        title: "Почувствуйте себя в роли эксперта",
+                        description: "Ответьте на вопросы",
+                        imagePath: "assets/images/tips_back1.png",
+                      ),
+                      TipsWithBackground(
+                        title: "Расскажите всем о своем опыте",
+                        description: "Напишите статью",
+                        imagePath: "assets/images/tips_back2.png",
+                      ),
+                      TipsWithBackground(
+                        title: "Вопросы про коронавирус",
+                        description: "Ответьте на вопросы",
+                        imagePath: "assets/images/tips_back1.png",
+                      )
                     ],
                   )),
+              SizedBox(height: sizeHeight * 0.03),
               SearchInputField(
                 width: 0.87,
                 hintText: "Ваш вопрос...",
@@ -68,7 +96,7 @@ class HomeScreen extends StatelessWidget {
           Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: items)
+              children: samples)
         ]));
   }
 }

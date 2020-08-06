@@ -21,10 +21,10 @@ class Registration {
     );
   }
 
-  static void pushRegistration(
-      BuildContext context, Map<String, dynamic> data) {
+  static void pushRegistration (
+      BuildContext context, Map<String, dynamic> data) async {
     try {
-      RestApi.registerUser(data);
+      await RestApi.registerUser(data);
       ToastUtils.showCustomToast(
           context,
           "Все верно!",
@@ -42,7 +42,6 @@ class Registration {
           Icon(Icons.clear, color: Colors.white),
           Colors.white,
           Color(0xffF14E4E));
-      print("FFFF");
       print(e.toString());
     }
   }
