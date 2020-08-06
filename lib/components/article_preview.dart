@@ -28,7 +28,7 @@ class ArticlePreview extends StatelessWidget {
       this.press,
       this.contentKey,
       this.width = 0.9,
-      this.height = 0.25})
+      this.height = 0.30})
       : super(key: key);
 
   List<Widget> buildTagWidgets(double screenWidth, List<Tag> tagList) {
@@ -70,6 +70,8 @@ class ArticlePreview extends StatelessWidget {
           ),
           Text(
             title,
+            overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,
@@ -80,7 +82,7 @@ class ArticlePreview extends StatelessWidget {
 
           // A container with scrollable tags.
           Container(
-            height: size.height * 0.025,
+            height: size.height * 0.03,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: buildTagWidgets(size.width, tags),
