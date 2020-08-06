@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class SlideInToastMessageAnimation extends StatelessWidget {
+  /// Creates an animation of the appearance of a toast message
   final Widget child;
 
   SlideInToastMessageAnimation(this.child);

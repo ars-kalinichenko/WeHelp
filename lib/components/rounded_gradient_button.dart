@@ -47,9 +47,9 @@ class RoundedGradientButton extends StatelessWidget {
                         width: borderSize),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.08),
-                      spreadRadius: 3,
-                      blurRadius: 2,
+                      color: Colors.grey.withOpacity(0.03),
+                      spreadRadius: 2,
+                      blurRadius: 4,
                       offset: Offset(0, 3),
                     ) // changes position of shadow
                   ],

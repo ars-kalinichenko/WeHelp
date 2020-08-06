@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class LogInIcons {
+  /// Loads custom icons.
   LogInIcons._();
 
   static const _kFontFam = 'LogInIcons';

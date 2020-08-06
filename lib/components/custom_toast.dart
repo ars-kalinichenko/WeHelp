@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/toast_animation.dart';
 
 class ToastUtils {
+  /// A utility for creating toast messages about success or error.
   static Timer toastTimer;
   static OverlayEntry _overlayEntry;
 
   static void showCustomToast(BuildContext context, String message, Icon icon,
       Color textColor, Color boxColor) {
+    /// Shows a message for 4 seconds
     if (toastTimer == null || !toastTimer.isActive) {
       _overlayEntry =
           createOverlayEntry(context, message, icon, textColor, boxColor);
       Overlay.of(context).insert(_overlayEntry);
-      toastTimer = Timer(Duration(seconds: 2), () {
+      toastTimer = Timer(Duration(seconds: 4), () {
         if (_overlayEntry != null) {
           _overlayEntry.remove();
         }
@@ -23,6 +25,7 @@ class ToastUtils {
 
   static OverlayEntry createOverlayEntry(BuildContext context, String message,
       Icon icon, Color textColor, Color boxColor) {
+    /// Creates a message widget.
     return OverlayEntry(
       builder: (context) => Positioned(
         top: MediaQuery.of(context).size.height * 0.07,

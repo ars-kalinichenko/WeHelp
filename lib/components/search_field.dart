@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchInputField extends StatelessWidget {
-  /// Simple text field for entering email, description, etc.
+  /// Text filed with icon for search.
+
   final String hintText; // Help text
   final Color color; // Text and cursor color
   final int maxLength; // Max Length of text
@@ -32,6 +33,7 @@ class SearchInputField extends StatelessWidget {
       width: size.width * width,
       height: size.height * height,
       alignment: Alignment.center,
+
       child: TextField(
           textAlign: TextAlign.left,
           textCapitalization: TextCapitalization.sentences,
