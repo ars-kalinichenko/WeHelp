@@ -38,7 +38,7 @@ class ArticlePreview extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
             margin: EdgeInsets.only(right: screenWidth * 0.02),
             decoration: BoxDecoration(
-                color: Colors.grey,
+                color: Color(0xffC4C4C4),
                 borderRadius: BorderRadius.all(Radius.circular(6.0))),
             child: Text(tag.name)))
         .toList();
