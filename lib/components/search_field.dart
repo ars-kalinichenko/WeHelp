@@ -46,7 +46,9 @@ class SearchInputField extends StatelessWidget {
               disabledBorder: borderStyle,
               focusedBorder: borderStyle,
               prefixIcon:
-                  Icon(Icons.search, color: Theme.of(context).primaryColor),
+                  Icon(Icons.search, color: Color(0xff3F3D56)),
+              suffixIcon:
+              Icon(Icons.navigate_next, color: Color(0xff3F3D56), size: 30,),
               hintText: hintText,
               fillColor: color,
               counterText: ""),
