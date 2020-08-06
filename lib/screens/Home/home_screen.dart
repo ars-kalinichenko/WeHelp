@@ -4,11 +4,14 @@ import 'package:we_help/components/article_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
 import 'package:we_help/models/tag.dart';
+import 'package:we_help/screens/Home/search_input_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWeight = MediaQuery.of(context).size.width;
+    String _searchRequest;
+
     List<Widget> samples = [
       ArticlePreview(
         author: "Евгений Моховский",
@@ -82,6 +85,15 @@ class HomeScreen extends StatelessWidget {
               SearchInputField(
                 width: 0.87,
                 hintText: "Ваш вопрос...",
+                onChanged: (value) {
+                  _searchRequest = value;
+                },
+                onPressed: () {
+                  print(_searchRequest);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return SearchInputScreen(_searchRequest);
+                  }));
+                },
               ),
               SizedBox(height: sizeHeight * 0.03),
               Text(

@@ -12,6 +12,7 @@ class StandardInputField extends StatelessWidget {
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
+  final String initText;
 
   const StandardInputField(
       {Key key,
@@ -22,7 +23,8 @@ class StandardInputField extends StatelessWidget {
       this.maxLength = 40,
       this.width = 0.7,
       this.height = 0.07,
-      this.onChanged})
+      this.onChanged,
+      this.initText})
       : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class StandardInputField extends StatelessWidget {
       alignment: Alignment.center,
       child: TextFormField(
           textAlign: TextAlign.left,
+          initialValue: initText,
           textCapitalization: keyboardMode,
           obscureText: obscure,
           style: Theme

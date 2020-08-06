@@ -10,6 +10,7 @@ class SearchInputField extends StatelessWidget {
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
+  final Function onPressed;
 
   const SearchInputField(
       {Key key,
@@ -18,7 +19,8 @@ class SearchInputField extends StatelessWidget {
       this.maxLength = 255,
       this.width = 0.7,
       this.height = 0.07,
-      this.onChanged})
+      this.onChanged,
+      this.onPressed})
       : super(key: key);
 
   @override
@@ -45,10 +47,12 @@ class SearchInputField extends StatelessWidget {
               enabledBorder: borderStyle,
               disabledBorder: borderStyle,
               focusedBorder: borderStyle,
-              prefixIcon:
-                  Icon(Icons.search, color: Color(0xff3F3D56)),
-              suffixIcon:
-              Icon(Icons.navigate_next, color: Color(0xff3F3D56), size: 30,),
+              prefixIcon: Icon(Icons.search, color: Color(0xff3F3D56)),
+              suffixIcon: IconButton(
+                icon: Icon(Icons.navigate_next,
+                    color: Color(0xff3F3D56), size: 30),
+                onPressed: onPressed,
+              ),
               hintText: hintText,
               fillColor: color,
               counterText: ""),
