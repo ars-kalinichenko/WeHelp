@@ -36,13 +36,13 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             HomeScreen(),
             Center(
-              child: Text("2"),
+              child: Text("Туть юзеры"),
             ),
             Center(
-              child: Text("3"),
+              child: Text("Туть сообщения"),
             ),
             Center(
-              child: Text("4"),
+              child: Text("Туть настройки"),
             ),
           ],
         ),
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
               textColor: Colors.white,
               inactiveColor: Color(0xff60626D)),
           BottomNavyBarItem(
-              icon: Icon(Icons.notifications_none),
+              icon: Icon(Icons.people),
               title: Text('Users'),
               activeColor: Color(0xff0574E5),
               textColor: Colors.white,
@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               textColor: Colors.white,
               inactiveColor: Color(0xff60626D)),
           BottomNavyBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.settings),
               title: Text('Settings'),
               activeColor: Color(0xff0574E5),
               textColor: Colors.white,

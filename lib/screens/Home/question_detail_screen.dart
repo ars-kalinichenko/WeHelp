@@ -6,6 +6,7 @@ import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/exceptions.dart';
 import 'package:we_help/screens/Home/home_screen.dart';
+import 'package:we_help/screens/main_page.dart';
 import 'package:we_help/services/rest_api.dart';
 
 class SearchDetailScreen extends StatelessWidget {
@@ -27,7 +28,7 @@ class SearchDetailScreen extends StatelessWidget {
           Color(0xff3EE896));
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
-        return HomeScreen();
+        return MainPage();
       }), (Route<dynamic> route) => false);
     } on InternetError catch (e) {
       ToastUtils.showCustomToast(
@@ -119,7 +120,7 @@ class SearchDetailScreen extends StatelessWidget {
                 press: () {
 
                       pushQuestion(context, {
-                        "title": searchRequest,
+                        "title": _changedSearchRequest,
                         "content": _detail,
                         "author_id": "1",
                         "pub_date": DateTime.now().toString(),

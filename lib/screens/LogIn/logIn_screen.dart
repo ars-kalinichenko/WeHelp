@@ -6,6 +6,8 @@ import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/Home/home_screen.dart';
 import 'package:we_help/services/rest_api.dart';
 
+import '../main_page.dart';
+
 class LogInScreen extends StatelessWidget {
   static String _login;
   static String _password;
@@ -23,7 +25,7 @@ class LogInScreen extends StatelessWidget {
           Color(0xff3EE896));
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
-        return HomeScreen();
+        return MainPage();
       }), (Route<dynamic> route) => false);
     } catch (e) {
       print(e.toString());

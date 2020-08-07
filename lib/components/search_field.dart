@@ -18,7 +18,7 @@ class SearchInputField extends StatelessWidget {
       this.color = Colors.grey,
       this.maxLength = 255,
       this.width = 0.7,
-      this.height = 0.07,
+      this.height = 0.1,
       this.onChanged,
       this.onPressed})
       : super(key: key);

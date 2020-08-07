@@ -19,7 +19,7 @@ class SearchInputScreen extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
           Container(
