@@ -1,16 +1,51 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
+import 'package:we_help/exceptions.dart';
+import 'package:we_help/screens/Home/home_screen.dart';
+import 'package:we_help/services/rest_api.dart';
 
 class SearchDetailScreen extends StatelessWidget {
   final String searchRequest;
 
+
   SearchDetailScreen(this.searchRequest);
 
+  static void pushQuestion(
+      BuildContext context, Map<String, dynamic> data) async {
+    /// Todo: rewrite dry code
+    try {
+      await RestApi.postQuestion(data);
+      ToastUtils.showCustomToast(
+          context,
+          "Вопрос отправлен!",
+          Icon(Icons.check, color: Colors.white),
+          Colors.white,
+          Color(0xff3EE896));
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
+        return HomeScreen();
+      }), (Route<dynamic> route) => false);
+    } on InternetError catch (e) {
+      ToastUtils.showCustomToast(
+          context,
+          "Проверьте данные и интеренет",
+          Icon(Icons.clear, color: Colors.white),
+          Colors.white,
+          Color(0xffF14E4E));
+      print(e.toString());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     String _changedSearchRequest = searchRequest;
+    String _detail;
+    String _tags;
+
     double sizeHeight = MediaQuery.of(context).size.height;
     double sizeWeight = MediaQuery.of(context).size.width;
 
@@ -63,7 +98,9 @@ class SearchDetailScreen extends StatelessWidget {
                 StandardInputField(
                     color: Theme.of(context).primaryColor,
                     hintText: "Пытаюсь усмирить милого демона",
-                    onChanged: (value) {}),
+                    onChanged: (value) {
+                      _detail = value;
+                    }),
                 SizedBox(
                   height: sizeHeight * 0.02,
                 ),
@@ -71,12 +108,24 @@ class SearchDetailScreen extends StatelessWidget {
                 StandardInputField(
                     color: Theme.of(context).primaryColor,
                     hintText: "Котики, демоны",
-                    onChanged: (value) {}),
+                    onChanged: (value) {
+                      _tags = value;
+                    }),
                 SizedBox(height: sizeHeight * 0.15),
                 RoundedButton(
                     text: "Далее",
                     color: Colors.transparent,
-                    textColor: Theme.of(context).accentColor),
+                    textColor: Theme.of(context).accentColor,
+                press: () {
+
+                      pushQuestion(context, {
+                        "title": searchRequest,
+                        "content": _detail,
+                        "author_id": "1",
+                        "pub_date": DateTime.now().toString(),
+                        "tags": _tags
+                      });
+                }),
                 SizedBox(height: sizeHeight * 0.07)
               ])
         ])));

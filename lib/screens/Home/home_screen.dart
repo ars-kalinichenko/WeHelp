@@ -4,7 +4,7 @@ import 'package:we_help/components/article_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
 import 'package:we_help/models/tag.dart';
-import 'package:we_help/screens/Home/search_input_screen.dart';
+import 'package:we_help/screens/Home/question_input_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {

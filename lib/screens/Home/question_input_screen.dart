@@ -4,7 +4,7 @@ import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/text_button.dart';
-import 'package:we_help/screens/Home/search_detail_screen.dart';
+import 'package:we_help/screens/Home/question_detail_screen.dart';
 
 class SearchInputScreen extends StatelessWidget {
   final String searchRequest;
