@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/code_input_field.dart';
 import 'package:we_help/components/rounded_button.dart';
-import 'package:we_help/screens/Registration/email_screen.dart';
+import 'package:we_help/screens/registration/email_screen.dart';
 import 'package:we_help/services/validator.dart';
 
 class PhoneCheckScreen extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:we_help/screens/Registration/registration.dart';
-import 'package:we_help/screens/Welcome/welcome_screen.dart';
+import 'package:we_help/screens/registration/registration.dart';
+import 'package:we_help/screens/welcome/welcome_screen.dart';
 
 import 'components/behavior_elements.dart';
 import 'themes/app_theme.dart';
@@ -18,7 +18,6 @@ class WeHelp extends StatelessWidget {
       create: (_) => RegistrationState(),
       child: MaterialApp(
           title: 'WeHelp',
-          debugShowCheckedModeBanner: false,
           theme: appLightTheme,
           builder: (context, child) {
             return ScrollConfiguration(

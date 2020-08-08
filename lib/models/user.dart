@@ -1,4 +1,4 @@
-import 'package:we_help/models/reviewRequest.dart';
+import 'package:we_help/models/review_request.dart';
 import 'package:we_help/models/tag.dart';
 
 class User {

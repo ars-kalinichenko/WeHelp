@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
-import 'package:we_help/screens/Registration/registration.dart';
+import 'package:we_help/screens/registration/registration.dart';
 
 class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {

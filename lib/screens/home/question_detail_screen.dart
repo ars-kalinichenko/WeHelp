@@ -84,12 +84,13 @@ class SearchDetailScreen extends StatelessWidget {
               children: <Widget>[
                 Text("Ваш вопрос"),
                 StandardInputField(
-                    color: Theme.of(context).primaryColor,
-                    initText: searchRequest,
-                    hintText: "Как приручить манула?",
-                    onChanged: (value) {
-                      _changedSearchRequest = value;
-                    }),
+                  color: Theme.of(context).primaryColor,
+                  initText: searchRequest,
+                  hintText: "Как приручить манула?",
+                  onChanged: (value) {
+                    _changedSearchRequest = value;
+                  },
+                ),
                 SizedBox(
                   height: sizeHeight * 0.02,
                 ),

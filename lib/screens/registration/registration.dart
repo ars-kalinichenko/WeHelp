@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/screens/LogIn/logIn_screen.dart';
-import 'package:we_help/screens/Registration/phone_screen.dart';
+import 'package:we_help/screens/registration/phone_screen.dart';
 import 'package:we_help/services/rest_api.dart';
 
 class Registration {

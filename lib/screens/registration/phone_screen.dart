@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_help/components/phone_input_field.dart';
 import 'package:we_help/components/rounded_button.dart';
-import 'package:we_help/screens/Registration/phone_check_screen.dart';
-import 'package:we_help/screens/Registration/registration.dart';
+import 'package:we_help/screens/registration/phone_check_screen.dart';
+import 'package:we_help/screens/registration/registration.dart';
 import 'package:we_help/services/text_processing.dart';
 import 'package:we_help/services/validator.dart';
 
