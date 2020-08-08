@@ -34,7 +34,7 @@ class NameScreen extends StatelessWidget {
                     _name = value;
                   },
                 ),
-                SizedBox(height: sizeHeight*0.02),
+                SizedBox(height: sizeHeight * 0.02),
                 StandardInputField(
                   color: Theme.of(context).primaryColor,
                   keyboardMode: TextCapitalization.words,

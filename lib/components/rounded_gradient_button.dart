@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class RoundedGradientButton extends StatelessWidget {
@@ -41,10 +40,10 @@ class RoundedGradientButton extends StatelessWidget {
                     end: Alignment.centerLeft,
                   ),
                   borderRadius: BorderRadius.circular(32),
-                    border: Border.all(
-                        color: Colors.white,
-                        style: BorderStyle.solid,
-                        width: borderSize),
+                  border: Border.all(
+                      color: Colors.white,
+                      style: BorderStyle.solid,
+                      width: borderSize),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.03),

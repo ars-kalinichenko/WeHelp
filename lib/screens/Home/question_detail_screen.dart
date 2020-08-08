@@ -5,19 +5,17 @@ import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/exceptions.dart';
-import 'package:we_help/screens/Home/home_screen.dart';
 import 'package:we_help/screens/main_page.dart';
 import 'package:we_help/services/rest_api.dart';
 
 class SearchDetailScreen extends StatelessWidget {
   final String searchRequest;
 
-
   SearchDetailScreen(this.searchRequest);
 
   static void pushQuestion(
       BuildContext context, Map<String, dynamic> data) async {
-    /// Todo: rewrite dry code
+    /// Todo: rewrite dry code. Ок ли асинхронно обрабатывать асинхронную функцию?
     try {
       await RestApi.postQuestion(data);
       ToastUtils.showCustomToast(
@@ -117,8 +115,7 @@ class SearchDetailScreen extends StatelessWidget {
                     text: "Далее",
                     color: Colors.transparent,
                     textColor: Theme.of(context).accentColor,
-                press: () {
-
+                    press: () {
                       pushQuestion(context, {
                         "title": _changedSearchRequest,
                         "content": _detail,
@@ -126,7 +123,7 @@ class SearchDetailScreen extends StatelessWidget {
                         "pub_date": DateTime.now().toString(),
                         "tags": _tags
                       });
-                }),
+                    }),
                 SizedBox(height: sizeHeight * 0.07)
               ])
         ])));

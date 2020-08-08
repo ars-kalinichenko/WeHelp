@@ -4,6 +4,8 @@ import 'package:we_help/components/bottom_navbar.dart';
 import 'package:we_help/screens/Home/home_screen.dart';
 
 class MainPage extends StatefulWidget {
+  /// Application home screen. The user goes to it after authentication.
+  /// Designed to have a dock and swipe screens.
   @override
   createState() => new _MainPageState();
 }

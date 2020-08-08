@@ -19,21 +19,20 @@ class BottomNavyBar extends StatelessWidget {
   final Curve curve;
   final Color textColor;
 
-  BottomNavyBar({
-    Key key,
-    this.selectedIndex = 0,
-    this.showElevation = true,
-    this.iconSize = 24,
-    this.backgroundColor,
-    this.itemCornerRadius = 50,
-    this.containerHeight = 56,
-    this.animationDuration = const Duration(milliseconds: 270),
-    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
-    @required this.items,
-    @required this.onItemSelected,
-    this.curve = Curves.linear,
-    this.textColor
-  }) {
+  BottomNavyBar(
+      {Key key,
+      this.selectedIndex = 0,
+      this.showElevation = true,
+      this.iconSize = 24,
+      this.backgroundColor,
+      this.itemCornerRadius = 50,
+      this.containerHeight = 56,
+      this.animationDuration = const Duration(milliseconds: 270),
+      this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+      @required this.items,
+      @required this.onItemSelected,
+      this.curve = Curves.linear,
+      this.textColor}) {
     assert(items != null);
     assert(items.length >= 2 && items.length <= 5);
     assert(onItemSelected != null);
@@ -96,8 +95,7 @@ class _ItemWidget extends StatelessWidget {
   final Curve curve;
   final Color textColor;
 
-  const _ItemWidget({
-    Key key,
+  const _ItemWidget({Key key,
     @required this.item,
     @required this.isSelected,
     @required this.backgroundColor,
@@ -105,8 +103,8 @@ class _ItemWidget extends StatelessWidget {
     @required this.itemCornerRadius,
     @required this.iconSize,
     this.curve = Curves.linear,
-    this.textColor
-  })  : assert(isSelected != null),
+    this.textColor})
+      : assert(isSelected != null),
         assert(item != null),
         assert(backgroundColor != null),
         assert(animationDuration != null),
@@ -126,8 +124,7 @@ class _ItemWidget extends StatelessWidget {
         duration: animationDuration,
         curve: curve,
         decoration: BoxDecoration(
-          color:
-          isSelected ? item.activeColor : backgroundColor,
+          color: isSelected ? item.activeColor : backgroundColor,
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
         child: SingleChildScrollView(
@@ -187,14 +184,12 @@ class BottomNavyBarItem {
   final TextAlign textAlign;
   final Color textColor;
 
-  BottomNavyBarItem({
-    @required this.icon,
+  BottomNavyBarItem({@required this.icon,
     @required this.title,
     this.activeColor = Colors.blue,
     this.textAlign,
     this.inactiveColor,
-    this.textColor
-  }) {
+    this.textColor}) {
     assert(icon != null);
     assert(title != null);
   }

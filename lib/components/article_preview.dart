@@ -71,7 +71,7 @@ class ArticlePreview extends StatelessWidget {
           Text(
             title,
             overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+            maxLines: 2,
             style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w500,

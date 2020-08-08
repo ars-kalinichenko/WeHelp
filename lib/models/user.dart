@@ -34,7 +34,6 @@ class User {
         image: json["image"] as String,
         rating: json["rating"] as int,
         reviews: json["reviews"] as List<ReviewRequest>,
-        tags: json["tags"] as List<Tag>
-    );
+        tags: json["tags"] as List<Tag>);
   }
 }

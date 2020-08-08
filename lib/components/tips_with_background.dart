@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TipsWithBackground extends StatelessWidget {
-  /// Creates an article preview widget.
-  /// Used in the home screen and search screen.
+  /// Creates elements with text and images in the background.
+  /// Used as prompts on the home screen..
   final String title;
   final String description;
   final Function press;

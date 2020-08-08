@@ -32,7 +32,6 @@ class PhoneInputField extends StatelessWidget {
       width: size.width * width,
       height: size.height * height,
       alignment: Alignment.center,
-
       child: TextFormField(
           inputFormatters: [maskFormatter],
           textAlign: TextAlign.left,

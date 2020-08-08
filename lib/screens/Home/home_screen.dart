@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
     double sizeWeight = MediaQuery.of(context).size.width;
     String _searchRequest;
 
+    /// Temporary examples until backend connects.
     List<Widget> samples = [
       ArticlePreview(
         author: "Евгений Моховский",

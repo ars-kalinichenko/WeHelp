@@ -40,10 +40,7 @@ class StandardInputField extends StatelessWidget {
           initialValue: initText,
           textCapitalization: keyboardMode,
           obscureText: obscure,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headline6,
+          style: Theme.of(context).textTheme.headline6,
           textAlignVertical: TextAlignVertical.center,
           cursorColor: color,
           maxLength: maxLength,
