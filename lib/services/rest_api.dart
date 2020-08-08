@@ -5,8 +5,6 @@ class RestApi {
   static const String baseUrl =
       'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
 
-  /// Todo: Все ли тут ок?
-
   static Future<int> registerUser(Map<String, dynamic> data) async {
     final response =
         await http.post('$baseUrl/api/auth/registration', body: data);

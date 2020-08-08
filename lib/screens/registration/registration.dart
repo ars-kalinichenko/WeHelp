@@ -23,7 +23,6 @@ class Registration {
 
   static void pushRegistration(
       BuildContext context, Map<String, dynamic> data) async {
-    /// Todo: rewrite dry code. Ок ли асинхронно обрабатывать асинхронную функцию?
     try {
       await RestApi.registerUser(data);
       ToastUtils.showCustomToast(

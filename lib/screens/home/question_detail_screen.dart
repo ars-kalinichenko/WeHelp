@@ -15,7 +15,6 @@ class SearchDetailScreen extends StatelessWidget {
 
   static void pushQuestion(
       BuildContext context, Map<String, dynamic> data) async {
-    /// Todo: rewrite dry code. Ок ли асинхронно обрабатывать асинхронную функцию?
     try {
       await RestApi.postQuestion(data);
       ToastUtils.showCustomToast(
