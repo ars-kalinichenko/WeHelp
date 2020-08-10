@@ -26,22 +26,24 @@ class Registration {
     try {
       await RestApi.registerUser(data);
       ToastUtils.showCustomToast(
-          context,
-          "Все верно!",
-          Icon(Icons.check, color: Colors.white),
-          Colors.white,
-          Color(0xff3EE896));
+        context,
+        "Все верно!",
+        Icon(Icons.check, color: Colors.white),
+        Colors.white,
+        Color(0xff3EE896),
+      );
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
         return LogInScreen();
       }), (Route<dynamic> route) => false);
     } catch (e) {
       ToastUtils.showCustomToast(
-          context,
-          "Попробуйте ещё раз.",
-          Icon(Icons.clear, color: Colors.white),
-          Colors.white,
-          Color(0xffF14E4E));
+        context,
+        "Попробуйте ещё раз.",
+        Icon(Icons.clear, color: Colors.white),
+        Colors.white,
+        Color(0xffF14E4E),
+      );
       print(e.toString());
     }
   }

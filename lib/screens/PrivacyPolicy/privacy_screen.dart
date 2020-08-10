@@ -15,7 +15,7 @@ class PrivacyScreen extends StatefulWidget {
 }
 
 class PrivacyState extends State<PrivacyScreen> {
-  String filePath = "assets/privacy_police.txt";
+  String filePath = "assets/privacy_policy.txt";
   String privacyText = "";
 
   readText(filePath) async {

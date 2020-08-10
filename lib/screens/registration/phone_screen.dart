@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_help/components/phone_input_field.dart';
 import 'package:we_help/components/rounded_button.dart';
-import 'package:we_help/screens/registration/phone_check_screen.dart';
+import 'package:we_help/screens/registration/email_screen.dart';
 import 'package:we_help/screens/registration/registration.dart';
 import 'package:we_help/services/text_processing.dart';
 import 'package:we_help/services/validator.dart';
@@ -33,8 +33,6 @@ class PhoneScreen extends StatelessWidget {
           ),
           RoundedButton(
               text: "Продолжить",
-              color: Colors.transparent,
-              textColor: Theme.of(context).accentColor,
               press: () {
                 String _phoneWithoutMask =
                     deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
@@ -46,7 +44,7 @@ class PhoneScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return PhoneCheckScreen();
+                        return EmailScreen();
                       },
                     ),
                   );

@@ -14,16 +14,16 @@ class TextButton extends StatelessWidget {
   final bool underline; // Whether the text will be underlined: True or False
   final Function onPressed;
 
-  const TextButton(
-      {Key key,
-      this.text,
-      this.fontSize = 18,
-      this.textColor = Colors.black,
-      this.fontFamily,
-      this.fontWeight = FontWeight.normal,
-      this.underline = false,
-      this.onPressed})
-      : super(key: key);
+  const TextButton({
+    Key key,
+    this.text,
+    this.fontSize = 18,
+    this.textColor = Colors.black,
+    this.fontFamily,
+    this.fontWeight = FontWeight.normal,
+    this.underline = false,
+    this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +33,22 @@ class TextButton extends StatelessWidget {
     }
 
     Container container = Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        child: InkWell(
-          onTap: onPressed,
-          child: Text(
-            text,
-            style: TextStyle(
-                decoration: _decoration,
-                fontWeight: fontWeight,
-                fontSize: fontSize,
-                color: textColor,
-                fontFamily: fontFamily),
+      alignment: Alignment.center,
+      padding: EdgeInsets.only(top: 10, bottom: 10),
+      child: InkWell(
+        onTap: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(
+            decoration: _decoration,
+            fontWeight: fontWeight,
+            fontSize: fontSize,
+            color: textColor,
+            fontFamily: fontFamily,
           ),
-        ));
+        ),
+      ),
+    );
     return container;
   }
 }

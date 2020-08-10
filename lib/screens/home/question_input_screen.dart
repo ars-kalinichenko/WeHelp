@@ -13,8 +13,8 @@ class SearchInputScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     String _changedSearchRequest = searchRequest;
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWeight = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWeight = MediaQuery.of(context).size.width;
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -24,9 +24,9 @@ class SearchInputScreen extends StatelessWidget {
                 children: <Widget>[
           Container(
               padding: EdgeInsets.only(
-                  top: sizeHeight * 0.11,
-                  left: sizeWeight * 0.1,
-                  right: sizeWeight * 0.1),
+                  top: screenHeight * 0.11,
+                  left: screenWeight * 0.1,
+                  right: screenWeight * 0.1),
               child: Row(
                 children: <Widget>[
                   IconButton(
@@ -44,7 +44,7 @@ class SearchInputScreen extends StatelessWidget {
                 ],
               )),
           SizedBox(
-            height: sizeHeight * 0.05,
+            height: screenHeight * 0.05,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,38 +58,36 @@ class SearchInputScreen extends StatelessWidget {
                   onChanged: (value) {
                     _changedSearchRequest = value;
                   }),
-              SizedBox(height: sizeHeight * 0.06),
+              SizedBox(height: screenHeight * 0.06),
               Text("Похожий вопрос уже обсуждался ",
                   style: Theme.of(context).textTheme.headline4),
               SizedBox(
-                height: sizeHeight * 0.03,
+                height: screenHeight * 0.03,
               ),
               Text("Как воспитать котика? - 3 ответа"),
               SizedBox(
-                height: sizeHeight * 0.03,
+                height: screenHeight * 0.03,
               ),
               Text("Как уничтожить мир? - 4 ответа"),
               SizedBox(
-                height: sizeHeight * 0.03,
+                height: screenHeight * 0.03,
               ),
             ],
           ),
-          SizedBox(height: sizeHeight * 0.04),
+          SizedBox(height: screenHeight * 0.04),
           TextButton(
             text: "Показать все",
             underline: true,
           ),
-          SizedBox(height: sizeHeight * 0.07),
+          SizedBox(height: screenHeight * 0.07),
           RoundedButton(
               text: "Далее",
-              color: Colors.transparent,
-              textColor: Theme.of(context).accentColor,
               press: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SearchDetailScreen(_changedSearchRequest);
                 }));
               }),
-          SizedBox(height: sizeHeight * 0.07)
+          SizedBox(height: screenHeight * 0.07)
         ])));
   }
 }

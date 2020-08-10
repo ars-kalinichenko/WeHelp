@@ -17,7 +17,6 @@ class BottomNavyBar extends StatelessWidget {
   final double itemCornerRadius;
   final double containerHeight;
   final Curve curve;
-  final Color textColor;
 
   BottomNavyBar(
       {Key key,
@@ -31,8 +30,7 @@ class BottomNavyBar extends StatelessWidget {
       this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
       @required this.items,
       @required this.onItemSelected,
-      this.curve = Curves.linear,
-      this.textColor}) {
+      this.curve = Curves.linear,}) {
     assert(items != null);
     assert(items.length >= 2 && items.length <= 5);
     assert(onItemSelected != null);
@@ -124,7 +122,7 @@ class _ItemWidget extends StatelessWidget {
         duration: animationDuration,
         curve: curve,
         decoration: BoxDecoration(
-          color: isSelected ? item.activeColor : backgroundColor,
+          color: isSelected ? Color(0xff0574E5) : backgroundColor,
           borderRadius: BorderRadius.circular(itemCornerRadius),
         ),
         child: SingleChildScrollView(
@@ -179,14 +177,12 @@ class _ItemWidget extends StatelessWidget {
 class BottomNavyBarItem {
   final Widget icon;
   final Widget title;
-  final Color activeColor;
   final Color inactiveColor;
   final TextAlign textAlign;
   final Color textColor;
 
   BottomNavyBarItem({@required this.icon,
     @required this.title,
-    this.activeColor = Colors.blue,
     this.textAlign,
     this.inactiveColor,
     this.textColor}) {

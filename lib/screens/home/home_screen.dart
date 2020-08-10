@@ -8,8 +8,8 @@ import 'package:we_help/screens/home/question_input_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWeight = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWeight = MediaQuery.of(context).size.width;
     String _searchRequest;
 
     /// Temporary examples until backend connects.
@@ -51,16 +51,18 @@ class HomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-        body: ListView(
-            padding: EdgeInsets.only(left: sizeWeight * 0.06),
-            children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: sizeHeight * 0.045),
-              Container(
-                  height: sizeHeight * 0.14,
+      //Todo: fix tips list view.
+      body: ListView(
+          padding: EdgeInsets.only(left: screenHeight * 0.03,
+          ),
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: screenHeight * 0.045),
+                Container(
+                  height: screenHeight * 0.14,
                   child: ListView(
                     padding: EdgeInsets.all(0),
                     scrollDirection: Axis.horizontal,
@@ -79,37 +81,41 @@ class HomeScreen extends StatelessWidget {
                         title: "Вопросы про коронавирус",
                         description: "Ответьте на вопросы",
                         imagePath: "assets/images/tips_back1.png",
-                      )
+                      ),
                     ],
-                  )),
-              SizedBox(height: sizeHeight * 0.03),
-              SearchInputField(
-                width: 0.87,
-                hintText: "Ваш вопрос...",
-                onChanged: (value) {
-                  _searchRequest = value;
-                },
-                onPressed: () {
-                  print(_searchRequest);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SearchInputScreen(_searchRequest);
-                  }));
-                },
-              ),
-              SizedBox(height: sizeHeight * 0.03),
-              Text(
-                "Актуальное для тебя",
-                style: TextStyle(fontSize: 24),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: sizeHeight * 0.03,
-          ),
-          Column(
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.03),
+                SearchInputField(
+                  width: 0.87,
+                  hintText: "Ваш вопрос...",
+                  onChanged: (value) {
+                    _searchRequest = value;
+                  },
+                  onPressed: () {
+                    print(_searchRequest);
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) {
+                      return SearchInputScreen(_searchRequest);
+                    }),
+                    );
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.03),
+                Text(
+                  "Актуальное для тебя",
+                  style: TextStyle(fontSize: 24),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: screenHeight * 0.03,
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: samples)
-        ]));
+              children: samples,)
+          ]),
+    );
   }
 }

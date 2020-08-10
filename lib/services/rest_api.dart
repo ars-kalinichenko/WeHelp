@@ -37,9 +37,9 @@ class RestApi {
     if (response.statusCode == 200) {
       print("Success");
     } else if (response.statusCode == 500) {
-      throw ServerError;
+      throw ServerError("ServerError");
     } else {
-      throw InternetError;
+      throw InternetError("Check Internet or data");
     }
     return response.statusCode;
   }

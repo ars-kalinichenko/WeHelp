@@ -13,20 +13,24 @@ class CodeInputField extends StatelessWidget {
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
 
-  const CodeInputField(
-      {Key key,
-      this.hintText = "X X X X X X",
-      this.color = Colors.grey,
-      this.width = 0.5,
-      this.height = 0.07,
-      this.onChanged})
-      : super(key: key);
+  const CodeInputField({
+    Key key,
+    this.hintText = "X X X X X X",
+    this.color = Colors.grey,
+    this.width = 0.5,
+    this.height = 0.07,
+    this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var maskFormatter = new MaskTextInputFormatter(
-        mask: '######', filter: {"#": RegExp(r'[0-9]')});
+      mask: '######',
+      filter: {
+        "#": RegExp(r'[0-9]'),
+      },
+    );
 
     Container container = Container(
       width: size.width * width,

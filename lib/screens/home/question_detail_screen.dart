@@ -18,22 +18,24 @@ class SearchDetailScreen extends StatelessWidget {
     try {
       await RestApi.postQuestion(data);
       ToastUtils.showCustomToast(
-          context,
-          "Вопрос отправлен!",
-          Icon(Icons.check, color: Colors.white),
-          Colors.white,
-          Color(0xff3EE896));
+        context,
+        "Вопрос отправлен!",
+        Icon(Icons.check, color: Colors.white),
+        Colors.white,
+        Color(0xff3EE896),
+      );
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
         return MainPage();
       }), (Route<dynamic> route) => false);
     } on InternetError catch (e) {
       ToastUtils.showCustomToast(
-          context,
-          "Проверьте данные и интеренет",
-          Icon(Icons.clear, color: Colors.white),
-          Colors.white,
-          Color(0xffF14E4E));
+        context,
+        "Проверьте данные и интеренет",
+        Icon(Icons.clear, color: Colors.white),
+        Colors.white,
+        Color(0xffF14E4E),
+      );
       print(e.toString());
     }
   }
@@ -41,23 +43,27 @@ class SearchDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String _changedSearchRequest = searchRequest;
-    String _detail;
-    String _tags;
+    String detail;
+    String tags;
 
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWeight = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWeight = MediaQuery
+        .of(context)
+        .size
+        .width;
 
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-          Container(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
               padding: EdgeInsets.only(
-                  top: sizeHeight * 0.11,
-                  left: sizeWeight * 0.1,
-                  right: sizeWeight * 0.1),
+                top: screenHeight * 0.11,
+                left: screenWeight * 0.1,
+                right: screenWeight * 0.1,
+              ),
               child: Row(
                 children: <Widget>[
                   IconButton(
@@ -69,21 +75,27 @@ class SearchDetailScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 40.0),
                       child: Text("Задать вопрос",
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline2),
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline2),
                     ),
                   ),
                 ],
-              )),
-          SizedBox(
-            height: sizeHeight * 0.08,
-          ),
-          Column(
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.08,
+            ),
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Ваш вопрос"),
                 StandardInputField(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme
+                      .of(context)
+                      .primaryColor,
                   initText: searchRequest,
                   hintText: "Как приручить манула?",
                   onChanged: (value) {
@@ -91,41 +103,48 @@ class SearchDetailScreen extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: sizeHeight * 0.02,
+                  height: screenHeight * 0.02,
                 ),
                 Text("Расскажите подробнее"),
                 StandardInputField(
-                    color: Theme.of(context).primaryColor,
-                    hintText: "Пытаюсь усмирить милого демона",
-                    onChanged: (value) {
-                      _detail = value;
-                    }),
+                  color: Theme
+                      .of(context)
+                      .primaryColor,
+                  hintText: "Пытаюсь усмирить милого демона",
+                  onChanged: (value) {
+                    detail = value;
+                  },),
                 SizedBox(
-                  height: sizeHeight * 0.02,
+                  height: screenHeight * 0.02,
                 ),
                 Text("Введите теги"),
                 StandardInputField(
-                    color: Theme.of(context).primaryColor,
-                    hintText: "Котики, демоны",
-                    onChanged: (value) {
-                      _tags = value;
-                    }),
-                SizedBox(height: sizeHeight * 0.15),
+                  color: Theme
+                      .of(context)
+                      .primaryColor,
+                  hintText: "Котики, демоны",
+                  onChanged: (value) {
+                    tags = value;
+                  },),
+                SizedBox(height: screenHeight * 0.15),
                 RoundedButton(
-                    text: "Далее",
-                    color: Colors.transparent,
-                    textColor: Theme.of(context).accentColor,
-                    press: () {
-                      pushQuestion(context, {
-                        "title": _changedSearchRequest,
-                        "content": _detail,
-                        "author_id": "1",
-                        "pub_date": DateTime.now().toString(),
-                        "tags": _tags
-                      });
-                    }),
-                SizedBox(height: sizeHeight * 0.07)
-              ])
-        ])));
+                  text: "Далее",
+                  press: () {
+                    pushQuestion(context, {
+                      "title": _changedSearchRequest,
+                      "content": detail,
+                      "author_id": "1",
+                      "pub_date": DateTime.now().toString(),
+                      "tags": tags
+                    });
+                  },
+                ),
+                SizedBox(height: screenHeight * 0.07)
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

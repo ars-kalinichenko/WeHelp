@@ -38,13 +38,13 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             HomeScreen(),
             Center(
-              child: Text("Туть юзеры"),
+              child: Text("Тут юзеры"),
             ),
             Center(
-              child: Text("Туть сообщения"),
+              child: Text("Тут сообщения"),
             ),
             Center(
-              child: Text("Туть настройки"),
+              child: Text("Тут настройки"),
             ),
           ],
         ),
@@ -57,30 +57,31 @@ class _MainPageState extends State<MainPage> {
           _pageController.jumpToPage(index);
         },
         items: [
+          //TODO: ...
           BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-              activeColor: Color(0xff0574E5),
-              textColor: Colors.white,
-              inactiveColor: Color(0xff60626D)),
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+            textColor: Colors.white,
+            inactiveColor: Color(0xff60626D),
+          ),
           BottomNavyBarItem(
-              icon: Icon(Icons.people),
-              title: Text('Users'),
-              activeColor: Color(0xff0574E5),
-              textColor: Colors.white,
-              inactiveColor: Color(0xff60626D)),
+            icon: Icon(Icons.people),
+            title: Text('Users'),
+            textColor: Colors.white,
+            inactiveColor: Color(0xff60626D),
+          ),
           BottomNavyBarItem(
-              icon: Icon(Icons.chat),
-              title: Text('Messages'),
-              activeColor: Color(0xff0574E5),
-              textColor: Colors.white,
-              inactiveColor: Color(0xff60626D)),
+            icon: Icon(Icons.chat),
+            title: Text('Messages'),
+            textColor: Colors.white,
+            inactiveColor: Color(0xff60626D),
+          ),
           BottomNavyBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
-              activeColor: Color(0xff0574E5),
-              textColor: Colors.white,
-              inactiveColor: Color(0xff60626D)),
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+            textColor: Colors.white,
+            inactiveColor: Color(0xff60626D),
+          ),
         ],
       ),
     );

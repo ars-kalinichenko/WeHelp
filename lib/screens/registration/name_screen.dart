@@ -9,7 +9,7 @@ class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String _name;
     String _surname;
-    double sizeHeight = MediaQuery.of(context).size.height;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
@@ -20,40 +20,46 @@ class NameScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Center(
-              child: Text("Как вас зовут?",
-                  style: Theme.of(context).textTheme.headline2,
-                  textAlign: TextAlign.center)),
+            child: Text(
+              "Как вас зовут?",
+              style: Theme.of(context).textTheme.headline2,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          //TODO
           Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                StandardInputField(
-                  color: Theme.of(context).primaryColor,
-                  keyboardMode: TextCapitalization.words,
-                  hintText: "Фамилия",
-                  onChanged: (value) {
-                    _name = value;
-                  },
-                ),
-                SizedBox(height: sizeHeight * 0.02),
-                StandardInputField(
-                  color: Theme.of(context).primaryColor,
-                  keyboardMode: TextCapitalization.words,
-                  hintText: "Имя",
-                  onChanged: (value) {
-                    _surname = value;
-                  },
-                ),
-              ]),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              StandardInputField(
+                color: Theme.of(context).primaryColor,
+                keyboardMode: TextCapitalization.words,
+                hintText: "Фамилия",
+                onChanged: (value) {
+                  _name = value;
+                },
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              StandardInputField(
+                color: Theme.of(context).primaryColor,
+                keyboardMode: TextCapitalization.words,
+                hintText: "Имя",
+                onChanged: (value) {
+                  _surname = value;
+                },
+              ),
+            ],
+          ),
           RoundedButton(
-              text: "Далее",
-              color: Colors.transparent,
-              textColor: Theme.of(context).accentColor,
-              press: () {
-                registrationState.name = _name;
-                registrationState.surname = _surname;
-                Registration.pushRegistration(
-                    context, registrationState.getValues());
-              })
+            text: "Далее",
+            press: () {
+              registrationState.name = _name;
+              registrationState.surname = _surname;
+              Registration.pushRegistration(
+                context,
+                registrationState.getValues(),
+              );
+            },
+          )
         ],
       ),
     );

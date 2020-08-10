@@ -29,22 +29,21 @@ class EmailScreen extends StatelessWidget {
             },
           ),
           RoundedButton(
-              text: "Далее",
-              color: Colors.transparent,
-              textColor: Theme.of(context).accentColor,
-              press: () {
-                registrationState.email = _email;
-                print(registrationState.email);
+            text: "Далее",
+            press: () {
+              registrationState.email = _email;
+              print(registrationState.email);
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PasswordScreen();
-                    },
-                  ),
-                );
-              })
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return PasswordScreen();
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

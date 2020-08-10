@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/components/icons.dart';
-import 'package:we_help/components/rounded_gradient_button.dart';
+import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/services/rest_api.dart';
 
@@ -39,20 +39,20 @@ class LogInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double sizeHeight = MediaQuery.of(context).size.height;
-    double sizeWeight = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWeight = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-          Container(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
               padding: EdgeInsets.only(
-                  top: sizeHeight * 0.11,
-                  left: sizeWeight * 0.1,
-                  right: sizeWeight * 0.1),
+                  top: screenHeight * 0.11,
+                  left: screenWeight * 0.1,
+                  right: screenWeight * 0.1),
               child: Row(
                 children: <Widget>[
                   IconButton(
@@ -68,58 +68,66 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ),
                 ],
-              )),
-          SizedBox(
-            height: sizeHeight * 0.07,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text("Имя пользователя"),
-              StandardInputField(
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.07,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("Имя пользователя"),
+                StandardInputField(
                   color: Theme.of(context).primaryColor,
                   hintText: "example@gmail.com",
                   onChanged: (value) {
                     _login = value;
-                  }),
-              SizedBox(height: sizeHeight * 0.07),
-              Text("Пароль"),
-              StandardInputField(
-                color: Theme.of(context).primaryColor,
-                obscure: true,
-                hintText: "Введите пароль",
-                onChanged: (value) {
-                  _password = value;
-                },
-              ),
-              SizedBox(height: sizeHeight * 0.1),
-              Text("Войти через соц.сеть"),
-              SizedBox(height: sizeHeight * 0.02),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Icon(LogInIcons.bx_bxl_vk, size: 40),
-                  SizedBox(width: sizeWeight * 0.08),
-                  Icon(LogInIcons.ant_design_google_outlined, size: 40),
-                  SizedBox(width: sizeWeight * 0.08),
-                  Icon(LogInIcons.dashicons_facebook_alt, size: 40),
-                  SizedBox(width: sizeWeight * 0.08),
-                  Icon(LogInIcons.bx_bxl_linkedin, size: 40)
-                ],
-              ),
-            ],
-          ),
-          SizedBox(height: sizeHeight * 0.07),
-          RoundedGradientButton(
-              text: "Войти",
-              color: Colors.transparent,
-              press: () {
-                logIn(context);
-              }),
-          SizedBox(height: sizeHeight * 0.07)
-        ])));
+                  },
+                ),
+                SizedBox(
+                  height: screenHeight * 0.07,
+                ),
+                Text("Пароль"),
+                StandardInputField(
+                  color: Theme.of(context).primaryColor,
+                  obscure: true,
+                  hintText: "Введите пароль",
+                  onChanged: (value) {
+                    _password = value;
+                  },
+                ),
+                SizedBox(
+                  height: screenHeight * 0.1,
+                ),
+                Text("Войти через соц.сеть"),
+                SizedBox(height: screenHeight * 0.02),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(LogInIcons.bx_bxl_vk, size: 40),
+                    SizedBox(width: screenWeight * 0.08),
+                    Icon(LogInIcons.ant_design_google_outlined, size: 40),
+                    SizedBox(width: screenWeight * 0.08),
+                    Icon(LogInIcons.dashicons_facebook_alt, size: 40),
+                    SizedBox(width: screenWeight * 0.08),
+                    Icon(LogInIcons.bx_bxl_linkedin, size: 40)
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.07),
+            RoundedButton(
+                text: "Войти",
+                press: () {
+                  logIn(context);
+                }),
+            SizedBox(height: screenHeight * 0.07),
+          ],
+        ),
+      ),
+    );
     // This trailing comma makes auto-formatting nicer for build methods.
   }
 }

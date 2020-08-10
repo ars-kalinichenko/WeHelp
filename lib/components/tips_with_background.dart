@@ -10,15 +10,15 @@ class TipsWithBackground extends StatelessWidget {
   final double height;
   final String imagePath;
 
-  const TipsWithBackground(
-      {Key key,
-      this.title,
-      this.description,
-      this.press,
-      this.width = 0.4,
-      this.height = 0.11,
-      this.imagePath})
-      : super(key: key);
+  const TipsWithBackground({
+    Key key,
+    this.title,
+    this.description,
+    this.press,
+    this.width = 0.4,
+    this.height = 0.11,
+    this.imagePath,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +43,13 @@ class TipsWithBackground extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(title,
-              overflow: TextOverflow.fade,
-              maxLines: 2,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-              )),
+            overflow: TextOverflow.fade,
+            maxLines: 2,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.white,
+            ),
+          ),
           SizedBox(
             height: size.height * 0.01,
           ),
@@ -58,7 +59,8 @@ class TipsWithBackground extends StatelessWidget {
             maxLines: 1,
             softWrap: false,
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 12, color: Colors.white),
+            style: TextStyle(fontSize: 12, color: Colors.white,
+            ),
           )
         ],
       ),

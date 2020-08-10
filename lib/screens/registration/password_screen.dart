@@ -25,7 +25,6 @@ class PasswordScreen extends StatelessWidget {
                   textAlign: TextAlign.center)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               StandardInputField(
                 color: Theme.of(context).primaryColor,
@@ -47,23 +46,22 @@ class PasswordScreen extends StatelessWidget {
             ],
           ),
           RoundedButton(
-              text: "Продолжить",
-              color: Colors.transparent,
-              textColor: Theme.of(context).accentColor,
-              press: () {
-                registrationState.password = _password;
-                registrationState.passwordConfirm = _passwordConfirm;
-                print("Password: ${registrationState.password}");
+            text: "Продолжить",
+            press: () {
+              registrationState.password = _password;
+              registrationState.passwordConfirm = _passwordConfirm;
+              print("Password: ${registrationState.password}");
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return NameScreen();
-                    },
-                  ),
-                );
-              })
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return NameScreen();
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
