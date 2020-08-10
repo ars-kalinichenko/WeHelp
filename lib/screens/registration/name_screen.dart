@@ -6,9 +6,10 @@ import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/screens/registration/registration.dart';
 
 class NameScreen extends StatelessWidget {
+  static String _name;
+  static String _surname;
+
   Widget build(BuildContext context) {
-    String name;
-    String surname;
     ThemeData appTheme = Theme.of(context);
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -21,50 +22,60 @@ class NameScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _titleText(appTheme),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              StandardInputField(
-                color: appTheme.primaryColor,
-                keyboardMode: TextCapitalization.words,
-                hintText: "Фамилия",
-                onChanged: (value) {
-                  name = value;
-                },
-              ),
-              SizedBox(height: screenHeight * 0.02),
-              StandardInputField(
-                color: appTheme.primaryColor,
-                keyboardMode: TextCapitalization.words,
-                hintText: "Имя",
-                onChanged: (value) {
-                  surname = value;
-                },
-              ),
-            ],
-          ),
-          RoundedButton(
-            text: "Далее",
-            press: () {
-              registrationState.name = name;
-              registrationState.surname = surname;
-              Registration.pushRegistration(
-                context,
-                registrationState.getValues(),
-              );
-            },
-          ),
+          _nameInputFields(appTheme, screenHeight),
+          _nextButton(context, registrationState),
         ],
       ),
     );
   }
-  Widget _titleText(ThemeData theme){
+
+  Widget _titleText(ThemeData theme) {
     return Center(
       child: Text(
         "Как вас зовут?",
         style: theme.textTheme.headline2,
         textAlign: TextAlign.center,
       ),
+    );
+  }
+
+  Widget _nameInputFields(ThemeData theme, double screenHeight) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        StandardInputField(
+          color: theme.primaryColor,
+          keyboardMode: TextCapitalization.words,
+          hintText: "Фамилия",
+          onChanged: (value) {
+            _name = value;
+          },
+        ),
+        SizedBox(height: screenHeight * 0.02),
+        StandardInputField(
+          color: theme.primaryColor,
+          keyboardMode: TextCapitalization.words,
+          hintText: "Имя",
+          onChanged: (value) {
+            _surname = value;
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _nextButton(
+      BuildContext context, RegistrationState registrationState) {
+    return RoundedButton(
+      text: "Далее",
+      press: () {
+        registrationState.name = _name;
+        registrationState.surname = _surname;
+        Registration.pushRegistration(
+          context,
+          registrationState.getValues(),
+        );
+      },
     );
   }
 }

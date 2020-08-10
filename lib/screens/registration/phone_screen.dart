@@ -8,8 +8,10 @@ import 'package:we_help/services/text_processing.dart';
 import 'package:we_help/services/validator.dart';
 
 class PhoneScreen extends StatelessWidget {
+  static String _phoneNumber = "";
+
+  @override
   Widget build(BuildContext context) {
-    String _phoneNumber = "";
     ThemeData appTheme = Theme.of(context);
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
@@ -19,41 +21,54 @@ class PhoneScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Container(
-              alignment: Alignment.center,
-              child: Text(
-                "Введите номер \nтелефона",
-                textAlign: TextAlign.center,
-                style: appTheme.textTheme.headline2,
-              )),
-          PhoneInputField(
-            color: appTheme.primaryColor,
-            onChanged: (value) {
-              _phoneNumber = value;
-            },
-          ),
-          RoundedButton(
-              text: "Продолжить",
-              press: () {
-                String _phoneWithoutMask =
-                    deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
-                if (validateNumber(_phoneWithoutMask)) {
-                  registrationState.phoneNumber = _phoneWithoutMask;
-                  print(registrationState.phoneNumber);
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return EmailScreen();
-                    },
-                  ),
-                );
-              }
-            },
-          ),
+          _titleText(appTheme),
+          _phoneInputField(appTheme),
+          _nextButton(context, registrationState),
         ],
       ),
+    );
+  }
+
+  Widget _titleText(ThemeData theme) {
+    return Align(
+      alignment: Alignment.center,
+      child: Text(
+        "Введите номер \nтелефона",
+        textAlign: TextAlign.center,
+        style: theme.textTheme.headline2,
+      ),
+    );
+  }
+
+  Widget _phoneInputField(ThemeData theme) {
+    return PhoneInputField(
+      color: theme.primaryColor,
+      onChanged: (value) {
+        _phoneNumber = value;
+      },
+    );
+  }
+
+  Widget _nextButton(
+      BuildContext context, RegistrationState registrationState) {
+    return RoundedButton(
+      text: "Продолжить",
+      press: () {
+        String _phoneWithoutMask = deleteMask(RegExp("[^0-9,+]"), _phoneNumber);
+        if (validateNumber(_phoneWithoutMask)) {
+          registrationState.phoneNumber = _phoneWithoutMask;
+          print(registrationState.phoneNumber);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return EmailScreen();
+              },
+            ),
+          );
+        }
+      },
     );
   }
 }

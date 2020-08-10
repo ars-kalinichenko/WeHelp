@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/text_button.dart';
-import 'package:we_help/screens//PrivacyPolicy/privacy_screen.dart';
-import 'package:we_help/screens/LogIn/logIn_screen.dart';
+import 'package:we_help/screens/log_in/logIn_screen.dart';
+import 'package:we_help/screens/privacy_policy/privacy_screen.dart';
 import 'package:we_help/screens/registration/registration.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -10,86 +10,94 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     TextStyle headlineStyle = Theme.of(context).textTheme.headline4;
+    ThemeData theme = Theme.of(context);
 
     return Scaffold(
-      //todo: gmmmm
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            _titleText(context, screenHeight, theme),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(top: screenHeight * 0.15),
-                  child: Text('WeHelp',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline1),
-                ),
-                SizedBox(height: screenHeight * 0.1),
-                Text('Решение есть',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2),
+                _logInButton(context),
+                SizedBox(height: screenHeight * 0.02),
+                _registrationButton(theme, context),
               ],
             ),
-            Padding(
-                padding: EdgeInsets.only(left: 45.0, right: 45.0, top: 10),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      RoundedButton(
-                        text: "Войти",
-                        width: 0.65,
-                        press: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return LogInScreen();
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: screenHeight * 0.02),
-                      TextButton(
-                          text: "Зарегистрироваться",
-                          textStyle: TextStyle(
-                            color: headlineStyle.color,
-                            fontSize: headlineStyle.fontSize,
-                            fontFamily: headlineStyle.fontFamily,
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.underline,
-                          ),
-                          onPressed: () {
-                            Registration(context).startRegistration();
-                          }),
-                      SizedBox(height: screenHeight * 0.2),
-                      TextButton(
-                        text: "Политика конфиденциальности",
-                        textStyle: TextStyle(color: Colors.black26,
-                          fontSize: 16,
-                          fontFamily: headlineStyle.fontFamily,
-                        ),
-
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return PrivacyScreen();
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: screenHeight * 0.02)
-                    ]))
+            _privacyPolicyButton(context),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _titleText(
+      BuildContext context, double screenHeight, ThemeData theme) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        SizedBox(height: screenHeight * 0.15),
+        Text('WeHelp',
+            textAlign: TextAlign.center, style: theme.textTheme.headline1),
+        SizedBox(height: screenHeight * 0.1),
+        Text('Решение есть',
+            textAlign: TextAlign.center, style: theme.textTheme.headline2),
+      ],
+    );
+  }
+
+  Widget _logInButton(BuildContext context) {
+    return RoundedButton(
+      text: "Войти",
+      width: 0.65,
+      press: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return LogInScreen();
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _registrationButton(ThemeData appTheme, BuildContext context) {
+    return TextButton(
+      text: "Зарегистрироваться",
+      textStyle: TextStyle(
+        color: appTheme.textTheme.headline4.color,
+        fontSize: appTheme.textTheme.headline4.fontSize,
+        fontWeight: FontWeight.w600,
+        decoration: TextDecoration.underline,
+      ),
+      onPressed: () {
+        Registration(context).startRegistration();
+      },
+    );
+  }
+
+  Widget _privacyPolicyButton(BuildContext context) {
+    return TextButton(
+      text: "Политика конфиденциальности",
+      textStyle: TextStyle(
+        color: Colors.black26,
+        fontSize: 16,
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return PrivacyScreen();
+            },
+          ),
+        );
+      },
     );
   }
 }

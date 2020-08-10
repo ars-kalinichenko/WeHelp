@@ -7,8 +7,9 @@ import 'package:we_help/screens/registration/password_screen.dart';
 import 'package:we_help/screens/registration/registration.dart';
 
 class EmailScreen extends StatelessWidget {
+  static String _email;
+
   Widget build(BuildContext context) {
-    String email;
     ThemeData appTheme = Theme.of(context);
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
@@ -19,27 +20,8 @@ class EmailScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _titleText(appTheme),
-          StandardInputField(
-            color: appTheme.primaryColor,
-            hintText: "example@gmail.com",
-            onChanged: (value) {
-              email = value;
-            },
-          ),
-          RoundedButton(
-            text: "Далее",
-            press: () {
-              registrationState.email = email;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return PasswordScreen();
-                  },
-                ),
-              );
-            },
-          ),
+          _emailInputField(appTheme),
+          _nextButton(context, registrationState),
         ],
       ),
     );
@@ -48,7 +30,34 @@ class EmailScreen extends StatelessWidget {
   Widget _titleText(ThemeData theme) {
     return Center(
         child: Text("Введите почту",
-            style: theme.textTheme.headline2,
-            textAlign: TextAlign.center));
+            style: theme.textTheme.headline2, textAlign: TextAlign.center));
+  }
+
+  Widget _nextButton(
+      BuildContext context, RegistrationState registrationState) {
+    return RoundedButton(
+      text: "Далее",
+      press: () {
+        registrationState.email = _email;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return PasswordScreen();
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _emailInputField(ThemeData theme) {
+    return StandardInputField(
+      color: theme.primaryColor,
+      hintText: "example@gmail.com",
+      onChanged: (value) {
+        _email = value;
+      },
+    );
   }
 }
