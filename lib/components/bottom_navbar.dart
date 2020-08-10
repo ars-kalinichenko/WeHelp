@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 
 /// A beautiful and animated bottom navigation.
 /// The navigation bar use your current theme, but you are free to customize it.
+//todo: fix adaptive size
 class BottomNavyBar extends StatelessWidget {
   final int selectedIndex;
   final double iconSize;
@@ -91,9 +92,9 @@ class _ItemWidget extends StatelessWidget {
   final double itemCornerRadius;
   final Duration animationDuration;
   final Curve curve;
-  final Color textColor;
 
-  const _ItemWidget({Key key,
+  const _ItemWidget({
+    Key key,
     @required this.item,
     @required this.isSelected,
     @required this.backgroundColor,
@@ -101,8 +102,7 @@ class _ItemWidget extends StatelessWidget {
     @required this.itemCornerRadius,
     @required this.iconSize,
     this.curve = Curves.linear,
-    this.textColor})
-      : assert(isSelected != null),
+  })  : assert(isSelected != null),
         assert(item != null),
         assert(backgroundColor != null),
         assert(animationDuration != null),
@@ -140,10 +140,10 @@ class _ItemWidget extends StatelessWidget {
                   data: IconThemeData(
                     size: iconSize,
                     color: isSelected
-                        ? item.textColor.withOpacity(1)
-                        : item.inactiveColor == null
-                        ? item.textColor
-                        : item.inactiveColor,
+                        ? Colors.white
+                        : Color(0xff60626D) == null
+                            ? Colors.white
+                            : Color(0xff60626D),
                   ),
                   child: item.icon,
                 ),
@@ -153,7 +153,7 @@ class _ItemWidget extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 4),
                       child: DefaultTextStyle.merge(
                         style: TextStyle(
-                          color: item.textColor,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                         maxLines: 1,
@@ -177,15 +177,11 @@ class _ItemWidget extends StatelessWidget {
 class BottomNavyBarItem {
   final Widget icon;
   final Widget title;
-  final Color inactiveColor;
   final TextAlign textAlign;
-  final Color textColor;
 
   BottomNavyBarItem({@required this.icon,
     @required this.title,
-    this.textAlign,
-    this.inactiveColor,
-    this.textColor}) {
+    this.textAlign,}) {
     assert(icon != null);
     assert(title != null);
   }

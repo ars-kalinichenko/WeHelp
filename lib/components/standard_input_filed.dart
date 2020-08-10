@@ -8,7 +8,6 @@ class StandardInputField extends StatelessWidget {
   final TextCapitalization keyboardMode; // Uppercase or lowercase first letters
   final bool obscure; //
   final Color color; // Text and cursor color
-  final int maxLength; // Max Length of text
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
@@ -20,8 +19,7 @@ class StandardInputField extends StatelessWidget {
     this.keyboardMode = TextCapitalization.none,
     this.obscure = false,
     this.color = Colors.grey,
-    this.maxLength = 40,
-    this.width = 0.7,
+    this.width = 0.65,
     this.height = 0.07,
     this.onChanged,
     this.initText,
@@ -43,7 +41,6 @@ class StandardInputField extends StatelessWidget {
         style: Theme.of(context).textTheme.headline6,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: color,
-        maxLength: maxLength,
         decoration: InputDecoration(
           hintText: hintText,
           fillColor: color,

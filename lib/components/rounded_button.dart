@@ -21,9 +21,11 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    Container container = Container(
-      width: size.width * width,
-      height: size.height * height,
+    ConstrainedBox box = ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: size.width * width,
+        minHeight: size.height * height,
+      ),
       child: FlatButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
@@ -37,6 +39,6 @@ class RoundedButton extends StatelessWidget {
         ),
       ),
     );
-    return container;
+    return box;
   }
 }

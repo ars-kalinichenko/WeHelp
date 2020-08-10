@@ -7,45 +7,26 @@ class TextButton extends StatelessWidget {
   /// Clickable text that calls onPressed () when you click on it.
 
   final String text;
-  final double fontSize;
-  final Color textColor;
-  final String fontFamily;
-  final FontWeight fontWeight;
-  final bool underline; // Whether the text will be underlined: True or False
+  final TextStyle textStyle;
   final Function onPressed;
 
   const TextButton({
     Key key,
     this.text,
-    this.fontSize = 18,
-    this.textColor = Colors.black,
-    this.fontFamily,
-    this.fontWeight = FontWeight.normal,
-    this.underline = false,
+    this.textStyle,
     this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextDecoration _decoration = TextDecoration.none;
-    if (underline) {
-      _decoration = TextDecoration.underline;
-    }
 
-    Container container = Container(
-      alignment: Alignment.center,
+    Padding container = Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       child: InkWell(
         onTap: onPressed,
         child: Text(
           text,
-          style: TextStyle(
-            decoration: _decoration,
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            color: textColor,
-            fontFamily: fontFamily,
-          ),
+          style: textStyle
         ),
       ),
     );

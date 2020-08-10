@@ -8,7 +8,8 @@ import 'package:we_help/screens/registration/registration.dart';
 
 class EmailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    String _email;
+    String email;
+    ThemeData appTheme = Theme.of(context);
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
 
@@ -17,23 +18,18 @@ class EmailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Center(
-              child: Text("Введите почту",
-                  style: Theme.of(context).textTheme.headline2,
-                  textAlign: TextAlign.center)),
+          _titleText(appTheme),
           StandardInputField(
-            color: Theme.of(context).primaryColor,
+            color: appTheme.primaryColor,
             hintText: "example@gmail.com",
             onChanged: (value) {
-              _email = value;
+              email = value;
             },
           ),
           RoundedButton(
             text: "Далее",
             press: () {
-              registrationState.email = _email;
-              print(registrationState.email);
-
+              registrationState.email = email;
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -47,5 +43,12 @@ class EmailScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _titleText(ThemeData theme) {
+    return Center(
+        child: Text("Введите почту",
+            style: theme.textTheme.headline2,
+            textAlign: TextAlign.center));
   }
 }

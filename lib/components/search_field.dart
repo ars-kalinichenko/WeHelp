@@ -6,7 +6,6 @@ class SearchInputField extends StatelessWidget {
 
   final String hintText; // Help text
   final Color color; // Text and cursor color
-  final int maxLength; // Max Length of text
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
@@ -16,7 +15,6 @@ class SearchInputField extends StatelessWidget {
     Key key,
     this.hintText,
     this.color = Colors.grey,
-    this.maxLength = 255,
     this.width = 0.7,
     this.height = 0.1,
     this.onChanged,
@@ -39,13 +37,13 @@ class SearchInputField extends StatelessWidget {
       width: size.width * width,
       height: size.height * height,
       alignment: Alignment.center,
+
       child: TextField(
         textAlign: TextAlign.left,
         textCapitalization: TextCapitalization.sentences,
         style: Theme.of(context).textTheme.headline6,
-        textAlignVertical: TextAlignVertical.center,
         cursorColor: color,
-        maxLength: maxLength,
+        maxLength: 255,
         decoration: InputDecoration(
           enabledBorder: borderStyle,
           disabledBorder: borderStyle,

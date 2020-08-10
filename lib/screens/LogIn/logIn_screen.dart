@@ -11,32 +11,6 @@ class LogInScreen extends StatelessWidget {
   static String _login;
   static String _password;
 
-  static void logIn(BuildContext context) async {
-    Map<String, String> data = {"email": _login, "password": _password};
-    print(data);
-    try {
-      await RestApi.logInUser(data);
-      ToastUtils.showCustomToast(
-          context,
-          "Все верно!",
-          Icon(Icons.check, color: Colors.white),
-          Colors.white,
-          Color(0xff3EE896));
-      Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (context) {
-        return MainPage();
-      }), (Route<dynamic> route) => false);
-    } catch (e) {
-      print(e.toString());
-      ToastUtils.showCustomToast(
-          context,
-          "Попробуйте ещё раз.",
-          Icon(Icons.clear, color: Colors.white),
-          Colors.white,
-          Color(0xffF14E4E));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -56,7 +30,7 @@ class LogInScreen extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                      icon: Icon(LogInIcons.eva_arrow_ios_back_fill),
+                      icon: Icon(LogInIcons.back_arrow_icon),
                       iconSize: 40.0,
                       onPressed: () => Navigator.of(context).pop()),
                   Expanded(
@@ -106,13 +80,13 @@ class LogInScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Icon(LogInIcons.bx_bxl_vk, size: 40),
+                    Icon(LogInIcons.vk_icon, size: 40),
                     SizedBox(width: screenWeight * 0.08),
-                    Icon(LogInIcons.ant_design_google_outlined, size: 40),
+                    Icon(LogInIcons.google_icon, size: 40),
                     SizedBox(width: screenWeight * 0.08),
-                    Icon(LogInIcons.dashicons_facebook_alt, size: 40),
+                    Icon(LogInIcons.facebook_icon, size: 40),
                     SizedBox(width: screenWeight * 0.08),
-                    Icon(LogInIcons.bx_bxl_linkedin, size: 40)
+                    Icon(LogInIcons.linkedIn_icon, size: 40)
                   ],
                 ),
               ],
@@ -129,5 +103,20 @@ class LogInScreen extends StatelessWidget {
       ),
     );
     // This trailing comma makes auto-formatting nicer for build methods.
+  }
+  static void logIn(BuildContext context) async {
+    Map<String, String> data = {"email": _login, "password": _password};
+    print(data);
+    try {
+      await RestApi.logInUser(data);
+      ToastUtils.showSuccessToast(context);
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
+            return MainPage();
+          }), (Route<dynamic> route) => false);
+    } catch (e) {
+      print(e.toString());
+      ToastUtils.showErrorToast(context);
+    }
   }
 }

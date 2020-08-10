@@ -4,6 +4,7 @@ import 'package:we_help/exceptions.dart';
 class RestApi {
   static const String baseUrl =
       'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
+// Todo: delete status code from return
 
   static Future<int> registerUser(Map<String, dynamic> data) async {
     final response =

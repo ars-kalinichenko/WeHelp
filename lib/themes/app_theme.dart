@@ -12,55 +12,64 @@ ThemeData appLightTheme = ThemeData.light().copyWith(
   textTheme: TextTheme(
 //    Theme for headlines with bolt weight
       headline1: TextStyle(
-          fontSize: 28.0,
-          fontWeight: FontWeight.w500,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
+      fontSize: 28.0,
+      fontWeight: FontWeight.w500,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
 
 //    Theme for headlines with medium weight
-      headline2: TextStyle(
-          fontSize: 28.0,
-          fontWeight: FontWeight.normal,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
+    headline2: TextStyle(
+      fontSize: 28.0,
+      fontWeight: FontWeight.normal,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
 
 //    Theme for headlines with regular weight
-      headline3: TextStyle(
-          fontSize: 28.0,
-          fontWeight: FontWeight.w300,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
+    headline3: TextStyle(
+      fontSize: 28.0,
+      fontWeight: FontWeight.w300,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
 
 //    Theme for button text with regular weight
-      headline4: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.w500,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
+    headline4: TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.w500,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
 
 //    Theme for remarks with bolt weight
-      headline5: TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.normal,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
+    headline5: TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.normal,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
 
 //    Theme for remarks with regular weight
-      headline6: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.normal,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
+    headline6: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
 
 //    Theme for pain text
-      bodyText1: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.normal,
-          fontFamily: "Montserrat",
-          color: PrimaryColor),
-      bodyText2: TextStyle(
-          fontSize: 16.0,
-          fontWeight: FontWeight.normal,
-          fontFamily: "Montserrat",
-          color: PrimaryColor)),
+    bodyText1: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
+    bodyText2: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      fontFamily: "Montserrat",
+      color: PrimaryColor,
+    ),
+  ),
 );

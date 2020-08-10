@@ -67,7 +67,7 @@ class SearchDetailScreen extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                      icon: Icon(LogInIcons.eva_arrow_ios_back_fill),
+                      icon: Icon(LogInIcons.back_arrow_icon),
                       iconSize: 40.0,
                       onPressed: () => Navigator.of(context).pop()),
                   Expanded(

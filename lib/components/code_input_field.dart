@@ -43,7 +43,10 @@ class CodeInputField extends StatelessWidget {
           textAlignVertical: TextAlignVertical.center,
           cursorColor: color,
           keyboardType: TextInputType.numberWithOptions(),
-          decoration: InputDecoration(hintText: hintText, fillColor: color),
+          decoration: InputDecoration(
+            hintText: hintText,
+            fillColor: color,
+          ),
           onChanged: onChanged),
     );
     return container;

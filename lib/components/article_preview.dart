@@ -4,7 +4,8 @@ import 'package:we_help/models/tag.dart';
 class ArticlePreview extends StatelessWidget {
   /// Creates an article preview widget.
   /// Used in the home screen and search screen.
-  final String author;
+  final String name;
+  final String surname;
   final String title;
   final String description;
   final List<Tag> tags;
@@ -16,7 +17,8 @@ class ArticlePreview extends StatelessWidget {
 
   const ArticlePreview({
     Key key,
-    this.author,
+    this.name,
+    this.surname,
     this.title,
     this.description,
     this.tags,
@@ -27,7 +29,119 @@ class ArticlePreview extends StatelessWidget {
     this.contentKey,
   }) : super(key: key);
 
-  List<Widget> buildTagWidgets(double screenWidth, List<Tag> tagList) {
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    Container container = Container(
+      // The wrapper for the entire widget.
+      padding: EdgeInsets.only(
+        left: size.width * 0.05,
+        right: size.width * 0.05,
+      ),
+      margin: EdgeInsets.only(
+        bottom: size.height * 0.03,
+      ),
+      width: size.width * 0.9,
+      height: size.height * 0.3,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1.2,
+          color: Color(0xff60626D),
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+      ),
+      child: Column(
+        // Main column
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _authorText(name, surname),
+          _titleText(title),
+          _descriptionText(description),
+          _tagsRow(size, tags),
+          _dateTimeText(date, time),
+          _statisticText(answersCount, "2.5K"),
+        ],
+      ),
+    );
+    return container;
+  }
+
+  Widget _authorText(String name, String surname) {
+    return Text(
+      "$surname $name",
+      style: TextStyle(fontSize: 16, color: Color(0xff3F3D56)),
+    );
+  }
+
+  Widget _titleText(String title) {
+    return Text(
+      title,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
+      style: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w500,
+        color: Color(0xff3F3D56),
+      ),
+    );
+  }
+
+  Widget _descriptionText(String description) {
+    return Text(
+      description,
+      style: TextStyle(fontSize: 14, color: Colors.black),
+    );
+  }
+
+  Widget _tagsRow(Size size, List<Tag> tagList) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: size.height * 0.03,
+        minHeight: size.height * 0.02,
+      ),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: _buildTagWidgets(size.width, tagList),
+      ),
+    );
+  }
+
+  Widget _dateTimeText(String date, String time) {
+    return Text(
+      "$date · $time",
+      style: TextStyle(
+        fontSize: 14,
+        color: Color(0xff3F3D56),
+      ),
+    );
+  }
+
+  Widget _statisticText(int answersCount, String viewsCount) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          "$answersCount ответов",
+          style: TextStyle(fontSize: 14, color: Colors.black),
+        ),
+        Text(
+          viewsCount,
+          style: TextStyle(
+            fontSize: 14,
+            color: Color(0xff3F3D56),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _buildTagWidgets(double screenWidth, List<Tag> tagList) {
     /// Returns a list of tag widgets with text, background and padding.
     return tagList
         .map(
@@ -44,78 +158,5 @@ class ArticlePreview extends StatelessWidget {
           ),
         )
         .toList();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    Container container = Container(
-      // The wrapper for the entire widget.
-      padding:
-      EdgeInsets.only(left: size.width * 0.05, right: size.width * 0.05),
-      margin: EdgeInsets.only(bottom: size.height * 0.03),
-      width: size.width * 0.9,
-      height: size.height * 0.3,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: Color(0xff60626D),
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(20.0),
-        ),
-      ),
-      child: Column(
-        // Main column
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            author,
-            style: TextStyle(fontSize: 16, color: Color(0xff3F3D56),
-            ),
-          ),
-          Text(
-            title,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-              color: Color(0xff3F3D56),
-            ),
-          ),
-          Text(description,
-            style: TextStyle(fontSize: 14, color: Colors.black),
-          ),
-
-          // A container with scrollable tags.
-          Container(
-            height: size.height * 0.03,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: buildTagWidgets(size.width, tags),
-            ),
-          ),
-
-          Text("$date · $time",
-            style: TextStyle(fontSize: 12, color: Color(0xff3F3D56),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("$answersCount ответов",
-                style: TextStyle(fontSize: 14, color: Colors.black),
-              ),
-              Text("2.5K",
-                style: TextStyle(fontSize: 14, color: Color(0xff3F3D56),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-    return container;
   }
 }

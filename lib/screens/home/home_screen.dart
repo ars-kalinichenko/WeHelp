@@ -15,7 +15,8 @@ class HomeScreen extends StatelessWidget {
     /// Temporary examples until backend connects.
     List<Widget> samples = [
       ArticlePreview(
-        author: "Евгений Моховский",
+        name: "Евгений",
+        surname: "Моховской",
         title: "Что делать если на тебя напал дикий еж?",
         description: "В лесу встретил злого ежа. \nЧто делать?",
         tags: [Tag(id: 0, name: " #дикие животные ", color: "grey")],
@@ -24,7 +25,8 @@ class HomeScreen extends StatelessWidget {
         answersCount: 11,
       ),
       ArticlePreview(
-        author: "Марина Тарчинская",
+        name: "Марина",
+        surname: "Тарчинская",
         title: "Как приготовить настоящий узбекский плов?",
         description: "Плов хочу как в Узбекистане. \nКак такое готовить?",
         tags: [
@@ -37,7 +39,8 @@ class HomeScreen extends StatelessWidget {
         answersCount: 11,
       ),
       ArticlePreview(
-        author: "Арсений Калиниченко",
+        name: "Арсений",
+        surname: "Калиниченко",
         title: "Как создать звезду смерти?",
         description: "На меня голуби в парке напали. Хочу отомстить!",
         tags: [

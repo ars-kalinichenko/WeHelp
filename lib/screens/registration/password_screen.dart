@@ -9,8 +9,9 @@ import 'name_screen.dart';
 
 class PasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    String _password;
-    String _passwordConfirm;
+    String password;
+    String passwordConfirm;
+    ThemeData appTheme = Theme.of(context);
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
 
@@ -21,26 +22,26 @@ class PasswordScreen extends StatelessWidget {
         children: <Widget>[
           Center(
               child: Text("Задайте пароль",
-                  style: Theme.of(context).textTheme.headline2,
+                  style: appTheme.textTheme.headline2,
                   textAlign: TextAlign.center)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               StandardInputField(
-                color: Theme.of(context).primaryColor,
+                color: appTheme.primaryColor,
                 obscure: true,
                 hintText: "Введите пароль",
                 onChanged: (value) {
-                  _password = value;
+                  password = value;
                 },
               ),
               SizedBox(height: 20),
               StandardInputField(
-                color: Theme.of(context).primaryColor,
+                color: appTheme.primaryColor,
                 obscure: true,
                 hintText: "Повторите пароль",
                 onChanged: (value) {
-                  _passwordConfirm = value;
+                  passwordConfirm = value;
                 },
               ),
             ],
@@ -48,8 +49,8 @@ class PasswordScreen extends StatelessWidget {
           RoundedButton(
             text: "Продолжить",
             press: () {
-              registrationState.password = _password;
-              registrationState.passwordConfirm = _passwordConfirm;
+              registrationState.password = password;
+              registrationState.passwordConfirm = passwordConfirm;
               print("Password: ${registrationState.password}");
 
               Navigator.push(

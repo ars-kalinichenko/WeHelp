@@ -7,8 +7,9 @@ import 'package:we_help/screens/registration/registration.dart';
 
 class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
-    String _name;
-    String _surname;
+    String name;
+    String surname;
+    ThemeData appTheme = Theme.of(context);
     double screenHeight = MediaQuery.of(context).size.height;
 
     final registrationState =
@@ -19,32 +20,25 @@ class NameScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Center(
-            child: Text(
-              "Как вас зовут?",
-              style: Theme.of(context).textTheme.headline2,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          //TODO
+          _titleText(appTheme),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               StandardInputField(
-                color: Theme.of(context).primaryColor,
+                color: appTheme.primaryColor,
                 keyboardMode: TextCapitalization.words,
                 hintText: "Фамилия",
                 onChanged: (value) {
-                  _name = value;
+                  name = value;
                 },
               ),
               SizedBox(height: screenHeight * 0.02),
               StandardInputField(
-                color: Theme.of(context).primaryColor,
+                color: appTheme.primaryColor,
                 keyboardMode: TextCapitalization.words,
                 hintText: "Имя",
                 onChanged: (value) {
-                  _surname = value;
+                  surname = value;
                 },
               ),
             ],
@@ -52,15 +46,24 @@ class NameScreen extends StatelessWidget {
           RoundedButton(
             text: "Далее",
             press: () {
-              registrationState.name = _name;
-              registrationState.surname = _surname;
+              registrationState.name = name;
+              registrationState.surname = surname;
               Registration.pushRegistration(
                 context,
                 registrationState.getValues(),
               );
             },
-          )
+          ),
         ],
+      ),
+    );
+  }
+  Widget _titleText(ThemeData theme){
+    return Center(
+      child: Text(
+        "Как вас зовут?",
+        style: theme.textTheme.headline2,
+        textAlign: TextAlign.center,
       ),
     );
   }

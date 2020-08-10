@@ -9,8 +9,10 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    TextStyle headlineStyle = Theme.of(context).textTheme.headline4;
 
     return Scaffold(
+      //todo: gmmmm
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,25 +56,24 @@ class WelcomeScreen extends StatelessWidget {
                       SizedBox(height: screenHeight * 0.02),
                       TextButton(
                           text: "Зарегистрироваться",
-                          textColor:
-                              Theme.of(context).textTheme.headline4.color,
-                          fontSize:
-                              Theme.of(context).textTheme.headline4.fontSize,
-                          fontFamily:
-                              Theme.of(context).textTheme.headline4.fontFamily,
-                          fontWeight: FontWeight.w600,
-                          underline: true,
+                          textStyle: TextStyle(
+                            color: headlineStyle.color,
+                            fontSize: headlineStyle.fontSize,
+                            fontFamily: headlineStyle.fontFamily,
+                            fontWeight: FontWeight.w600,
+                            decoration: TextDecoration.underline,
+                          ),
                           onPressed: () {
                             Registration(context).startRegistration();
                           }),
                       SizedBox(height: screenHeight * 0.2),
                       TextButton(
                         text: "Политика конфиденциальности",
-                        textColor: Colors.black26,
-                        fontSize:
-                            Theme.of(context).textTheme.headline6.fontSize,
-                        fontFamily:
-                            Theme.of(context).textTheme.headline6.fontFamily,
+                        textStyle: TextStyle(color: Colors.black26,
+                          fontSize: 16,
+                          fontFamily: headlineStyle.fontFamily,
+                        ),
+
                         onPressed: () {
                           Navigator.push(
                             context,

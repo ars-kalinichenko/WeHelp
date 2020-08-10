@@ -54,7 +54,7 @@ class PrivacyState extends State<PrivacyScreen> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

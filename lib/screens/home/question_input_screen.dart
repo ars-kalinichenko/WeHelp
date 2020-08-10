@@ -30,7 +30,7 @@ class SearchInputScreen extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                      icon: Icon(LogInIcons.eva_arrow_ios_back_fill),
+                      icon: Icon(LogInIcons.back_arrow_icon),
                       iconSize: 40.0,
                       onPressed: () => Navigator.of(context).pop()),
                   Expanded(
@@ -77,7 +77,10 @@ class SearchInputScreen extends StatelessWidget {
           SizedBox(height: screenHeight * 0.04),
           TextButton(
             text: "Показать все",
-            underline: true,
+            textStyle: TextStyle(
+              fontSize: 18,
+              decoration: TextDecoration.underline,
+            ),
           ),
           SizedBox(height: screenHeight * 0.07),
           RoundedButton(

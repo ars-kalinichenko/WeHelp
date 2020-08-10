@@ -61,26 +61,18 @@ class _MainPageState extends State<MainPage> {
           BottomNavyBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
-            textColor: Colors.white,
-            inactiveColor: Color(0xff60626D),
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.people),
+            icon: Icon(Icons.search),
             title: Text('Users'),
-            textColor: Colors.white,
-            inactiveColor: Color(0xff60626D),
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.chat),
             title: Text('Messages'),
-            textColor: Colors.white,
-            inactiveColor: Color(0xff60626D),
           ),
           BottomNavyBarItem(
             icon: Icon(Icons.settings),
             title: Text('Settings'),
-            textColor: Colors.white,
-            inactiveColor: Color(0xff60626D),
           ),
         ],
       ),

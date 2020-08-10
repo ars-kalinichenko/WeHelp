@@ -10,6 +10,7 @@ import 'package:we_help/services/validator.dart';
 class PhoneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String _phoneNumber = "";
+    ThemeData appTheme = Theme.of(context);
     final registrationState =
         Provider.of<RegistrationState>(context, listen: false);
 
@@ -23,10 +24,10 @@ class PhoneScreen extends StatelessWidget {
               child: Text(
                 "Введите номер \nтелефона",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline2,
+                style: appTheme.textTheme.headline2,
               )),
           PhoneInputField(
-            color: Theme.of(context).primaryColor,
+            color: appTheme.primaryColor,
             onChanged: (value) {
               _phoneNumber = value;
             },
@@ -40,16 +41,17 @@ class PhoneScreen extends StatelessWidget {
                   registrationState.phoneNumber = _phoneWithoutMask;
                   print(registrationState.phoneNumber);
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return EmailScreen();
-                      },
-                    ),
-                  );
-                }
-              })
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return EmailScreen();
+                    },
+                  ),
+                );
+              }
+            },
+          ),
         ],
       ),
     );
