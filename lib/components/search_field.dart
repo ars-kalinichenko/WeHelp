@@ -15,7 +15,7 @@ class SearchInputField extends StatelessWidget {
     Key key,
     this.hintText,
     this.color = Colors.grey,
-    this.width = 0.7,
+    this.width = 0.8,
     this.height = 0.1,
     this.onChanged,
     this.onPressed,

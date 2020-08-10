@@ -44,4 +44,13 @@ class RestApi {
     }
     return response.statusCode;
   }
+  static Future getActual() async{
+    final response = await http.get('$baseUrl/api/articles');
+    if (response.statusCode == 200) {
+      print("Success, $response");
+      return response.body;
+    } else {
+      throw Exception("Error when requesting users (status! = 200)");
+    }
+  }
 }

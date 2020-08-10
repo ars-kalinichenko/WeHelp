@@ -66,7 +66,7 @@ class _MainPageState extends State<MainPage> {
         ),
         BottomNavyBarItem(
           icon: Icon(Icons.search),
-          title: Text('Users'),
+          title: Text('Search'),
         ),
         BottomNavyBarItem(
           icon: Icon(Icons.chat),
@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> {
         ),
         BottomNavyBarItem(
           icon: Icon(Icons.settings),
-          title: Text('Settings'),
+          title: Text('Profile'),
         ),
       ],
     );
