@@ -106,7 +106,7 @@ class ArticlePreview extends StatelessWidget {
       ),
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: _buildTagWidgets(size.width, tagList),
+        children: buildTagWidgets(size.width, tagList),
       ),
     );
   }
@@ -141,7 +141,7 @@ class ArticlePreview extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildTagWidgets(double screenWidth, List<Tag> tagList) {
+  static List<Widget> buildTagWidgets(double screenWidth, List<Tag> tagList) {
     /// Returns a list of tag widgets with text, background and padding.
     return tagList
         .map(

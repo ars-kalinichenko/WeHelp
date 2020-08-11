@@ -73,7 +73,7 @@ class _MainPageState extends State<MainPage> {
           title: Text('Messages'),
         ),
         BottomNavyBarItem(
-          icon: Icon(Icons.settings),
+          icon: Icon(Icons.person),
           title: Text('Profile'),
         ),
       ],

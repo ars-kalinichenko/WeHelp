@@ -9,7 +9,6 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    TextStyle headlineStyle = Theme.of(context).textTheme.headline4;
     ThemeData theme = Theme.of(context);
 
     return Scaffold(
