@@ -1,32 +1,28 @@
-import 'package:we_help/models/public_user.dart';
 import 'package:we_help/models/tag.dart';
 
-class PublicQuestion {
+class Article {
   int id;
   String title;
-  String content;
-  PublicUser author;
+  String minContent;
   String pubDate;
   int views;
   List<Tag> tags;
 
-  PublicQuestion(
+  Article(
       {this.id,
       this.title,
-      this.content,
-      this.author,
+      this.minContent,
       this.pubDate,
       this.views,
       this.tags});
 
-  factory PublicQuestion.fromJson(Map<String, dynamic> json) {
+  factory Article.fromJson(Map<String, dynamic> json) {
     List<Tag> listTags =
         json['tags']['example'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
-    return PublicQuestion(
+    return Article(
         id: json["id"] as int,
         title: json["title"] as String,
-        content: json["content"] as String,
-        author: PublicUser(id: 1, name: "12", surname: '31', image: "google"),
+        minContent: json["min_content"] as String,
         pubDate: json["pub_date"] as String,
         views: json["views"] as int,
         tags: listTags);

@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    RestApi.getActual();
+    RestApi.getArticles();
     return Scaffold(
       //Todo: fix tips list view.
       body: ListView(

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:we_help/exceptions.dart';
+import 'package:we_help/models/article.dart';
 import 'package:we_help/models/public_question.dart';
 import 'package:we_help/models/user.dart';
 
@@ -60,6 +61,16 @@ class RestApi {
     }
   }
 
+  static Future<List<Article>> getArticles() async {
+    final response = await http.get('$baseUrl/api/articles');
+    if (response.statusCode == 200) {
+      print("Success, $response");
+      return _parseArticle(response.body);
+    } else {
+      throw Exception("Error when requesting users (status! = 200)");
+    }
+  }
+
   static Future<List<User>> searchUsers(String searchRequest) async {
     final response = await http.get('$baseUrl/api/search/user');
     if (response.statusCode == 200) {
@@ -70,6 +81,7 @@ class RestApi {
     }
   }
 
+// todo: group
   static List<User> _parseUsers(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     print(parsed);
@@ -78,8 +90,14 @@ class RestApi {
 
   static List<PublicQuestion> _parseQuestions(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-    return parsed.map<PublicQuestion>((json) => PublicQuestion.fromJson(json))
+    return parsed
+        .map<PublicQuestion>((json) => PublicQuestion.fromJson(json))
         .toList();
+  }
+
+  static List<Article> _parseArticle(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<Article>((json) => Article.fromJson(json)).toList();
   }
 
   static void searchQuestions(String searchRequest) {}
