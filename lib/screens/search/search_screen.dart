@@ -1,8 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:we_help/components/search_field.dart';
+import 'package:we_help/services/rest_api.dart';
+import 'package:we_help/services/stabilizer.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -12,9 +13,11 @@ class SearchScreen extends StatefulWidget {
 }
 
 class SearchScreenState extends State<SearchScreen> {
-  static bool _isPeople = true;
-  static bool _isQuestions = true;
-  static bool _isArticles = true;
+  static bool _isPeople = false;
+  static bool _isQuestions = false;
+  static bool _isArticles = false;
+  static String _searchRequest;
+  final _stabilizer = Stabilizer(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +46,24 @@ class SearchScreenState extends State<SearchScreen> {
     return SearchInputField(
       hintText: "Мы многое сможем найти",
       width: 0.85,
+      onChanged: (value) {
+        _searchRequest = value;
+      },
     );
+  }
+
+  void _searchByFilter() {
+    if (_isPeople)
+      RestApi.searchUsers(_searchRequest);
+    else if (_isQuestions)
+      RestApi.searchQuestions(_searchRequest);
+    else
+      RestApi.searchArticle(_searchRequest);
   }
 
   Widget _filterRow() {
     Color activeColor = Color(0xff0073FF);
     Color inactiveTextColor = Color(0xff3F3D56);
-    // todo: refactor this trash!
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -62,7 +76,12 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Люди"),
-          onPressed: () => setState(() => _isPeople = !_isPeople),
+          onPressed: () =>
+              setState(() {
+                _clearFilter();
+                _isPeople = !_isPeople;
+              },
+              ),
         ),
         FlatButton(
           color: _isArticles ? activeColor : Colors.transparent,
@@ -72,7 +91,12 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Статьи"),
-          onPressed: () => setState(() => _isArticles = !_isArticles),
+          onPressed: () =>
+              setState(() {
+                _clearFilter();
+                _isArticles = !_isArticles;
+              },
+              ),
         ),
         FlatButton(
           color: _isQuestions ? activeColor : Colors.transparent,
@@ -82,9 +106,20 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Вопросы"),
-          onPressed: () => setState(() => _isQuestions = !_isQuestions),
+          onPressed: () =>
+              setState(() {
+                _clearFilter();
+                _isQuestions = !_isQuestions;
+              },
+              ),
         ),
       ],
     );
+  }
+
+  void _clearFilter() {
+    _isQuestions = false;
+    _isArticles = false;
+    _isPeople = false;
   }
 }

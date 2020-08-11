@@ -5,6 +5,7 @@ import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
 import 'package:we_help/models/tag.dart';
 import 'package:we_help/screens/home/question_input_screen.dart';
+import 'package:we_help/services/rest_api.dart';
 
 class HomeScreen extends StatelessWidget {
   static String _searchRequest;
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-
+    RestApi.getActual();
     return Scaffold(
       //Todo: fix tips list view.
       body: ListView(

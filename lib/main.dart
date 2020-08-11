@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:we_help/screens/main_page.dart';
 import 'package:we_help/screens/registration/registration.dart';
-import 'package:we_help/screens/welcome/welcome_screen.dart';
 
 import 'components/behavior_elements.dart';
 import 'themes/app_theme.dart';
