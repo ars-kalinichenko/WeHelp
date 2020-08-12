@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:we_help/components/article_preview.dart';
+import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
 import 'package:we_help/models/tag.dart';
@@ -10,17 +10,15 @@ import 'package:we_help/services/rest_api.dart';
 class HomeScreen extends StatelessWidget {
   static String _searchRequest;
   static List<Widget> _samples = [
-    ArticlePreview(
+    QuestionPreview(
       name: "Евгений",
       surname: "Моховской",
       title: "Что делать если на тебя напал дикий еж?",
       description: "В лесу встретил злого ежа. \nЧто делать?",
       tags: [Tag(id: 0, name: " #дикие животные ", color: "grey")],
-      date: "24.07.2020",
-      time: "23:46",
       answersCount: 11,
     ),
-    ArticlePreview(
+    QuestionPreview(
       name: "Марина",
       surname: "Тарчинская",
       title: "Как приготовить настоящий узбекский плов?",
@@ -30,11 +28,9 @@ class HomeScreen extends StatelessWidget {
         Tag(id: 1, name: " #еда ", color: "grey"),
         Tag(id: 0, name: " #национальная кухня ", color: "grey"),
       ],
-      date: "24.07.2020",
-      time: "23:46",
       answersCount: 11,
     ),
-    ArticlePreview(
+    QuestionPreview(
       name: "Арсений",
       surname: "Калиниченко",
       title: "Как создать звезду смерти?",
@@ -43,8 +39,6 @@ class HomeScreen extends StatelessWidget {
         Tag(id: 4, name: " #инженерия ", color: "grey"),
         Tag(id: 6, name: " #философия ", color: "grey")
       ],
-      date: "04.08.2020",
-      time: "18:22",
       answersCount: 217,
     ),
   ];

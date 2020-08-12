@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:we_help/models/tag.dart';
 
-class ArticlePreview extends StatelessWidget {
+class QuestionPreview extends StatelessWidget {
   /// Creates an article preview widget.
   /// Used in the home screen and search screen.
   final String name;
@@ -9,21 +9,17 @@ class ArticlePreview extends StatelessWidget {
   final String title;
   final String description;
   final List<Tag> tags;
-  final String date;
-  final String time;
   final int answersCount;
   final Function press;
   final String contentKey;
 
-  const ArticlePreview({
+  const QuestionPreview({
     Key key,
     this.name,
     this.surname,
     this.title,
     this.description,
     this.tags,
-    this.date,
-    this.time,
     this.answersCount,
     this.press,
     this.contentKey,
@@ -47,8 +43,8 @@ class ArticlePreview extends StatelessWidget {
       height: size.height * 0.3,
       decoration: BoxDecoration(
         border: Border.all(
-          width: 1.2,
-          color: Color(0xff60626D),
+          width: 2,
+          color: Color(0xff0073FF),
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
@@ -63,7 +59,6 @@ class ArticlePreview extends StatelessWidget {
           _titleText(title),
           _descriptionText(description),
           _tagsRow(size, tags),
-          _dateTimeText(date, time),
           _statisticText(answersCount, "2.5K"),
         ],
       ),
@@ -94,7 +89,7 @@ class ArticlePreview extends StatelessWidget {
   Widget _descriptionText(String description) {
     return Text(
       description,
-      style: TextStyle(fontSize: 14, color: Colors.black),
+      style: TextStyle(fontSize: 16, color: Colors.black),
     );
   }
 
@@ -107,16 +102,6 @@ class ArticlePreview extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: buildTagWidgets(size.width, tagList),
-      ),
-    );
-  }
-
-  Widget _dateTimeText(String date, String time) {
-    return Text(
-      "$date · $time",
-      style: TextStyle(
-        fontSize: 14,
-        color: Color(0xff3F3D56),
       ),
     );
   }
@@ -149,12 +134,15 @@ class ArticlePreview extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
             margin: EdgeInsets.only(right: screenWidth * 0.02),
             decoration: BoxDecoration(
-              color: Color(0xffC4C4C4),
+              color: Color(0xff0073FF),
               borderRadius: BorderRadius.all(
                 Radius.circular(6.0),
               ),
             ),
-            child: Text(tag.name),
+            child: Text(
+              tag.name,
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         )
         .toList();

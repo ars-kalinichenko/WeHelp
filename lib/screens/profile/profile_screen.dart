@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:we_help/components/article_preview.dart';
+import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/examples.dart';
 import 'package:we_help/models/tag.dart';
 import 'package:we_help/screens/settings/settings_screen.dart';
@@ -179,7 +179,7 @@ class ProfileScreen extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: ArticlePreview.buildTagWidgets(
+          children: QuestionPreview.buildTagWidgets(
             screenWidth,
             tagList.sublist(0, 4),
           ),
