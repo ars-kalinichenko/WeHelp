@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/article_preview.dart';
 import 'package:we_help/examples.dart';
 import 'package:we_help/models/tag.dart';
-import 'package:we_help/screens/profile/settings_screen.dart';
+import 'package:we_help/screens/settings/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override

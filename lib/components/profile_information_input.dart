@@ -9,6 +9,8 @@ class ProfileInputField extends StatelessWidget {
   final double width; // Relative value for adaptive width
   final double height; // Relative value for adaptive height
   final ValueChanged<String> onChanged; // When the string changes -> onChange()
+  final String initText;
+  final bool obscure;
 
   const ProfileInputField({
     Key key,
@@ -17,6 +19,8 @@ class ProfileInputField extends StatelessWidget {
     this.width = 0.8,
     this.height = 0.07,
     this.onChanged,
+    this.initText,
+    this.obscure = false,
   }) : super(key: key);
 
   @override
@@ -27,7 +31,10 @@ class ProfileInputField extends StatelessWidget {
       width: size.width * width,
       height: size.height * height,
       alignment: Alignment.center,
-      child: new TextField(
+      child: new TextFormField(
+        obscureText: obscure,
+        initialValue: initText,
+        style: Theme.of(context).textTheme.headline6,
         decoration: new InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(90.0)),
@@ -35,7 +42,7 @@ class ProfileInputField extends StatelessWidget {
             ),
             filled: true,
             hintStyle: new TextStyle(color: Color(0xff716E92)),
-            hintText: "Type in your text",
+            hintText: hintText,
             fillColor: Color(0xffD7E4F4)),
       ),
     );
