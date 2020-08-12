@@ -7,7 +7,7 @@ Widget titleWithBackArrow(ThemeData theme, BuildContext context, String title) {
     children: <Widget>[
       IconButton(
           icon: Icon(LogInIcons.back_arrow_icon),
-          iconSize: 40.0,
+          iconSize: 24.0,
           onPressed: () => Navigator.of(context).pop()),
       Expanded(
         child: Padding(

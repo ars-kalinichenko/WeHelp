@@ -63,7 +63,7 @@ class SearchScreenState extends State<SearchScreen> {
 
   Widget _filterRow() {
     Color activeColor = Color(0xff0073FF);
-    Color inactiveTextColor = Color(0xff3F3D56);
+    Color inactiveTextColor = Color(0xff60626D);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

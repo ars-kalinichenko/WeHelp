@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/article_preview.dart';
 import 'package:we_help/examples.dart';
 import 'package:we_help/models/tag.dart';
+import 'package:we_help/screens/profile/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.only(top: screenHeight * 0.05),
           children: <Widget>[
-            _settingsButton(),
+            _settingsButton(context),
             _photo(screenHeight),
             SizedBox(height: screenHeight * 0.03),
             _nameText(context, screenHeight, theme),
@@ -31,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _settingsButton() {
+  Widget _settingsButton(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
       child: IconButton(
@@ -40,7 +41,9 @@ class ProfileScreen extends StatelessWidget {
           color: Color(0xff60626D),
           size: 24,
         ),
-        onPressed: () {},
+        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return SettingsScreen();
+        }));},
       ),
     );
   }
@@ -63,10 +66,21 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _nameText(BuildContext context, double screenHeight, ThemeData theme) {
     return Center(
-      child: Text(
-        "Константин \nЧукреев",
-        textAlign: TextAlign.center,
-        style: theme.textTheme.headline2,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Константин",
+            textAlign: TextAlign.center,
+            style: theme.textTheme.headline2,
+          ),
+          Text(
+            "Чукреев",
+            textAlign: TextAlign.center,
+            style: theme.textTheme.headline2,
+          ),
+        ],
       ),
     );
   }
