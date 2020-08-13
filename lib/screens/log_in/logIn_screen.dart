@@ -4,6 +4,7 @@ import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/title_with_back_arrow.dart';
+import 'package:we_help/repository/auth.dart';
 import 'package:we_help/services/rest_api.dart';
 
 import '../main_page.dart';
@@ -62,15 +63,15 @@ class LogInScreen extends StatelessWidget {
   }
 
   static void logIn(BuildContext context) async {
-    Map<String, String> data = {"email": _login, "password": _password};
-    print(data);
     try {
-      await RestApi.logInUser(data);
+      await RestApi.logInUser(_login, _password);
+      await AuthRepository.setLogin(_login);
+      await AuthRepository.setPassword(_password);
       ToastUtils.showSuccessToast(context);
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
-            return MainPage();
-          }), (Route<dynamic> route) => false);
+        return MainPage();
+      }), (Route<dynamic> route) => false);
     } catch (e) {
       print(e.toString());
       ToastUtils.showErrorToast(context);

@@ -25,7 +25,8 @@ class RestApi {
     return response.statusCode;
   }
 
-  static Future<int> logInUser(Map<String, String> data) async {
+  static Future<void> logInUser(String login, String password) async {
+    Map<String, String> data = {"email": login, "password": password};
     final response = await http.post('$baseUrl/api/auth/login', body: data);
     print("Response status: ${response.statusCode}");
     print("Response body: ${response.body}");
@@ -34,7 +35,6 @@ class RestApi {
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
-    return response.statusCode;
   }
 
   static Future<int> postQuestion(Map<String, dynamic> data) async {

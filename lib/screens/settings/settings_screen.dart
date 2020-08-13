@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/profile_information_input.dart';
 import 'package:we_help/components/rounded_button.dart';
+import 'package:we_help/repository/auth.dart';
+import 'package:we_help/screens/welcome/welcome_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -29,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: screenHeight * 0.05),
             _saveButton(screenWidth),
             SizedBox(height: screenHeight * 0.07),
-            _deleteButton(screenWidth, screenHeight),
+            _logOutButton(context, screenWidth, screenHeight),
             SizedBox(height: screenHeight * 0.05),
           ],
         ),
@@ -184,7 +186,8 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _deleteButton(double screenWidth, double screenHeight) {
+  Widget _logOutButton(BuildContext context, double screenWidth,
+      double screenHeight) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.15),
       child: ConstrainedBox(
@@ -198,11 +201,17 @@ class SettingsScreen extends StatelessWidget {
           ),
           color: Colors.transparent,
           splashColor: Colors.transparent,
-          onPressed: () {},
           child: Text(
             "Выйти из аккаунта",
             style: TextStyle(color: Color(0xffF14E4E), fontSize: 18),
           ),
+          onPressed: () {
+            AuthRepository.logOut();
+            Navigator.pushAndRemoveUntil(context,
+                MaterialPageRoute(builder: (context) {
+                  return WelcomeScreen();
+                }), (Route<dynamic> route) => false);
+          },
         ),
       ),
     );
