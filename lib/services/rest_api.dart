@@ -53,9 +53,10 @@ class RestApi {
 
   static Future<List<PublicQuestion>> getActual() async {
     final response = await http.get('$baseUrl/api/questions');
+    String source = Utf8Decoder().convert(response.bodyBytes);
     if (response.statusCode == 200) {
-      print("Success, $response");
-      return _parseQuestions(response.body);
+      print("Success, ${response.body.toString()}");
+      return _parseQuestions(source);
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
@@ -63,9 +64,10 @@ class RestApi {
 
   static Future<List<Article>> getArticles() async {
     final response = await http.get('$baseUrl/api/articles');
+    String source = Utf8Decoder().convert(response.bodyBytes);
     if (response.statusCode == 200) {
       print("Success, $response");
-      return _parseArticle(response.body);
+      return _parseArticle(source);
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }

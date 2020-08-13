@@ -3,24 +3,94 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
+import 'package:we_help/models/public_question.dart';
 import 'package:we_help/models/tag.dart';
 import 'package:we_help/screens/home/question_input_screen.dart';
 import 'package:we_help/services/rest_api.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  createState() => new _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   static String _searchRequest;
-  static List<Widget> _samples = [
+
+  @override
+  Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    return FutureBuilder<List<PublicQuestion>>(
+      future: RestApi.getActual(),
+      builder:
+          (BuildContext context, AsyncSnapshot<List<PublicQuestion>> snapshot) {
+        List<QuestionPreview> childWidget;
+        if (snapshot.hasData) {
+          var q = questionToPreview(snapshot.data);
+          print(q);
+          childWidget = questionToPreview(snapshot.data);
+        } else {
+          print(snapshot.data);
+          childWidget = _samples;
+        }
+        return Scaffold(
+          //Todo: fix tips list view.
+          body: ListView(
+            padding: EdgeInsets.only(
+              left: screenHeight * 0.03,
+            ),
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: screenHeight * 0.045),
+                  _tipsRow(screenHeight),
+                  SizedBox(height: screenHeight * 0.03),
+                  _questionInputField(context),
+                  SizedBox(height: screenHeight * 0.03),
+                  _actualText(),
+                ],
+              ),
+              SizedBox(
+                height: screenHeight * 0.03,
+              ),
+              _actualList(childWidget),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  static List<QuestionPreview> questionToPreview(
+      List<PublicQuestion> questions) {
+    List<QuestionPreview> previews = [];
+    for (final question in questions) {
+      previews.add(
+        QuestionPreview(
+          authorName: question.author.name,
+          authorSurname: question.author.surname,
+          title: question.title,
+          description: question.content,
+          tags: question.tags,
+          answersCount: 189,
+        ),
+      );
+    }
+    return previews;
+  }
+
+  static List<QuestionPreview> _samples = [
     QuestionPreview(
-      name: "Евгений",
-      surname: "Моховской",
+      authorName: "Евгений",
+      authorSurname: "Моховской",
       title: "Что делать если на тебя напал дикий еж?",
       description: "В лесу встретил злого ежа. \nЧто делать?",
       tags: [Tag(id: 0, name: " #дикие животные ", color: "grey")],
       answersCount: 11,
     ),
     QuestionPreview(
-      name: "Марина",
-      surname: "Тарчинская",
+      authorName: "Марина",
+      authorSurname: "Тарчинская",
       title: "Как приготовить настоящий узбекский плов?",
       description: "Плов хочу как в Узбекистане. \nКак такое готовить?",
       tags: [
@@ -31,8 +101,8 @@ class HomeScreen extends StatelessWidget {
       answersCount: 11,
     ),
     QuestionPreview(
-      name: "Арсений",
-      surname: "Калиниченко",
+      authorName: "Арсений",
+      authorSurname: "Калиниченко",
       title: "Как создать звезду смерти?",
       description: "На меня голуби в парке напали. Хочу отомстить!",
       tags: [
@@ -42,37 +112,6 @@ class HomeScreen extends StatelessWidget {
       answersCount: 217,
     ),
   ];
-
-  Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    RestApi.getArticles();
-    return Scaffold(
-      //Todo: fix tips list view.
-      body: ListView(
-        padding: EdgeInsets.only(
-          left: screenHeight * 0.03,
-        ),
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: screenHeight * 0.045),
-              _tipsRow(screenHeight),
-              SizedBox(height: screenHeight * 0.03),
-              _questionInputField(context),
-              SizedBox(height: screenHeight * 0.03),
-              _actualText(),
-            ],
-          ),
-          SizedBox(
-            height: screenHeight * 0.03,
-          ),
-          _actualList(_samples),
-        ],
-      ),
-    );
-  }
 
   Widget _tipsRow(screenHeight) {
     return ConstrainedBox(
@@ -114,7 +153,8 @@ class HomeScreen extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) {
             return SearchInputScreen(_searchRequest);
-          }),
+          },
+          ),
         );
       },
     );

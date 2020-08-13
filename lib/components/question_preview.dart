@@ -4,8 +4,8 @@ import 'package:we_help/models/tag.dart';
 class QuestionPreview extends StatelessWidget {
   /// Creates an article preview widget.
   /// Used in the home screen and search screen.
-  final String name;
-  final String surname;
+  final String authorName;
+  final String authorSurname;
   final String title;
   final String description;
   final List<Tag> tags;
@@ -15,8 +15,8 @@ class QuestionPreview extends StatelessWidget {
 
   const QuestionPreview({
     Key key,
-    this.name,
-    this.surname,
+    this.authorName,
+    this.authorSurname,
     this.title,
     this.description,
     this.tags,
@@ -55,7 +55,7 @@ class QuestionPreview extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _authorText(name, surname),
+          _authorText(authorName, authorSurname),
           _titleText(title),
           _descriptionText(description),
           _tagsRow(size, tags),

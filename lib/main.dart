@@ -45,7 +45,6 @@ class _WeHelpAuthState extends State<WeHelpAuth> {
         } else {
           childWidget = WelcomeScreen();
         }
-
         return childWidget;
       },
     );
