@@ -21,15 +21,12 @@ class PublicQuestion {
 
   factory PublicQuestion.fromJson(Map<String, dynamic> json) {
     List<Tag> listTags =
-        json['tags']['example'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
-    print(json["min_content"]);
+        json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
     return PublicQuestion(
         id: json["id"] as int,
         title: json["title"] as String,
         content: json["min_content"] as String,
-//        author: PublicUser.fromJson(json["author"]),
-        author: PublicUser(
-            id: 1, name: "Евгений", surname: 'Моховской', image: "google"),
+        author: PublicUser.fromJson(json["author"]),
         pubDate: json["pub_date"] as String,
         views: json["views"] as int,
         tags: listTags);

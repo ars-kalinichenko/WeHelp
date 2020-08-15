@@ -131,17 +131,17 @@ class QuestionPreview extends StatelessWidget {
     return tagList
         .map(
           (tag) => Container(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
             margin: EdgeInsets.only(right: screenWidth * 0.02),
             decoration: BoxDecoration(
-              color: Color(0xff0073FF),
+              color: Color(0xffD3D6DA),
               borderRadius: BorderRadius.all(
                 Radius.circular(6.0),
               ),
             ),
             child: Text(
               tag.name,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
           ),
         )

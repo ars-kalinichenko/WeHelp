@@ -13,8 +13,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class SearchScreenState extends State<SearchScreen> {
+  static bool _isQuestions = true;
   static bool _isPeople = false;
-  static bool _isQuestions = false;
   static bool _isArticles = false;
   static String _searchRequest;
   final _stabilizer = Stabilizer(milliseconds: 500);
@@ -69,6 +69,21 @@ class SearchScreenState extends State<SearchScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         FlatButton(
+          color: _isQuestions ? activeColor : Colors.transparent,
+          textColor: _isQuestions ? Colors.white : inactiveTextColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100.0),
+            side: BorderSide(color: Colors.blueAccent, width: 2),
+          ),
+          child: Text("Вопросы"),
+          onPressed: () =>
+              setState(() {
+                _clearFilter();
+                _isQuestions = !_isQuestions;
+              },
+              ),
+        ),
+        FlatButton(
           color: _isPeople ? activeColor : Colors.transparent,
           textColor: _isPeople ? Colors.white : inactiveTextColor,
           shape: RoundedRectangleBorder(
@@ -98,21 +113,7 @@ class SearchScreenState extends State<SearchScreen> {
               },
               ),
         ),
-        FlatButton(
-          color: _isQuestions ? activeColor : Colors.transparent,
-          textColor: _isQuestions ? Colors.white : inactiveTextColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100.0),
-            side: BorderSide(color: Colors.blueAccent, width: 2),
-          ),
-          child: Text("Вопросы"),
-          onPressed: () =>
-              setState(() {
-                _clearFilter();
-                _isQuestions = !_isQuestions;
-              },
-              ),
-        ),
+
       ],
     );
   }

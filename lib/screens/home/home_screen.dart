@@ -24,11 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
           (BuildContext context, AsyncSnapshot<List<PublicQuestion>> snapshot) {
         List<QuestionPreview> childWidget;
         if (snapshot.hasData) {
-          var q = questionToPreview(snapshot.data);
-          print(q);
           childWidget = questionToPreview(snapshot.data);
         } else {
-          print(snapshot.data);
+          print("Snapshot is ${snapshot.data}");
           childWidget = _samples;
         }
         return Scaffold(
