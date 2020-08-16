@@ -25,7 +25,6 @@ class QuestionPreview extends StatelessWidget {
     this.contentKey,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

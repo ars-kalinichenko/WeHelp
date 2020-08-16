@@ -42,7 +42,8 @@ class TipsWithBackground extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title,
+          Text(
+            title,
             overflow: TextOverflow.fade,
             maxLines: 2,
             style: TextStyle(
@@ -59,7 +60,9 @@ class TipsWithBackground extends StatelessWidget {
             maxLines: 1,
             softWrap: false,
             textAlign: TextAlign.left,
-            style: TextStyle(fontSize: 12, color: Colors.white,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.white,
             ),
           )
         ],

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
+import 'package:we_help/models/public_question.dart';
 import 'package:we_help/services/rest_api.dart';
 import 'package:we_help/services/stabilizer.dart';
 
@@ -22,23 +24,37 @@ class SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.only(top: size.height * 0.03),
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+    return FutureBuilder<List<dynamic>>(
+      future: _searchByFilter(_searchRequest),
+      builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+        List<Widget> childWidget;
+        if (snapshot.hasData) {
+          childWidget = questionToPreview(snapshot.data);
+        } else {
+          childWidget = [];
+        }
+        return Scaffold(
+          body: Center(
+            child: ListView(
+              padding: EdgeInsets.only(top: size.height * 0.03),
               children: <Widget>[
-                _searchInputField(),
-                _filterRow(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _searchInputField(),
+                    _filterRow(),
+                    SizedBox(
+                      height: size.height * 0.05,
+                    ),
+                    _searchResults(childWidget),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -48,18 +64,15 @@ class SearchScreenState extends State<SearchScreen> {
       width: 0.85,
       onChanged: (value) {
         _searchRequest = value;
+        _stabilizer.run(() {
+          _searchByFilter(_searchRequest);
+        },
+        );
       },
     );
   }
 
-  void _searchByFilter() {
-    if (_isPeople)
-      RestApi.searchUsers(_searchRequest);
-    else if (_isQuestions)
-      RestApi.searchQuestions(_searchRequest);
-    else
-      RestApi.searchArticle(_searchRequest);
-  }
+
 
   Widget _filterRow() {
     Color activeColor = Color(0xff0073FF);
@@ -77,10 +90,11 @@ class SearchScreenState extends State<SearchScreen> {
           ),
           child: Text("Вопросы"),
           onPressed: () =>
-              setState(() {
-                _clearFilter();
-                _isQuestions = !_isQuestions;
-              },
+              setState(
+                    () {
+                  _clearFilter();
+                  _isQuestions = !_isQuestions;
+                },
               ),
         ),
         FlatButton(
@@ -92,10 +106,11 @@ class SearchScreenState extends State<SearchScreen> {
           ),
           child: Text("Люди"),
           onPressed: () =>
-              setState(() {
-                _clearFilter();
-                _isPeople = !_isPeople;
-              },
+              setState(
+                    () {
+                  _clearFilter();
+                  _isPeople = !_isPeople;
+                },
               ),
         ),
         FlatButton(
@@ -106,21 +121,56 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Посты"),
-          onPressed: () => setState(
-            () {
-              _clearFilter();
-              _isArticles = !_isArticles;
-            },
-          ),
+          onPressed: () =>
+              setState(
+                    () {
+                  _clearFilter();
+                  _isArticles = !_isArticles;
+                },
+              ),
         ),
-
       ],
     );
+  }
+
+  Widget _searchResults(List<Widget> data) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: data,
+    );
+  }
+
+  Future<List<dynamic>> _searchByFilter(String searchRequest) async {
+    if (_isPeople)
+      return await RestApi.searchUsers(searchRequest);
+    else if (_isQuestions)
+      return await RestApi.searchQuestions(searchRequest);
+    else
+      return await RestApi.searchArticle(searchRequest);
   }
 
   void _clearFilter() {
     _isQuestions = false;
     _isArticles = false;
     _isPeople = false;
+  }
+
+  static List<QuestionPreview> questionToPreview(
+      List<PublicQuestion> questions) {
+    List<QuestionPreview> previews = [];
+    for (final question in questions) {
+      previews.add(
+        QuestionPreview(
+          authorName: question.author.name,
+          authorSurname: question.author.surname,
+          title: question.title,
+          description: question.content,
+          tags: question.tags,
+          answersCount: 189,
+        ),
+      );
+    }
+    return previews;
   }
 }

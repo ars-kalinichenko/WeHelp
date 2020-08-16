@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
+import 'package:we_help/examples.dart';
 import 'package:we_help/models/public_question.dart';
-import 'package:we_help/models/tag.dart';
 import 'package:we_help/screens/questions/question_input_screen.dart';
 import 'package:we_help/services/rest_api.dart';
 
@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+
     return FutureBuilder<List<PublicQuestion>>(
       future: RestApi.getActual(),
       builder:
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         if (snapshot.hasData) {
           childWidget = questionToPreview(snapshot.data);
         } else {
-          childWidget = _samples;
+          childWidget = Examples.questionSamples;
         }
         return Scaffold(
           body: ListView(
@@ -75,40 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return previews;
   }
 
-  static List<QuestionPreview> _samples = [
-    QuestionPreview(
-      authorName: "Евгений",
-      authorSurname: "Моховской",
-      title: "Что делать если на тебя напал дикий еж?",
-      description: "В лесу встретил злого ежа. \nЧто делать?",
-      tags: [Tag(id: 0, name: " #дикие животные ", color: "grey")],
-      answersCount: 11,
-    ),
-    QuestionPreview(
-      authorName: "Марина",
-      authorSurname: "Тарчинская",
-      title: "Как приготовить настоящий узбекский плов?",
-      description: "Плов хочу как в Узбекистане. \nКак такое готовить?",
-      tags: [
-        Tag(id: 0, name: " #кулинария ", color: "grey"),
-        Tag(id: 1, name: " #еда ", color: "grey"),
-        Tag(id: 0, name: " #национальная кухня ", color: "grey"),
-      ],
-      answersCount: 11,
-    ),
-    QuestionPreview(
-      authorName: "Арсений",
-      authorSurname: "Калиниченко",
-      title: "Как создать звезду смерти?",
-      description: "На меня голуби в парке напали. Хочу отомстить!",
-      tags: [
-        Tag(id: 4, name: " #инженерия ", color: "grey"),
-        Tag(id: 6, name: " #философия ", color: "grey")
-      ],
-      answersCount: 217,
-    ),
-  ];
-
   Widget _tipsRow(screenHeight) {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: screenHeight * 0.14),
@@ -146,8 +113,9 @@ class _HomeScreenState extends State<HomeScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) {
-            return QuestionInputScreen(_searchRequest);
+          MaterialPageRoute(
+            builder: (context) {
+              return QuestionInputScreen(_searchRequest);
             },
           ),
         );

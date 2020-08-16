@@ -37,7 +37,6 @@ class SearchInputField extends StatelessWidget {
       width: size.width * width,
       height: size.height * height,
       alignment: Alignment.center,
-
       child: TextField(
         textAlign: TextAlign.left,
         textCapitalization: TextCapitalization.sentences,

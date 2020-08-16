@@ -9,6 +9,8 @@ import 'package:we_help/models/user.dart';
 class RestApi {
   static const String baseUrl =
       'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
+  static final String _authority = "virtserver.swaggerhub.com";
+  static final String _path = "/iCatOK/weHelpAPI/1.0.0/api";
 
   // Todo: delete status code from return
 
@@ -50,9 +52,8 @@ class RestApi {
 
   static Future<List<PublicQuestion>> getActual() async {
     final response = await http.get('$baseUrl/api/questions');
-    String source = Utf8Decoder().convert(response.bodyBytes);
     if (response.statusCode == 200) {
-      return _parseQuestions(source);
+      return _parseQuestions(response.bodyBytes);
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
@@ -79,14 +80,26 @@ class RestApi {
     }
   }
 
+  static Future<List<PublicQuestion>> searchQuestions(String filter) async {
+    final params = {"filter": filter};
+    final uri = Uri.https(_authority, "$_path/questions", params);
+    final response = await http.get(uri);
+    if (response.statusCode == 200) {
+      return _parseQuestions(response.bodyBytes);
+    } else {
+      throw Exception("Error when requesting users (status! = 200)");
+    }
+  }
+
 // todo: group
   static List<User> _parseUsers(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<User>((json) => User.fromJson(json)).toList();
   }
 
-  static List<PublicQuestion> _parseQuestions(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  static List<PublicQuestion> _parseQuestions(List<int> responseBodyBytes) {
+    String source = Utf8Decoder().convert(responseBodyBytes);
+    final parsed = json.decode(source).cast<Map<String, dynamic>>();
     return parsed
         .map<PublicQuestion>((json) => PublicQuestion.fromJson(json))
         .toList();
@@ -97,7 +110,5 @@ class RestApi {
     return parsed.map<Article>((json) => Article.fromJson(json)).toList();
   }
 
-  static void searchQuestions(String searchRequest) {}
-
-  static void searchArticle(String searchRequest) {}
+  static Future<List<Article>> searchArticle(String searchRequest) async {}
 }

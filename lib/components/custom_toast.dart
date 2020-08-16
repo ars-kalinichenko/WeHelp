@@ -32,6 +32,7 @@ class ToastUtils {
       Color(0xff3EE896),
     );
   }
+
   static void showErrorToast(BuildContext context) {
     showCustomToast(
       context,

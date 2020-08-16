@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class Stabilizer  {
+class Stabilizer {
   /// Adds the time between the change in demand from the user and the sending of this request to the server.
   /// Necessary, as without this, requests will be sent more often.
 

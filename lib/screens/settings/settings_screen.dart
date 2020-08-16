@@ -56,9 +56,13 @@ class SettingsScreen extends StatelessWidget {
   Widget _photo(double screenHeight) {
     return CircleAvatar(
       backgroundColor: RandomColor().randomColor(
-        colorBrightness: ColorBrightness.light,),
+        colorBrightness: ColorBrightness.light,
+      ),
       foregroundColor: Colors.black,
-      child: Text(_name[0], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+      child: Text(
+        _name[0],
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+      ),
       radius: screenHeight * 0.09,
     );
   }
@@ -183,8 +187,8 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _logOutButton(BuildContext context, double screenWidth,
-      double screenHeight) {
+  Widget _logOutButton(
+      BuildContext context, double screenWidth, double screenHeight) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.15),
       child: ConstrainedBox(

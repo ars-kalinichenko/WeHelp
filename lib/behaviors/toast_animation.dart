@@ -66,7 +66,9 @@ class SlideInToastMessageAnimation extends StatelessWidget {
       builderWithChild: (context, child, animation) => Opacity(
         opacity: animation["opacity"],
         child: Transform.translate(
-          offset: Offset(0, animation["translateY"]), child: child,),
+          offset: Offset(0, animation["translateY"]),
+          child: child,
+        ),
       ),
     );
   }

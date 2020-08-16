@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: screenHeight * 0.05),
             _aboutUser(screenHeight),
             SizedBox(height: screenHeight * 0.04),
-            _tagRowColumn(Examples().tagList, screenWidth),
+            _tagRowColumn(Examples.tagSamples, screenWidth),
           ],
         ),
       ),
@@ -46,10 +46,13 @@ class ProfileScreen extends StatelessWidget {
           size: 24,
         ),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SettingsScreen();
-          },
-          ),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return SettingsScreen();
+              },
+            ),
           );
         },
       ),
@@ -59,9 +62,13 @@ class ProfileScreen extends StatelessWidget {
   Widget _photo(double screenHeight) {
     return CircleAvatar(
       backgroundColor: RandomColor().randomColor(
-        colorBrightness: ColorBrightness.light,),
+        colorBrightness: ColorBrightness.light,
+      ),
       foregroundColor: Colors.black,
-      child: Text(_name[0], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+      child: Text(
+        _name[0],
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+      ),
       radius: screenHeight * 0.09,
     );
   }
@@ -113,8 +120,8 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _statisticTile(IconData icon, String tip, String value,
-      double screenWidth) {
+  Widget _statisticTile(
+      IconData icon, String tip, String value, double screenWidth) {
     Color tipsColor = Color(0xff60626D);
     Color focusColor = Color(0xff3F3D56);
     return Column(

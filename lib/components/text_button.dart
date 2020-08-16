@@ -19,15 +19,11 @@ class TextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Padding container = Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       child: InkWell(
         onTap: onPressed,
-        child: Text(
-          text,
-          style: textStyle
-        ),
+        child: Text(text, style: textStyle),
       ),
     );
     return container;

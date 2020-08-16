@@ -31,7 +31,8 @@ class BottomNavBar extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
     @required this.items,
     @required this.onItemSelected,
-      this.curve = Curves.linear,}) {
+    this.curve = Curves.linear,
+  }) {
     assert(items != null);
     assert(items.length >= 2 && items.length <= 5);
     assert(onItemSelected != null);
@@ -179,9 +180,11 @@ class BottomNavBarItem {
   final Widget title;
   final TextAlign textAlign;
 
-  BottomNavBarItem({@required this.icon,
+  BottomNavBarItem({
+    @required this.icon,
     @required this.title,
-    this.textAlign,}) {
+    this.textAlign,
+  }) {
     assert(icon != null);
     assert(title != null);
   }
