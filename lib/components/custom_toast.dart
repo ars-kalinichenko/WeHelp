@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:we_help/components/toast_animation.dart';
+import 'package:we_help/behaviors/toast_animation.dart';
 
 class ToastUtils {
   /// A utility for creating toast messages about success or error.

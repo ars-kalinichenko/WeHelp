@@ -4,18 +4,18 @@ import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/text_button.dart';
 import 'package:we_help/components/title_with_back_arrow.dart';
-import 'package:we_help/screens/home/question_detail_screen.dart';
+import 'package:we_help/screens/questions/question_detail_screen.dart';
 
-class SearchInputScreen extends StatelessWidget {
-  final String searchRequest;
-  static String _changedSearchRequest;
+class QuestionInputScreen extends StatelessWidget {
+  final String questionRequest;
+  static String _changedQuestionRequest;
 
-  SearchInputScreen(this.searchRequest);
+  QuestionInputScreen(this.questionRequest);
 
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWeight = MediaQuery.of(context).size.width;
-    _changedSearchRequest = searchRequest;
+    _changedQuestionRequest = questionRequest;
     ThemeData appTheme = Theme.of(context);
 
     return Scaffold(
@@ -31,7 +31,7 @@ class SearchInputScreen extends StatelessWidget {
           children: <Widget>[
             titleWithBackArrow(appTheme, context, "Задать вопрос"),
             SizedBox(height: screenHeight * 0.05),
-            _questionFieldAndLike(appTheme, screenHeight, searchRequest),
+            _questionFieldAndLike(appTheme, screenHeight, questionRequest),
             SizedBox(height: screenHeight * 0.04),
             _showAllButton(),
             SizedBox(height: screenHeight * 0.07),
@@ -54,7 +54,7 @@ class SearchInputScreen extends StatelessWidget {
             initText: initText,
             hintText: "Как приручить манула?",
             onChanged: (value) {
-              _changedSearchRequest = value;
+              _changedQuestionRequest = value;
             }),
         SizedBox(height: screenHeight * 0.06),
         Text("Похожий вопрос уже обсуждался ",
@@ -92,7 +92,7 @@ class SearchInputScreen extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return SearchDetailScreen(_changedSearchRequest);
+              return QuestionDetailScreen(_changedQuestionRequest);
             },
           ),
         );

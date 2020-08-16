@@ -9,6 +9,7 @@ import 'package:we_help/screens/search/search_screen.dart';
 class MainPage extends StatefulWidget {
   /// Application home screen. The user goes to it after authentication.
   /// Designed to have a dock and swipe screens.
+
   @override
   createState() => new _MainPageState();
 }
@@ -51,7 +52,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _customNavigationBar() {
-    return BottomNavyBar(
+    return BottomNavBar(
       containerHeight: 60,
       selectedIndex: _currentIndex,
       onItemSelected: (index) {
@@ -59,20 +60,19 @@ class _MainPageState extends State<MainPage> {
         _pageController.jumpToPage(index);
       },
       items: [
-        //TODO: ...
-        BottomNavyBarItem(
+        BottomNavBarItem(
           icon: Icon(Icons.home),
           title: Text('Home'),
         ),
-        BottomNavyBarItem(
+        BottomNavBarItem(
           icon: Icon(Icons.search),
           title: Text('Search'),
         ),
-        BottomNavyBarItem(
+        BottomNavBarItem(
           icon: Icon(Icons.chat),
           title: Text('Messages'),
         ),
-        BottomNavyBarItem(
+        BottomNavBarItem(
           icon: Icon(Icons.person),
           title: Text('Profile'),
         ),

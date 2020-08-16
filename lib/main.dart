@@ -65,9 +65,9 @@ class _WeHelpAuthState extends State<WeHelpAuth> {
   static Future<bool> _pushAuthData() async {
     String login = await AuthRepository.getLogin();
     String password = await AuthRepository.getPassword();
-    print("User Login: $login, user password: $password");
     try {
-      await RestApi.logInUser(login, password);
+      String key = await RestApi.logInUser(login, password);
+      AuthRepository.setKey(key);
       return true;
     } catch (e) {
       print(e);

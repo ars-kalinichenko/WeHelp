@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:random_color/random_color.dart';
 import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/profile_information_input.dart';
 import 'package:we_help/components/rounded_button.dart';
@@ -7,12 +8,14 @@ import 'package:we_help/repository/auth.dart';
 import 'package:we_help/screens/welcome/welcome_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
+  final String _name = "Антон";
+  final String _surname = "Гурьев";
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     ThemeData theme = Theme.of(context);
-
     return Scaffold(
       body: Center(
         child: ListView(
@@ -52,17 +55,11 @@ class SettingsScreen extends StatelessWidget {
 
   Widget _photo(double screenHeight) {
     return CircleAvatar(
-      child: ClipOval(
-        child: SizedBox(
-          height: screenHeight * 0.2,
-          width: screenHeight * 0.2,
-          child: Image(
-            image: AssetImage("assets/images/ori.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      radius: screenHeight * 0.105,
+      backgroundColor: RandomColor().randomColor(
+        colorBrightness: ColorBrightness.light,),
+      foregroundColor: Colors.black,
+      child: Text(_name[0], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+      radius: screenHeight * 0.09,
     );
   }
 
@@ -70,11 +67,11 @@ class SettingsScreen extends StatelessWidget {
       double screenWidth, ThemeData theme) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _nameInputTile(screenWidth, theme, "Константин"),
-          _nameInputTile(screenWidth, theme, "Чукреев"),
+          _nameInputTile(screenWidth, theme, _name),
+          _nameInputTile(screenWidth, theme, _surname),
         ],
       ),
     );

@@ -4,22 +4,23 @@ import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/title_with_back_arrow.dart';
+import 'package:we_help/repository/auth.dart';
 import 'package:we_help/screens/main_page.dart';
 import 'package:we_help/services/rest_api.dart';
 
-class SearchDetailScreen extends StatelessWidget {
-  final String searchRequest;
-  static String _changedSearchRequest;
+class QuestionDetailScreen extends StatelessWidget {
+  final String questionRequest;
+  static String _changedQuestionRequest;
   static String _detail;
   static String _tags;
 
-  SearchDetailScreen(this.searchRequest);
+  QuestionDetailScreen(this.questionRequest);
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     ThemeData appTheme = Theme.of(context);
-    _changedSearchRequest = searchRequest;
+    _changedQuestionRequest = questionRequest;
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
@@ -39,7 +40,7 @@ class SearchDetailScreen extends StatelessWidget {
             SizedBox(
               height: screenSize.height * 0.08,
             ),
-            _mainContent(screenSize, context, appTheme, searchRequest),
+            _mainContent(screenSize, context, appTheme, questionRequest),
           ],
         ),
       ),
@@ -73,7 +74,7 @@ class SearchDetailScreen extends StatelessWidget {
           initText: initText,
           hintText: "Как приручить манула?",
           onChanged: (value) {
-            _changedSearchRequest = value;
+            _changedQuestionRequest = value;
           },
         ),
         SizedBox(
@@ -101,13 +102,14 @@ class SearchDetailScreen extends StatelessWidget {
         SizedBox(height: screenSize.height * 0.15),
         RoundedButton(
           text: "Далее",
-          press: () {
+          press: () async {
+            String authorId = await AuthRepository.getKey();
             pushQuestion(
               context,
               {
-                "title": _changedSearchRequest,
+                "title": _changedQuestionRequest,
                 "content": _detail,
-                "author_id": "1",
+                "author_id": authorId,
                 "pub_date": DateTime.now().toString(),
                 "tags": _tags
               },

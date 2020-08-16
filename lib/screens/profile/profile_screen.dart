@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:random_color/random_color.dart';
 import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/examples.dart';
 import 'package:we_help/models/tag.dart';
 import 'package:we_help/screens/settings/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final String _name = "Антон";
+  final String _surname = "Гурьев";
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -20,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
             _photo(screenHeight),
             SizedBox(height: screenHeight * 0.03),
             _nameText(context, screenHeight, theme),
-            SizedBox(height: screenHeight * 0.03),
+            SizedBox(height: screenHeight * 0.05),
             _statistic(screenWidth),
             SizedBox(height: screenHeight * 0.05),
             _aboutUser(screenHeight),
@@ -41,26 +45,24 @@ class ProfileScreen extends StatelessWidget {
           color: Color(0xff60626D),
           size: 24,
         ),
-        onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SettingsScreen();
-        }));},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return SettingsScreen();
+          },
+          ),
+          );
+        },
       ),
     );
   }
 
   Widget _photo(double screenHeight) {
     return CircleAvatar(
-      child: ClipOval(
-        child: SizedBox(
-          height: screenHeight * 0.2,
-          width: screenHeight * 0.2,
-          child: Image(
-            image: AssetImage("assets/images/ori.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-      radius: screenHeight * 0.105,
+      backgroundColor: RandomColor().randomColor(
+        colorBrightness: ColorBrightness.light,),
+      foregroundColor: Colors.black,
+      child: Text(_name[0], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),),
+      radius: screenHeight * 0.09,
     );
   }
 
@@ -71,12 +73,12 @@ class ProfileScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            "Константин",
+            _name,
             textAlign: TextAlign.center,
             style: theme.textTheme.headline2,
           ),
           Text(
-            "Чукреев",
+            _surname,
             textAlign: TextAlign.center,
             style: theme.textTheme.headline2,
           ),
@@ -111,8 +113,8 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _statisticTile(
-      IconData icon, String tip, String value, double screenWidth) {
+  Widget _statisticTile(IconData icon, String tip, String value,
+      double screenWidth) {
     Color tipsColor = Color(0xff60626D);
     Color focusColor = Color(0xff3F3D56);
     return Column(

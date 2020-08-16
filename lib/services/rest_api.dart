@@ -10,39 +10,36 @@ class RestApi {
   static const String baseUrl =
       'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
 
-// Todo: delete status code from return
+  // Todo: delete status code from return
 
-  static Future<int> registerUser(Map<String, dynamic> data) async {
+  static Future<void> registerUser(Map<String, dynamic> data) async {
     final response =
         await http.post('$baseUrl/api/auth/registration', body: data);
-    print("Response status: ${response.statusCode}");
-    print("Response body: ${response.body}");
     if (response.statusCode == 201) {
       print("Success");
     } else {
       throw Exception("Error when requesting users (status! = 201)");
     }
-    return response.statusCode;
   }
 
-  static Future<void> logInUser(String login, String password) async {
+  static Future<String> logInUser(String login, String password) async {
+    /// return auth key.
+
     Map<String, String> data = {"email": login, "password": password};
     final response = await http.post('$baseUrl/api/auth/login', body: data);
-    print("Response status: ${response.statusCode}");
-    print("Response body: ${response.body}");
+    final parsed = json.decode(response.body);
     if (response.statusCode == 200) {
       print("Success");
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
+    return (parsed["key"]);
   }
 
   static Future<int> postQuestion(Map<String, dynamic> data) async {
     final response = await http.post('$baseUrl/api/questions', body: data);
-    print("Response status: ${response.statusCode}");
-    print("Response body: ${response.body}");
     if (response.statusCode == 200) {
-      print("Success");
+      print("Success posted question.");
     } else if (response.statusCode == 500) {
       throw ServerError("ServerError");
     } else {
@@ -55,7 +52,6 @@ class RestApi {
     final response = await http.get('$baseUrl/api/questions');
     String source = Utf8Decoder().convert(response.bodyBytes);
     if (response.statusCode == 200) {
-      print("Success get actual:, ${response.body.toString()}");
       return _parseQuestions(source);
     } else {
       throw Exception("Error when requesting users (status! = 200)");
@@ -86,7 +82,6 @@ class RestApi {
 // todo: group
   static List<User> _parseUsers(String responseBody) {
     final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
-    print(parsed);
     return parsed.map<User>((json) => User.fromJson(json)).toList();
   }
 

@@ -5,7 +5,7 @@ import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/tips_with_background.dart';
 import 'package:we_help/models/public_question.dart';
 import 'package:we_help/models/tag.dart';
-import 'package:we_help/screens/home/question_input_screen.dart';
+import 'package:we_help/screens/questions/question_input_screen.dart';
 import 'package:we_help/services/rest_api.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,11 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
         if (snapshot.hasData) {
           childWidget = questionToPreview(snapshot.data);
         } else {
-          print("Snapshot is ${snapshot.data}");
           childWidget = _samples;
         }
         return Scaffold(
-          //Todo: fix tips list view.
           body: ListView(
             padding: EdgeInsets.only(
               left: screenHeight * 0.03,
@@ -146,12 +144,11 @@ class _HomeScreenState extends State<HomeScreen> {
         _searchRequest = value;
       },
       onPressed: () {
-        print(_searchRequest);
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return SearchInputScreen(_searchRequest);
-          },
+            return QuestionInputScreen(_searchRequest);
+            },
           ),
         );
       },

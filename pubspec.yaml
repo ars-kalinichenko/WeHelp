@@ -29,6 +29,7 @@ dependencies:
   provider: ^4.3.2
   http: ^0.12.2
   webfeed: ^0.4.2
+  random_color: 1.0.5
   cached_network_image: ^2.2.0+1
   url_launcher: ^5.2.5
   mask_text_input_formatter: ^1.0.7

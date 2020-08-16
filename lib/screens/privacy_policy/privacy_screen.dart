@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:we_help/components/behavior_elements.dart';
+import 'package:we_help/behaviors/behavior_elements.dart';
 
 PrivacyState pageState;
 

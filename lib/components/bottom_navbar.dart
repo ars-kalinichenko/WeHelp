@@ -6,31 +6,31 @@ import 'package:flutter/widgets.dart';
 /// A beautiful and animated bottom navigation.
 /// The navigation bar use your current theme, but you are free to customize it.
 //todo: fix adaptive size
-class BottomNavyBar extends StatelessWidget {
+class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
   final double iconSize;
   final Color backgroundColor;
   final bool showElevation;
   final Duration animationDuration;
-  final List<BottomNavyBarItem> items;
+  final List<BottomNavBarItem> items;
   final ValueChanged<int> onItemSelected;
   final MainAxisAlignment mainAxisAlignment;
   final double itemCornerRadius;
   final double containerHeight;
   final Curve curve;
 
-  BottomNavyBar(
-      {Key key,
-      this.selectedIndex = 0,
-      this.showElevation = true,
-      this.iconSize = 24,
-      this.backgroundColor,
-      this.itemCornerRadius = 50,
-      this.containerHeight = 56,
-      this.animationDuration = const Duration(milliseconds: 270),
-      this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
-      @required this.items,
-      @required this.onItemSelected,
+  BottomNavBar({
+    Key key,
+    this.selectedIndex = 0,
+    this.showElevation = true,
+    this.iconSize = 24,
+    this.backgroundColor,
+    this.itemCornerRadius = 50,
+    this.containerHeight = 56,
+    this.animationDuration = const Duration(milliseconds: 270),
+    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+    @required this.items,
+    @required this.onItemSelected,
       this.curve = Curves.linear,}) {
     assert(items != null);
     assert(items.length >= 2 && items.length <= 5);
@@ -87,7 +87,7 @@ class BottomNavyBar extends StatelessWidget {
 class _ItemWidget extends StatelessWidget {
   final double iconSize;
   final bool isSelected;
-  final BottomNavyBarItem item;
+  final BottomNavBarItem item;
   final Color backgroundColor;
   final double itemCornerRadius;
   final Duration animationDuration;
@@ -171,15 +171,15 @@ class _ItemWidget extends StatelessWidget {
   }
 }
 
-/// The BottomNavyBar's item. Used to configure each item of the navigation bar.
+/// The BottomNavBar's item. Used to configure each item of the navigation bar.
 /// [icon] required. The widget on the left of this item.
 /// [title] required. The widget on the right of this item.
-class BottomNavyBarItem {
+class BottomNavBarItem {
   final Widget icon;
   final Widget title;
   final TextAlign textAlign;
 
-  BottomNavyBarItem({@required this.icon,
+  BottomNavBarItem({@required this.icon,
     @required this.title,
     this.textAlign,}) {
     assert(icon != null);

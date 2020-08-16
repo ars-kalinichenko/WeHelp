@@ -44,7 +44,7 @@ class SearchScreenState extends State<SearchScreen> {
 
   Widget _searchInputField() {
     return SearchInputField(
-      hintText: "Мы многое сможем найти",
+      hintText: "Что вы хотите найти?",
       width: 0.85,
       onChanged: (value) {
         _searchRequest = value;
@@ -105,13 +105,13 @@ class SearchScreenState extends State<SearchScreen> {
             borderRadius: BorderRadius.circular(100.0),
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
-          child: Text("Статьи"),
-          onPressed: () =>
-              setState(() {
-                _clearFilter();
-                _isArticles = !_isArticles;
-              },
-              ),
+          child: Text("Посты"),
+          onPressed: () => setState(
+            () {
+              _clearFilter();
+              _isArticles = !_isArticles;
+            },
+          ),
         ),
 
       ],
