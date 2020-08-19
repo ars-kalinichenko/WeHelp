@@ -9,7 +9,7 @@ class User {
   String aboutMe;
   String educationDescription;
   String image;
-  int rating;
+  double rating;
   List<ReviewRequest> reviews;
   List<Tag> tags;
 
@@ -25,15 +25,17 @@ class User {
       this.tags});
 
   factory User.fromJson(Map<String, dynamic> json) {
+    List<Tag> listTags =
+        json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
     return User(
         id: json["id"] as int,
         name: json["name"] as String,
         surname: json["surname"] as String,
-        aboutMe: json["about_me"] as String,
-        educationDescription: json["education_description"] as String,
+        aboutMe: "AAAAA",
+//        educationDescription: json["education_description"] as String,
         image: json["image"] as String,
-        rating: json["rating"] as int,
-        reviews: json["reviews"] as List<ReviewRequest>,
-        tags: json["tags"] as List<Tag>);
+        rating: 4.8,
+//        reviews: json["reviews"] as List<ReviewRequest>,
+        tags: listTags);
   }
 }

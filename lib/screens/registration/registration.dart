@@ -56,7 +56,6 @@ class RegistrationState {
   Map<String, dynamic> getValues() {
     return {
       "email": this.email,
-      "phone_number": this.phoneNumber,
       "name": this.name,
       "surname": this.surname,
       "password1": this.password,

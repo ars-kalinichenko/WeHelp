@@ -24,11 +24,10 @@ class PublicQuestion {
         json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
     return PublicQuestion(
         id: json["id"] as int,
-        title: json["title"] as String,
-        content: json["min_content"] as String,
+        title: json["name"] as String,
+        content: json["description"] as String,
         author: PublicUser.fromJson(json["author"]),
         pubDate: json["pub_date"] as String,
-        views: json["views"] as int,
         tags: listTags);
   }
 }

@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
+import 'package:we_help/components/user_preview.dart';
 import 'package:we_help/models/public_question.dart';
+import 'package:we_help/models/tag.dart';
+import 'package:we_help/models/user.dart';
 import 'package:we_help/services/rest_api.dart';
 import 'package:we_help/services/stabilizer.dart';
 
@@ -20,6 +23,7 @@ class SearchScreenState extends State<SearchScreen> {
   static bool _isArticles = false;
   static String _searchRequest;
   final _stabilizer = Stabilizer(milliseconds: 500);
+  static List<Widget> _childWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +31,10 @@ class SearchScreenState extends State<SearchScreen> {
     return FutureBuilder<List<dynamic>>(
       future: _searchByFilter(_searchRequest),
       builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
-        List<Widget> childWidget;
         if (snapshot.hasData) {
-          childWidget = questionToPreview(snapshot.data);
+          _childWidget = _parseGetRequest(snapshot.data);
         } else {
-          childWidget = [];
+          _childWidget = [];
         }
         return Scaffold(
           body: Center(
@@ -47,7 +50,7 @@ class SearchScreenState extends State<SearchScreen> {
                     SizedBox(
                       height: size.height * 0.05,
                     ),
-                    _searchResults(childWidget),
+                    _searchResults(_childWidget),
                   ],
                 ),
               ],
@@ -64,15 +67,14 @@ class SearchScreenState extends State<SearchScreen> {
       width: 0.85,
       onChanged: (value) {
         _searchRequest = value;
-        _stabilizer.run(() {
-          _searchByFilter(_searchRequest);
-        },
+        _stabilizer.run(
+          () {
+            _searchByFilter(_searchRequest);
+          },
         );
       },
     );
   }
-
-
 
   Widget _filterRow() {
     Color activeColor = Color(0xff0073FF);
@@ -89,13 +91,12 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Вопросы"),
-          onPressed: () =>
-              setState(
-                    () {
-                  _clearFilter();
-                  _isQuestions = !_isQuestions;
-                },
-              ),
+          onPressed: () => setState(
+            () {
+              _clearFilter();
+              _isQuestions = !_isQuestions;
+            },
+          ),
         ),
         FlatButton(
           color: _isPeople ? activeColor : Colors.transparent,
@@ -105,13 +106,12 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Люди"),
-          onPressed: () =>
-              setState(
-                    () {
-                  _clearFilter();
-                  _isPeople = !_isPeople;
-                },
-              ),
+          onPressed: () => setState(
+            () {
+              _clearFilter();
+              _isPeople = !_isPeople;
+            },
+          ),
         ),
         FlatButton(
           color: _isArticles ? activeColor : Colors.transparent,
@@ -121,13 +121,12 @@ class SearchScreenState extends State<SearchScreen> {
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Посты"),
-          onPressed: () =>
-              setState(
-                    () {
-                  _clearFilter();
-                  _isArticles = !_isArticles;
-                },
-              ),
+          onPressed: () => setState(
+            () {
+              _clearFilter();
+              _isArticles = !_isArticles;
+            },
+          ),
         ),
       ],
     );
@@ -143,14 +142,21 @@ class SearchScreenState extends State<SearchScreen> {
 
   Future<List<dynamic>> _searchByFilter(String searchRequest) async {
     if (_isPeople)
-      return await RestApi.searchUsers(searchRequest);
+       _stabilizer.run(() async {return await RestApi.searchUsers(searchRequest);});
     else if (_isQuestions)
       return await RestApi.searchQuestions(searchRequest);
     else
       return await RestApi.searchArticle(searchRequest);
   }
 
+  List<Widget> _parseGetRequest(List<dynamic> snapshotData) {
+    if (_isPeople)
+      return userToPreview(snapshotData);
+    else if (_isQuestions) return questionToPreview(snapshotData);
+  }
+
   void _clearFilter() {
+    _childWidget = [];
     _isQuestions = false;
     _isArticles = false;
     _isPeople = false;
@@ -160,6 +166,7 @@ class SearchScreenState extends State<SearchScreen> {
       List<PublicQuestion> questions) {
     List<QuestionPreview> previews = [];
     for (final question in questions) {
+      print(question.content);
       previews.add(
         QuestionPreview(
           authorName: question.author.name,
@@ -168,6 +175,24 @@ class SearchScreenState extends State<SearchScreen> {
           description: question.content,
           tags: question.tags,
           answersCount: 189,
+        ),
+      );
+    }
+    return previews;
+  }
+
+  static List<UserPreview> userToPreview(List<User> users) {
+    List<UserPreview> previews = [];
+    for (final user in users) {
+      print(user);
+      previews.add(
+        UserPreview(
+          name: user.name,
+          surname: user.surname,
+          rating: user.rating,
+          photo: "google",
+          description: user.aboutMe,
+          tags: user.tags,
         ),
       );
     }

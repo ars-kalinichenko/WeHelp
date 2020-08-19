@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:we_help/models/tag.dart';
 
 class QuestionPreview extends StatelessWidget {
-  /// Creates an article preview widget.
+  /// Creates an question preview widget.
   /// Used in the home screen and search screen.
   final String authorName;
   final String authorSurname;

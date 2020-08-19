@@ -16,11 +16,12 @@ class RestApi {
 
   static Future<void> registerUser(Map<String, dynamic> data) async {
     final response =
-        await http.post('$baseUrl/api/auth/registration', body: data);
+        await http.post('http://wehelp-apiserver-stage.us.aldryn.io/auth/registration/', body: data);
+    print(response.body);
     if (response.statusCode == 201) {
       print("Success");
     } else {
-      throw Exception("Error when requesting users (status! = 201)");
+      throw Exception(response.body);
     }
   }
 
@@ -51,7 +52,7 @@ class RestApi {
   }
 
   static Future<List<PublicQuestion>> getActual() async {
-    final response = await http.get('$baseUrl/api/questions');
+    final response = await http.get('http://wehelp-apiserver-stage.us.aldryn.io/api/questions/');
     if (response.statusCode == 200) {
       return _parseQuestions(response.bodyBytes);
     } else {
@@ -70,11 +71,12 @@ class RestApi {
     }
   }
 
-  static Future<List<User>> searchUsers(String searchRequest) async {
-    final response = await http.get('$baseUrl/api/search/user');
+  static Future<List<User>> searchUsers(String filter) async {
+    final params = {"filter": filter};
+    final uri = Uri.https(_authority, "$_path/users", params);
+    final response = await http.get(uri);
     if (response.statusCode == 200) {
-      print("Success, $response");
-      return _parseUsers(response.body);
+      print(_parseUsers(response.bodyBytes));
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
@@ -92,8 +94,9 @@ class RestApi {
   }
 
 // todo: group
-  static List<User> _parseUsers(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  static List<User> _parseUsers(List<int> responseBodyBytes) {
+    String source = Utf8Decoder().convert(responseBodyBytes);
+    final parsed = json.decode(source).cast<Map<String, dynamic>>();
     return parsed.map<User>((json) => User.fromJson(json)).toList();
   }
 
