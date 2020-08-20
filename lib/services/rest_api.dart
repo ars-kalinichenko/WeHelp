@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:we_help/exceptions.dart';
 import 'package:we_help/models/article.dart';
+import 'package:we_help/models/private_user.dart';
 import 'package:we_help/models/public_question.dart';
 import 'package:we_help/models/user.dart';
+import 'package:we_help/repository/auth.dart';
 
 class RestApi {
   static const String baseUrl =
@@ -29,7 +31,9 @@ class RestApi {
     /// return auth key.
 
     Map<String, String> data = {"email": login, "password": password};
-    final response = await http.post("http://wehelp-apiserver-stage.us.aldryn.io/auth/login/", body: data);
+    final response = await http.post(
+        "http://wehelp-apiserver-stage.us.aldryn.io/auth/login/",
+        body: data);
     final parsed = json.decode(response.body);
     if (response.statusCode == 200) {
       print("Success");
@@ -37,6 +41,24 @@ class RestApi {
       throw Exception("Error when requesting users (status! = 200)");
     }
     return (parsed["key"]);
+  }
+
+  static Future<PrivateUser> getUserInfo() async {
+    /// return auth key.
+    final authKey = await AuthRepository.getKey(); // todo: bad practice
+    final response = await http.get(
+        "http://wehelp-apiserver-stage.us.aldryn.io/auth/user",
+        headers: {"Authorization": "Token $authKey"});
+    final source = Utf8Decoder().convert(response.bodyBytes);
+    final parsed = json.decode(source);
+    final userInfo = PrivateUser.fromJson(parsed);
+    print(userInfo.toString());
+    if (response.statusCode == 200) {
+      print("Success");
+    } else {
+      throw Exception("Error when requesting users (status! = 200)");
+    }
+    return userInfo;
   }
 
   static Future<int> postQuestion(Map<String, dynamic> data) async {
@@ -54,6 +76,7 @@ class RestApi {
   static Future<List<PublicQuestion>> getActual() async {
     final response = await http
         .get('http://wehelp-apiserver-stage.us.aldryn.io/api/questions/');
+    getUserInfo();
     if (response.statusCode == 200) {
       return _parseQuestions(response.bodyBytes);
     } else {

@@ -10,7 +10,8 @@ class PublicUser {
     this.surname,
     this.image,
   });
-
+//todo: add about me, ed_description
+  //todo: remove(to User)
   factory PublicUser.fromJson(Map<String, dynamic> json) {
     return PublicUser(
         id: json["id"] as int,

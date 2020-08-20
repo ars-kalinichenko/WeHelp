@@ -1,3 +1,5 @@
+import 'package:we_help/models/private_user.dart';
+
 import 'components/question_preview.dart';
 import 'models/tag.dart';
 
@@ -12,6 +14,14 @@ class Examples {
     Tag(id: 1, name: "дизайн", color: "grey"),
     Tag(id: 1, name: "книги", color: "grey"),
   ];
+  static PrivateUser privateUserSample = PrivateUser(
+    name: "Акулина",
+    surname: "Глафировна",
+    rating: 5.0,
+    answerCount: 99,
+    questionCount: 99,
+    tags: Examples.tagSamples
+  );
 
   static List<QuestionPreview> questionSamples = [
     QuestionPreview(

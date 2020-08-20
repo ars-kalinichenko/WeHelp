@@ -2,37 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:random_color/random_color.dart';
 import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/examples.dart';
+import 'package:we_help/models/private_user.dart';
 import 'package:we_help/models/tag.dart';
 import 'package:we_help/screens/settings/settings_screen.dart';
+import 'package:we_help/services/rest_api.dart';
 
-class ProfileScreen extends StatelessWidget {
-  final String _name = "Антон";
-  final String _surname = "Гурьев";
+class ProfileScreen extends StatefulWidget {
+  createState() => new _ProfileScreenState();
+}
 
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     ThemeData theme = Theme.of(context);
-
-    return Scaffold(
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.only(top: screenHeight * 0.05),
-          children: <Widget>[
-            _settingsButton(context),
-            _photo(screenHeight),
-            SizedBox(height: screenHeight * 0.03),
-            _nameText(context, screenHeight, theme),
-            SizedBox(height: screenHeight * 0.05),
-            _statistic(screenWidth),
-            SizedBox(height: screenHeight * 0.05),
-            _aboutUser(screenHeight),
-            SizedBox(height: screenHeight * 0.04),
-            _tagRowColumn(Examples.tagSamples, screenWidth),
-          ],
-        ),
-      ),
+    return FutureBuilder<PrivateUser>(
+      future: RestApi.getUserInfo(),
+      builder: (BuildContext context, AsyncSnapshot<PrivateUser> snapshot) {
+        PrivateUser userInfo;
+        if (snapshot.hasData) {
+          userInfo = (snapshot.data);
+        } else {
+          userInfo = Examples.privateUserSample;
+        }
+        return Scaffold(
+          body: Center(
+            child: ListView(
+              padding: EdgeInsets.only(top: screenHeight * 0.05),
+              children: <Widget>[
+                _settingsButton(context),
+                _photo(screenHeight, userInfo.name),
+                SizedBox(height: screenHeight * 0.03),
+                _nameText(userInfo.name, userInfo.surname, screenHeight, theme),
+                SizedBox(height: screenHeight * 0.05),
+                _statistic(userInfo.answerCount, userInfo.questionCount,
+                    userInfo.rating, screenWidth),
+                SizedBox(height: screenHeight * 0.05),
+                _aboutUser(screenHeight),
+                SizedBox(height: screenHeight * 0.04),
+                _tagRowColumn(userInfo.tags, screenWidth),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -59,33 +73,34 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _photo(double screenHeight) {
+  Widget _photo(double screenHeight, String name) {
     return CircleAvatar(
       backgroundColor: RandomColor().randomColor(
         colorBrightness: ColorBrightness.light,
       ),
       foregroundColor: Colors.black,
       child: Text(
-        _name[0],
+        name[0],
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
       ),
       radius: screenHeight * 0.09,
     );
   }
 
-  Widget _nameText(BuildContext context, double screenHeight, ThemeData theme) {
+  Widget _nameText(
+      String name, String surname, double screenHeight, ThemeData theme) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            _name,
+            name,
             textAlign: TextAlign.center,
             style: theme.textTheme.headline2,
           ),
           Text(
-            _surname,
+            surname,
             textAlign: TextAlign.center,
             style: theme.textTheme.headline2,
           ),
@@ -94,26 +109,27 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _statistic(double screenWidth) {
+  Widget _statistic(
+      int answerCount, int questionCount, double rating, double screenWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         _statisticTile(
           Icons.message,
           "Ответов \nвопросы",
-          "14",
+          answerCount.toString(),
           screenWidth,
         ),
         _statisticTile(
           Icons.whatshot,
           "Задано \nвопрсов",
-          "10",
+          questionCount.toString(),
           screenWidth,
         ),
         _statisticTile(
           Icons.star_border,
           "Рейтинг \nпо ответам",
-          "4.8",
+          rating.toString(),
           screenWidth,
         ),
       ],
@@ -180,6 +196,8 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _tagRowColumn(List<Tag> tagList, double screenWidth) {
+    if(tagList == null)
+      return SizedBox();
     int rowCount = tagList.length ~/ 4;
     List<Widget> rowWidgets = [];
 
