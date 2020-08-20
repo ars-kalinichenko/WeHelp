@@ -42,10 +42,15 @@ class UserPreview extends StatelessWidget {
       width: size.width * 0.90,
       height: size.height * 0.13,
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 2,
-          color: Color(0xff0073FF),
-        ),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.15),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          )
+        ],
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),

@@ -196,7 +196,7 @@ class ProfileScreen extends StatelessWidget {
       );
       rowWidgets.add(
         SizedBox(
-          height: 10,
+          height: 20,
         ),
       );
       tagList.removeRange(0, 4);

@@ -41,10 +41,15 @@ class QuestionPreview extends StatelessWidget {
       width: size.width * 0.9,
       height: size.height * 0.3,
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 2,
-          color: Color(0xff0073FF),
-        ),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.15),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3),
+          )
+        ],
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),
