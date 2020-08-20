@@ -18,7 +18,6 @@ class RestApi {
     final response = await http.post(
         'http://wehelp-apiserver-stage.us.aldryn.io/auth/registration/',
         body: data);
-    print(response.body);
     if (response.statusCode == 201) {
       print("Success");
     } else {
@@ -30,7 +29,7 @@ class RestApi {
     /// return auth key.
 
     Map<String, String> data = {"email": login, "password": password};
-    final response = await http.post('$baseUrl/api/auth/login', body: data);
+    final response = await http.post("http://wehelp-apiserver-stage.us.aldryn.io/auth/login/", body: data);
     final parsed = json.decode(response.body);
     if (response.statusCode == 200) {
       print("Success");
