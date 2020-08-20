@@ -42,7 +42,6 @@ class _MainPageState extends State<MainPage> {
           children: <Widget>[
             HomeScreen(),
             SearchScreen(),
-            MessagesScreen(),
             ProfileScreen(),
           ],
         ),
@@ -62,19 +61,15 @@ class _MainPageState extends State<MainPage> {
       items: [
         BottomNavBarItem(
           icon: Icon(Icons.home),
-          title: Text('Home'),
+          title: Text('Главная'),
         ),
         BottomNavBarItem(
           icon: Icon(Icons.search),
-          title: Text('Search'),
-        ),
-        BottomNavBarItem(
-          icon: Icon(Icons.chat),
-          title: Text('Messages'),
+          title: Text('Поиск'),
         ),
         BottomNavBarItem(
           icon: Icon(Icons.person),
-          title: Text('Profile'),
+          title: Text('Профиль'),
         ),
       ],
     );
