@@ -132,6 +132,7 @@ class QuestionPreview extends StatelessWidget {
           (tag) => Container(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
             margin: EdgeInsets.only(right: screenWidth * 0.02),
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Color(0xffD3D6DA),
               borderRadius: BorderRadius.all(

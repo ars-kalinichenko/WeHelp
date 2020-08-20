@@ -15,8 +15,9 @@ class RestApi {
   // Todo: delete status code from return
 
   static Future<void> registerUser(Map<String, dynamic> data) async {
-    final response =
-        await http.post('http://wehelp-apiserver-stage.us.aldryn.io/auth/registration/', body: data);
+    final response = await http.post(
+        'http://wehelp-apiserver-stage.us.aldryn.io/auth/registration/',
+        body: data);
     print(response.body);
     if (response.statusCode == 201) {
       print("Success");
@@ -52,7 +53,8 @@ class RestApi {
   }
 
   static Future<List<PublicQuestion>> getActual() async {
-    final response = await http.get('http://wehelp-apiserver-stage.us.aldryn.io/api/questions/');
+    final response = await http
+        .get('http://wehelp-apiserver-stage.us.aldryn.io/api/questions/');
     if (response.statusCode == 200) {
       return _parseQuestions(response.bodyBytes);
     } else {
@@ -76,7 +78,7 @@ class RestApi {
     final uri = Uri.https(_authority, "$_path/users", params);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
-      print(_parseUsers(response.bodyBytes));
+      return _parseUsers(response.bodyBytes);
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }

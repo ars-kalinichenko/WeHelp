@@ -73,10 +73,16 @@ class UserPreview extends StatelessWidget {
       children: [
         _userName(name, surname),
         SizedBox(
-          height: size.height * 0.01,
+          height: size.height * 0.003,
         ),
         _descriptionText(description, size.width),
-//        _tagsRow(size, tags)
+        SizedBox(
+          height: size.height * 0.01,
+        ),
+        SizedBox(
+          width: size.width * 0.6,
+          child: _tagsRow(size, tags),
+        ),
       ],
     );
   }
@@ -95,7 +101,7 @@ class UserPreview extends StatelessWidget {
             minWidth: screenWidth * 0.4, maxWidth: screenWidth * 0.6),
         child: Text(
           description,
-          overflow: TextOverflow.clip,
+          overflow: TextOverflow.ellipsis,
           maxLines: 2,
           style: TextStyle(
             fontSize: 14,
@@ -105,11 +111,8 @@ class UserPreview extends StatelessWidget {
   }
 
   Widget _tagsRow(Size size, List<Tag> tagList) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: size.height * 0.03,
-        minHeight: size.height * 0.02,
-      ),
+    return SizedBox(
+      height: size.height * 0.025,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: buildTagWidgets(size.width, tagList),
@@ -159,6 +162,7 @@ class UserPreview extends StatelessWidget {
           (tag) => Container(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
             margin: EdgeInsets.only(right: screenWidth * 0.02),
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Color(0xffD3D6DA),
               borderRadius: BorderRadius.all(
@@ -167,7 +171,7 @@ class UserPreview extends StatelessWidget {
             ),
             child: Text(
               tag.name,
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Colors.black, fontSize: 12),
             ),
           ),
         )

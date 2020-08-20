@@ -210,8 +210,8 @@ class SettingsScreen extends StatelessWidget {
             AuthRepository.logOut();
             Navigator.pushAndRemoveUntil(context,
                 MaterialPageRoute(builder: (context) {
-                  return WelcomeScreen();
-                }), (Route<dynamic> route) => false);
+              return WelcomeScreen();
+            }), (Route<dynamic> route) => false);
           },
         ),
       ),

@@ -31,7 +31,8 @@ class User {
         id: json["id"] as int,
         name: json["name"] as String,
         surname: json["surname"] as String,
-        aboutMe: "AAAAA",
+        aboutMe:
+            "Рандомный длинный текст, который должен прятаться после двух строк.",
 //        educationDescription: json["education_description"] as String,
         image: json["image"] as String,
         rating: 4.8,

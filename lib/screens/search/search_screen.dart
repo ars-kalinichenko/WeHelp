@@ -5,7 +5,6 @@ import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/user_preview.dart';
 import 'package:we_help/models/public_question.dart';
-import 'package:we_help/models/tag.dart';
 import 'package:we_help/models/user.dart';
 import 'package:we_help/services/rest_api.dart';
 import 'package:we_help/services/stabilizer.dart';
@@ -48,7 +47,7 @@ class SearchScreenState extends State<SearchScreen> {
                     _searchInputField(),
                     _filterRow(),
                     SizedBox(
-                      height: size.height * 0.05,
+                      height: size.height * 0.03,
                     ),
                     _searchResults(_childWidget),
                   ],
@@ -142,17 +141,20 @@ class SearchScreenState extends State<SearchScreen> {
 
   Future<List<dynamic>> _searchByFilter(String searchRequest) async {
     if (_isPeople)
-       _stabilizer.run(() async {return await RestApi.searchUsers(searchRequest);});
+      return await RestApi.searchUsers(searchRequest);
     else if (_isQuestions)
       return await RestApi.searchQuestions(searchRequest);
     else
-      return await RestApi.searchArticle(searchRequest);
+      return [];
   }
 
   List<Widget> _parseGetRequest(List<dynamic> snapshotData) {
-    if (_isPeople)
+    if (_isPeople && (snapshotData is List<User>))
       return userToPreview(snapshotData);
-    else if (_isQuestions) return questionToPreview(snapshotData);
+    else if (_isQuestions && (snapshotData is List<PublicQuestion>))
+      return questionToPreview(snapshotData);
+    else
+      return [CircularProgressIndicator()];
   }
 
   void _clearFilter() {
@@ -166,7 +168,6 @@ class SearchScreenState extends State<SearchScreen> {
       List<PublicQuestion> questions) {
     List<QuestionPreview> previews = [];
     for (final question in questions) {
-      print(question.content);
       previews.add(
         QuestionPreview(
           authorName: question.author.name,
@@ -181,10 +182,9 @@ class SearchScreenState extends State<SearchScreen> {
     return previews;
   }
 
-  static List<UserPreview> userToPreview(List<User> users) {
+  static List<Widget> userToPreview(List<User> users) {
     List<UserPreview> previews = [];
     for (final user in users) {
-      print(user);
       previews.add(
         UserPreview(
           name: user.name,
