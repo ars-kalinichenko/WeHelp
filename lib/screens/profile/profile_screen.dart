@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if (snapshot.hasData) {
           userInfo = (snapshot.data);
         } else {
-          userInfo = Examples.privateUserSample;
+          userInfo = Examples().privateUserSample;
         }
         return Scaffold(
           body: Center(
@@ -194,10 +194,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+  static List<Widget> buildTagWidgets(double screenWidth, List<Tag> tagList) {
+    /// Returns a list of tag widgets with text, background and padding.
+    return tagList
+        .map(
+          (tag) => Container(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
+        margin: EdgeInsets.only(right: screenWidth * 0.02),
+        decoration: BoxDecoration(
+          color: Color(0xffD3D6DA),
+          borderRadius: BorderRadius.all(
+            Radius.circular(6.0),
+          ),
+        ),
+        child: Text(
+          tag.name,
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+    )
+        .toList();
+  }
 
   Widget _tagRowColumn(List<Tag> tagList, double screenWidth) {
-    if(tagList == null)
-      return SizedBox();
     int rowCount = tagList.length ~/ 4;
     List<Widget> rowWidgets = [];
 
@@ -214,11 +233,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
       rowWidgets.add(
         SizedBox(
-          height: 20,
+          height: 10,
         ),
       );
       tagList.removeRange(0, 4);
     }
+    print(rowWidgets.toString());
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start, children: rowWidgets);
   }

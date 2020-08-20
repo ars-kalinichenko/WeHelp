@@ -76,7 +76,6 @@ class RestApi {
   static Future<List<PublicQuestion>> getActual() async {
     final response = await http
         .get('http://wehelp-apiserver-stage.us.aldryn.io/api/questions/');
-    getUserInfo();
     if (response.statusCode == 200) {
       return _parseQuestions(response.bodyBytes);
     } else {

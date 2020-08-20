@@ -4,7 +4,7 @@ import 'components/question_preview.dart';
 import 'models/tag.dart';
 
 class Examples {
-  static List<Tag> tagSamples = [
+  List<Tag> tagSamples = [
     Tag(id: 1, name: "плавание", color: "grey"),
     Tag(id: 1, name: "вязание", color: "grey"),
     Tag(id: 1, name: "IT", color: "grey"),
@@ -14,14 +14,22 @@ class Examples {
     Tag(id: 1, name: "дизайн", color: "grey"),
     Tag(id: 1, name: "книги", color: "grey"),
   ];
-  static PrivateUser privateUserSample = PrivateUser(
-    name: "Акулина",
-    surname: "Глафировна",
-    rating: 5.0,
-    answerCount: 99,
-    questionCount: 99,
-    tags: Examples.tagSamples
-  );
+  PrivateUser privateUserSample = PrivateUser(
+      name: "Акулина",
+      surname: "Глафировна",
+      rating: 5.0,
+      answerCount: 99,
+      questionCount: 99,
+      tags: [
+        Tag(id: 1, name: "плавание", color: "grey"),
+        Tag(id: 1, name: "вязание", color: "grey"),
+        Tag(id: 1, name: "IT", color: "grey"),
+        Tag(id: 1, name: "вышивание", color: "grey"),
+        Tag(id: 1, name: "бекенд", color: "grey"),
+        Tag(id: 1, name: "спорт", color: "grey"),
+        Tag(id: 1, name: "дизайн", color: "grey"),
+        Tag(id: 1, name: "книги", color: "grey"),
+      ]);
 
   static List<QuestionPreview> questionSamples = [
     QuestionPreview(
