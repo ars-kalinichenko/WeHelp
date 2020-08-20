@@ -29,7 +29,12 @@ class QuestionInputScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            titleWithBackArrow(appTheme, context, "Задать вопрос"),
+            titleWithBackArrow(
+              appTheme,
+              context,
+              "Задать вопрос",
+              () => Navigator.of(context).pop(),
+            ),
             SizedBox(height: screenHeight * 0.05),
             _questionFieldAndLike(appTheme, screenHeight, questionRequest),
             SizedBox(height: screenHeight * 0.04),

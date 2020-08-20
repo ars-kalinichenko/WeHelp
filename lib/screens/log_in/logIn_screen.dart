@@ -5,6 +5,7 @@ import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/title_with_back_arrow.dart';
 import 'package:we_help/repository/auth.dart';
+import 'package:we_help/screens/welcome/welcome_screen.dart';
 import 'package:we_help/services/rest_api.dart';
 
 import '../main_page.dart';
@@ -29,7 +30,15 @@ class LogInScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            titleWithBackArrow(appTheme, context, "Вход"),
+            titleWithBackArrow(
+              appTheme,
+              context,
+              "Вход",
+              () => Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) {
+                return WelcomeScreen();
+              })),
+            ),
             SizedBox(
               height: screenHeight * 0.07,
             ),

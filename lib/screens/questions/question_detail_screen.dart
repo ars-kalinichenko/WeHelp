@@ -36,6 +36,7 @@ class QuestionDetailScreen extends StatelessWidget {
               appTheme,
               context,
               "Задать вопрос",
+              () => Navigator.of(context).pop(),
             ),
             SizedBox(
               height: screenSize.height * 0.08,
