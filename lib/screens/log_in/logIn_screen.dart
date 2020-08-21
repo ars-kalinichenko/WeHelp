@@ -73,9 +73,10 @@ class LogInScreen extends StatelessWidget {
 
   static void logIn(BuildContext context) async {
     try {
-      await RestApi.logInUser(_login, _password);
+      String key = await RestApi.logInUser(_login, _password);
       await AuthRepository.setLogin(_login);
       await AuthRepository.setPassword(_password);
+      await AuthRepository.setKey(key);
       ToastUtils.showSuccessToast(context);
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {

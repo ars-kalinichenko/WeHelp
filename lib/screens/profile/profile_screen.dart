@@ -238,7 +238,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
       tagList.removeRange(0, 4);
     }
-    print(rowWidgets.toString());
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start, children: rowWidgets);
   }

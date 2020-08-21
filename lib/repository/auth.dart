@@ -7,7 +7,7 @@ class AuthRepository {
 
   static Future<void> setLogin(String login) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(_loginKey, login);
+    await prefs.setString(_loginKey, login);
   }
 
   static Future<String> getLogin() async {
@@ -18,7 +18,7 @@ class AuthRepository {
 
   static Future<void> setPassword(String password) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(_passwordKey, password);
+    await prefs.setString(_passwordKey, password);
   }
 
   static Future<String> getPassword() async {
@@ -29,7 +29,7 @@ class AuthRepository {
 
   static Future<void> setKey(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(_keyAuth, key);
+    await prefs.setString(_keyAuth, key);
   }
 
   static Future<String> getKey() async {

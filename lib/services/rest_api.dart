@@ -52,7 +52,6 @@ class RestApi {
     final source = Utf8Decoder().convert(response.bodyBytes);
     final parsed = json.decode(source);
     final userInfo = PrivateUser.fromJson(parsed);
-    print(userInfo.toString());
     if (response.statusCode == 200) {
       print("Success");
     } else {
