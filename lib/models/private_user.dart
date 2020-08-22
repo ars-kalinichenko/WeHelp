@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:we_help/models/article.dart';
 import 'package:we_help/models/review_request.dart';
 import 'package:we_help/models/tag.dart';
@@ -58,4 +60,13 @@ class PrivateUser {
       phone: "",
     );
   }
+
+  String toJson() => json.encode({
+        'name': name,
+        'surname': surname,
+        'about_me': aboutMe,
+        'education_description': educationDescription,
+        'tags': tags,
+        'articles': []
+      });
 }

@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:random_color/random_color.dart';
+import 'package:we_help/examples.dart';
 import 'package:we_help/models/tag.dart';
 
-class QuestionPreview extends StatelessWidget {
-  /// Creates an question preview widget.
+class PostPreview extends StatelessWidget {
+  /// Creates an article preview widget.
   /// Used in the home screen and search screen.
-  final String authorName;
-  final String authorSurname;
   final String title;
   final String description;
   final List<Tag> tags;
-  final int answersCount;
   final Function press;
   final String contentKey;
 
-  const QuestionPreview({
+  const PostPreview({
     Key key,
-    this.authorName,
-    this.authorSurname,
     this.title,
     this.description,
     this.tags,
-    this.answersCount,
     this.press,
     this.contentKey,
   }) : super(key: key);
@@ -29,7 +25,7 @@ class QuestionPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    Container container = Container(
+    Container mainContainer = Container(
       // The wrapper for the entire widget.
       padding: EdgeInsets.only(
         left: size.width * 0.05,
@@ -39,9 +35,11 @@ class QuestionPreview extends StatelessWidget {
         bottom: size.height * 0.03,
       ),
       width: size.width * 0.9,
-      height: size.height * 0.3,
+      height: size.height * 0.4,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: RandomColor().randomColor(
+          colorBrightness: ColorBrightness.light,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.15),
@@ -54,38 +52,46 @@ class QuestionPreview extends StatelessWidget {
           Radius.circular(20.0),
         ),
       ),
+      child: childContainer(size),
+    );
+    return mainContainer;
+  }
+
+  Widget childContainer(Size size) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      width: size.width * 0.9,
+      height: size.height * 0.2,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.1),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+      ),
       child: Column(
-        // Main column
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _authorText(authorName, authorSurname),
-          _titleText(title),
+        children: [
+          _titleText(size.width, title),
           _descriptionText(description),
-          _tagsRow(size, tags),
-          _statisticText(answersCount, "2.5K"),
+          _tagsRow(size, Examples().tagSamples),
         ],
       ),
     );
-    return container;
   }
 
-  Widget _authorText(String name, String surname) {
-    return Text(
-      "$surname $name",
-      style: TextStyle(fontSize: 16, color: Color(0xff3F3D56)),
-    );
-  }
-
-  Widget _titleText(String title) {
-    return Text(
-      title,
-      overflow: TextOverflow.ellipsis,
-      maxLines: 2,
-      style: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.w500,
-        color: Color(0xff3F3D56),
+  Widget _titleText(double screenWidth, String title) {
+    return SizedBox(
+      width: screenWidth * 0.7,
+      child: Text(
+        title,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
+        style: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.w500,
+          color: Color(0xff3F3D56),
+        ),
       ),
     );
   }
@@ -109,26 +115,6 @@ class QuestionPreview extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: buildTagWidgets(size.width, tagList),
       ),
-    );
-  }
-
-  Widget _statisticText(int answersCount, String viewsCount) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Text(
-          "$answersCount ответов",
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
-        Text(
-          viewsCount,
-          style: TextStyle(
-            fontSize: 14,
-            color: Color(0xff3F3D56),
-          ),
-        ),
-      ],
     );
   }
 

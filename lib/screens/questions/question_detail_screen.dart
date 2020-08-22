@@ -104,6 +104,7 @@ class QuestionDetailScreen extends StatelessWidget {
         RoundedButton(
           text: "Далее",
           press: () async {
+            //todo: reuse
             var list = [];
             for (String tag in _tags.split(",")) {
               list.add({"name": tag, "color": "grey"});

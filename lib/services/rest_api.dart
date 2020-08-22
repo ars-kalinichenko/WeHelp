@@ -59,6 +59,24 @@ class RestApi {
     return userInfo;
   }
 
+  static Future<void> changeUserInfo(dynamic json) async {
+    /// return auth key.
+    print(json);
+    final authKey = await AuthRepository.getKey(); // todo: bad practice
+    final response = await http.put(
+        "http://wehelp-apiserver-stage.us.aldryn.io/auth/user/",
+        body: json,
+        headers: {
+          "Authorization": "Token $authKey",
+          'Content-Type': 'application/json',
+        });
+    if (response.statusCode == 200) {
+      print("Success");
+    } else {
+      throw Exception("Error when requesting users (status! = 200)");
+    }
+  }
+
   static Future<int> postQuestion(dynamic json) async {
     final authKey = await AuthRepository.getKey(); // todo: bad practice
     final response = await http.post(

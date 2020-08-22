@@ -40,7 +40,7 @@ class UserPreview extends StatelessWidget {
         bottom: size.height * 0.03,
       ),
       width: size.width * 0.90,
-      height: size.height * 0.13,
+      height: size.height * 0.15,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [

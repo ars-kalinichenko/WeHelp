@@ -35,7 +35,7 @@ class QuestionInputScreen extends StatelessWidget {
               "Задать вопрос",
               () => Navigator.of(context).pop(),
             ),
-            SizedBox(height: screenHeight * 0.05),
+            SizedBox(height: screenHeight * 0.08),
             _questionFieldAndLike(appTheme, screenHeight, questionRequest),
             SizedBox(height: screenHeight * 0.04),
             _showAllButton(),
@@ -62,16 +62,16 @@ class QuestionInputScreen extends StatelessWidget {
               _changedQuestionRequest = value;
             }),
         SizedBox(height: screenHeight * 0.06),
-        Text("Похожий вопрос уже обсуждался ",
+        Text("Похожие вопросы ",
             style: theme.textTheme.headline4),
         SizedBox(
           height: screenHeight * 0.03,
         ),
-        Text("Как воспитать котика? - 3 ответа"),
+        Text("Первый вопрос - 3 ответа"),
         SizedBox(
           height: screenHeight * 0.03,
         ),
-        Text("Как уничтожить мир? - 4 ответа"),
+        Text("Второй вопрос - 4 ответа"),
         SizedBox(
           height: screenHeight * 0.03,
         ),

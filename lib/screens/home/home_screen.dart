@@ -84,13 +84,13 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           TipsWithBackground(
-            title: "Почувствуйте себя в роли эксперта",
+            title: "Станьте экспертом",
             description: "Ответьте на вопросы",
             imagePath: "assets/images/tips_back1.png",
           ),
           TipsWithBackground(
             title: "Расскажите всем о своем опыте",
-            description: "Напишите статью",
+            description: "Напишите пост",
             imagePath: "assets/images/tips_back2.png",
           ),
           TipsWithBackground(

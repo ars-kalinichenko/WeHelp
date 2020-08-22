@@ -20,7 +20,7 @@ class StandardInputField extends StatelessWidget {
     this.obscure = false,
     this.color = Colors.grey,
     this.width = 0.65,
-    this.height = 0.07,
+    this.height = 0.08,
     this.onChanged,
     this.initText,
   }) : super(key: key);

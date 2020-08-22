@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: ListView(
               padding: EdgeInsets.only(top: screenHeight * 0.05),
               children: <Widget>[
-                _settingsButton(context),
+                _settingsButton(context, userInfo),
                 _photo(screenHeight, userInfo.name),
                 SizedBox(height: screenHeight * 0.03),
                 _nameText(userInfo.name, userInfo.surname, screenHeight, theme),
@@ -39,7 +39,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 _statistic(userInfo.answerCount, userInfo.questionCount,
                     userInfo.rating, screenWidth),
                 SizedBox(height: screenHeight * 0.05),
-                _aboutUser(screenHeight),
+                _aboutUser(screenHeight, userInfo.aboutMe),
+                SizedBox(height: screenHeight * 0.03),
+                _userEducation(screenHeight, userInfo.educationDescription),
                 SizedBox(height: screenHeight * 0.04),
                 _tagRowColumn(userInfo.tags, screenWidth),
               ],
@@ -50,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _settingsButton(BuildContext context) {
+  Widget _settingsButton(BuildContext context, PrivateUser privateUser) {
     return Align(
       alignment: Alignment.centerRight,
       child: IconButton(
@@ -64,7 +66,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return SettingsScreen();
+                return SettingsScreen(
+                  privateUser: privateUser,
+                );
               },
             ),
           );
@@ -170,7 +174,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _aboutUser(double screenHeight) {
+//todo: reuse
+  Widget _aboutUser(double screenHeight, String userDescription) {
+    if (userDescription == null) {
+      userDescription =
+      "Вы пока не добавили информацию о себе. Сделать это можно в настройках.";
+    }
     return Padding(
       padding: EdgeInsets.only(
           left: screenHeight * 0.04, right: screenHeight * 0.04),
@@ -185,36 +194,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: screenHeight * 0.02,
           ),
           Text(
-            """Я веселый и жизнелюбивый гражданин. Люблю печь печенье, людей, кроликов, кошек, собачек и зефир. Работаю программистом. Вяжу. 
-
-Готов помочь всем и каждому, чем смогу помогу. Не стесняйся писать и спрашивать если есть какие-то вопросы, даже странные, но не очень. Всем добра и печенья.""",
+            userDescription,
             style: TextStyle(fontSize: 16),
           ),
         ],
       ),
     );
   }
-  static List<Widget> buildTagWidgets(double screenWidth, List<Tag> tagList) {
-    /// Returns a list of tag widgets with text, background and padding.
-    return tagList
-        .map(
-          (tag) => Container(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
-        margin: EdgeInsets.only(right: screenWidth * 0.02),
-        decoration: BoxDecoration(
-          color: Color(0xffD3D6DA),
-          borderRadius: BorderRadius.all(
-            Radius.circular(6.0),
+
+  //todo: reuse
+  Widget _userEducation(double screenHeight, String userEducation) {
+    if (userEducation == null) {
+      userEducation =
+      "Вы пока не добавили информацию о себе. Сделать это можно в настройках.";
+    }
+    return Padding(
+      padding: EdgeInsets.only(
+          left: screenHeight * 0.04, right: screenHeight * 0.04),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Образование",
+            style: TextStyle(fontSize: 24, color: Color(0xff3F3D56)),
           ),
-        ),
-        child: Text(
-          tag.name,
-          style: TextStyle(color: Colors.black),
-        ),
+          SizedBox(
+            height: screenHeight * 0.02,
+          ),
+          Text(
+            userEducation,
+            style: TextStyle(fontSize: 16),
+          ),
+        ],
       ),
-    )
-        .toList();
+    );
   }
+
 
   Widget _tagRowColumn(List<Tag> tagList, double screenWidth) {
     int rowCount = tagList.length ~/ 4;

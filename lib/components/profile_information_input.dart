@@ -17,7 +17,7 @@ class ProfileInputField extends StatelessWidget {
     this.hintText,
     this.color = Colors.grey,
     this.width = 0.8,
-    this.height = 0.07,
+    this.height = 0.085,
     this.onChanged,
     this.initText,
     this.obscure = false,
