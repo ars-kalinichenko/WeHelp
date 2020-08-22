@@ -21,7 +21,7 @@ class SearchScreen extends StatefulWidget {
 class SearchScreenState extends State<SearchScreen> {
   static bool _isQuestions = true;
   static bool _isPeople = false;
-  static bool _isArticles = false;
+  static bool _isPosts = false;
   static String _searchRequest;
   final _stabilizer = Stabilizer(milliseconds: 500);
   static List<Widget> _childWidget;
@@ -115,18 +115,19 @@ class SearchScreenState extends State<SearchScreen> {
           ),
         ),
         FlatButton(
-          color: _isArticles ? activeColor : Colors.transparent,
-          textColor: _isArticles ? Colors.white : inactiveTextColor,
+          color: _isPosts ? activeColor : Colors.transparent,
+          textColor: _isPosts ? Colors.white : inactiveTextColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100.0),
             side: BorderSide(color: Colors.blueAccent, width: 2),
           ),
           child: Text("Посты"),
-          onPressed: () => setState(
-            () {
-              _clearFilter();
-              _isArticles = !_isArticles;
-            },
+          onPressed: () =>
+              setState(
+                    () {
+                  _clearFilter();
+                  _isPosts = !_isPosts;
+                },
           ),
         ),
       ],
@@ -155,7 +156,7 @@ class SearchScreenState extends State<SearchScreen> {
       return userToPreview(snapshotData);
     else if (_isQuestions && (snapshotData is List<PublicQuestion>))
       return questionToPreview(snapshotData);
-    else if (_isArticles && (snapshotData is List<Post>))
+    else if (_isPosts && (snapshotData is List<Post>))
       return postToPreview(snapshotData);
     else
       return [CircularProgressIndicator()];
@@ -164,7 +165,7 @@ class SearchScreenState extends State<SearchScreen> {
   void _clearFilter() {
     _childWidget = [];
     _isQuestions = false;
-    _isArticles = false;
+    _isPosts = false;
     _isPeople = false;
   }
 

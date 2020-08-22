@@ -3,8 +3,7 @@ import 'package:random_color/random_color.dart';
 import 'package:we_help/models/tag.dart';
 
 class UserPreview extends StatelessWidget {
-  /// Creates an article preview widget.
-  /// Used in the home screen and search screen.
+  /// Creates an user preview widget.
   final String name;
   final String surname;
   final double rating;

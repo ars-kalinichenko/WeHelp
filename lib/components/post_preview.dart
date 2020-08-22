@@ -4,8 +4,8 @@ import 'package:we_help/examples.dart';
 import 'package:we_help/models/tag.dart';
 
 class PostPreview extends StatelessWidget {
-  /// Creates an article preview widget.
-  /// Used in the home screen and search screen.
+  /// Creates an post preview widget.
+  /// Used in the search screen.
   final String title;
   final String description;
   final List<Tag> tags;

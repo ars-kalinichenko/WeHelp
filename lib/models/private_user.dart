@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:we_help/models/article.dart';
+import 'package:we_help/models/post.dart';
 import 'package:we_help/models/review_request.dart';
 import 'package:we_help/models/tag.dart';
 
@@ -13,7 +13,7 @@ class PrivateUser {
   List<Tag> tags;
   double rating;
   List<ReviewRequest> reviews;
-  List<Article> articles;
+  List<Post> posts;
   int answerCount;
   int questionCount;
   String image;
@@ -30,7 +30,7 @@ class PrivateUser {
     this.tags,
     this.rating,
     this.reviews,
-    this.articles,
+    this.posts,
     this.answerCount,
     this.questionCount,
     this.image,
@@ -51,7 +51,7 @@ class PrivateUser {
       tags: listTags,
       rating: json["rating"] as double,
       reviews: [],
-      articles: [],
+      posts: [],
       answerCount: json["answer_count"] as int,
       questionCount: json["question_count"] as int,
       image: "",
@@ -67,6 +67,6 @@ class PrivateUser {
         'about_me': aboutMe,
         'education_description': educationDescription,
         'tags': tags,
-        'articles': []
+    'posts': []
       });
 }
