@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:we_help/exceptions.dart';
 import 'package:we_help/models/article.dart';
 import 'package:we_help/models/private_user.dart';
 import 'package:we_help/models/public_question.dart';
@@ -60,14 +59,20 @@ class RestApi {
     return userInfo;
   }
 
-  static Future<int> postQuestion(Map<String, dynamic> data) async {
-    final response = await http.post('$baseUrl/api/questions', body: data);
-    if (response.statusCode == 200) {
+  static Future<int> postQuestion(dynamic json) async {
+    final authKey = await AuthRepository.getKey(); // todo: bad practice
+    final response = await http.post(
+        'http://wehelp-apiserver-stage.us.aldryn.io/api/questions/',
+        body: json,
+        headers: {
+          "Authorization": "Token $authKey",
+          'Content-Type': 'application/json',
+        });
+    print(response.body);
+    if (response.statusCode == 201) {
       print("Success posted question.");
-    } else if (response.statusCode == 500) {
-      throw ServerError("ServerError");
     } else {
-      throw InternetError("Check Internet or data");
+      throw Exception("Check Internet or data");
     }
     return response.statusCode;
   }

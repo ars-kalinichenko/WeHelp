@@ -3,7 +3,7 @@ class Tag {
   String name;
   String color;
 
-  Tag({this.id, this.name, this.color});
+  Tag({this.id, this.name, this.color = "grey"});
 
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(

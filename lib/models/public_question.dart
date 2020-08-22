@@ -8,6 +8,7 @@ class PublicQuestion {
   PublicUser author;
   String pubDate;
   int views;
+  int answers;
   List<Tag> tags;
 
   PublicQuestion(
@@ -17,6 +18,7 @@ class PublicQuestion {
       this.author,
       this.pubDate,
       this.views,
+      this.answers,
       this.tags});
 
   factory PublicQuestion.fromJson(Map<String, dynamic> json) {
@@ -28,6 +30,7 @@ class PublicQuestion {
         content: json["description"] as String,
         author: PublicUser.fromJson(json["author"]),
         pubDate: json["pub_date"] as String,
+        answers: json["answer_count"] as int,
         tags: listTags);
   }
 }

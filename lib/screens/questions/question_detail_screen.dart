@@ -1,10 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/custom_toast.dart';
 import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/title_with_back_arrow.dart';
-import 'package:we_help/repository/auth.dart';
 import 'package:we_help/screens/main_page.dart';
 import 'package:we_help/services/rest_api.dart';
 
@@ -36,7 +37,7 @@ class QuestionDetailScreen extends StatelessWidget {
               appTheme,
               context,
               "Задать вопрос",
-              () => Navigator.of(context).pop(),
+                  () => Navigator.of(context).pop(),
             ),
             SizedBox(
               height: screenSize.height * 0.08,
@@ -48,10 +49,9 @@ class QuestionDetailScreen extends StatelessWidget {
     );
   }
 
-  static void pushQuestion(
-      BuildContext context, Map<String, dynamic> data) async {
+  static void pushQuestion(BuildContext context, dynamic json) async {
     try {
-      await RestApi.postQuestion(data);
+      await RestApi.postQuestion(json);
       ToastUtils.showSuccessToast(context);
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
@@ -104,16 +104,20 @@ class QuestionDetailScreen extends StatelessWidget {
         RoundedButton(
           text: "Далее",
           press: () async {
-            String authorId = await AuthRepository.getKey();
+            var list = [];
+            for (String tag in _tags.split(",")) {
+              list.add({"name": tag, "color": "grey"});
+            }
+
+            Map<String, dynamic> data = {
+              "name": _changedQuestionRequest,
+              "description": _detail,
+              "tags": list
+            };
+            print(json.encode(data));
             pushQuestion(
               context,
-              {
-                "title": _changedQuestionRequest,
-                "content": _detail,
-                "author_id": authorId,
-                "pub_date": DateTime.now().toString(),
-                "tags": _tags
-              },
+              json.encode(data),
             );
           },
         ),

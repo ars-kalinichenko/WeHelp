@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: question.title,
           description: question.content,
           tags: question.tags,
-          answersCount: 189,
+          answersCount: question.answers,
         ),
       );
     }
