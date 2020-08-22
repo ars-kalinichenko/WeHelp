@@ -16,7 +16,7 @@ class Post {
     return Post(
         id: json["id"] as int,
         title: json["title"] as String,
-        description: json["description"] as String,
+        description: json["content"] as String,
         rating: 4.8,
         tags: listTags);
   }

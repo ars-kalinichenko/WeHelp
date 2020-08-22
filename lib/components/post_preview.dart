@@ -27,15 +27,15 @@ class PostPreview extends StatelessWidget {
 
     Container mainContainer = Container(
       // The wrapper for the entire widget.
-      padding: EdgeInsets.only(
-        left: size.width * 0.05,
-        right: size.width * 0.05,
-      ),
+//      padding: EdgeInsets.only(
+//        left: size.width * 0.05,
+//        right: size.width * 0.05,
+//      ),
       margin: EdgeInsets.only(
         bottom: size.height * 0.03,
       ),
       width: size.width * 0.9,
-      height: size.height * 0.4,
+      height: size.height * 0.35,
       decoration: BoxDecoration(
         color: RandomColor().randomColor(
           colorBrightness: ColorBrightness.light,
@@ -52,18 +52,25 @@ class PostPreview extends StatelessWidget {
           Radius.circular(20.0),
         ),
       ),
-      child: childContainer(size),
+      child: SizedBox(
+        height: size.height * 0.2,
+        child: childContainer(size),
+      ),
     );
     return mainContainer;
   }
 
   Widget childContainer(Size size) {
     return Container(
-      alignment: Alignment.bottomCenter,
-      width: size.width * 0.9,
-      height: size.height * 0.2,
+      margin: EdgeInsets.only(top: size.height * 0.1,
+      ),
+      padding: EdgeInsets.only(
+        left: size.width * 0.05,
+        right: size.width * 0.05,
+      ),
+      height: size.height * 0.01,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withOpacity(0.3),
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),

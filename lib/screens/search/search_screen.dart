@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:we_help/components/post_preview.dart';
 import 'package:we_help/components/question_preview.dart';
 import 'package:we_help/components/search_field.dart';
 import 'package:we_help/components/user_preview.dart';
+import 'package:we_help/models/post.dart';
 import 'package:we_help/models/public_question.dart';
 import 'package:we_help/models/user.dart';
 import 'package:we_help/services/rest_api.dart';
@@ -145,7 +147,7 @@ class SearchScreenState extends State<SearchScreen> {
     else if (_isQuestions)
       return await RestApi.searchQuestions(searchRequest);
     else
-      return [];
+      return await RestApi.searchPosts(searchRequest);
   }
 
   List<Widget> _parseGetRequest(List<dynamic> snapshotData) {
@@ -153,6 +155,8 @@ class SearchScreenState extends State<SearchScreen> {
       return userToPreview(snapshotData);
     else if (_isQuestions && (snapshotData is List<PublicQuestion>))
       return questionToPreview(snapshotData);
+    else if (_isArticles && (snapshotData is List<Post>))
+      return postToPreview(snapshotData);
     else
       return [CircularProgressIndicator()];
   }
@@ -193,6 +197,19 @@ class SearchScreenState extends State<SearchScreen> {
           photo: "google",
           description: user.aboutMe,
           tags: user.tags,
+        ),
+      );
+    }
+    return previews;
+  }
+  static List<Widget> postToPreview(List<Post> posts) {
+    List<PostPreview> previews = [];
+    for (final post in posts) {
+      previews.add(
+        PostPreview(
+          title: post.title,
+          description: post.description,
+          tags: post.tags,
         ),
       );
     }
