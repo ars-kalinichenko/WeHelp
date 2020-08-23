@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_help/models/tag.dart';
-import 'package:we_help/screens/questions/question_detail.dart';
+import 'package:we_help/screens/questions/detail_question.dart';
 
 class QuestionPreview extends StatelessWidget {
   /// Creates an question preview widget.
@@ -37,6 +37,8 @@ class QuestionPreview extends StatelessWidget {
               contentId: id,
               title: title,
               description: description,
+              authorName: authorName,
+              authorSurname: authorSurname,
             );
           },
         ),

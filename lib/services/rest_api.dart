@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:we_help/models/post.dart';
 import 'package:we_help/models/private_user.dart';
 import 'package:we_help/models/public_question.dart';
+import 'package:we_help/models/question_detail.dart';
 import 'package:we_help/models/user.dart';
 import 'package:we_help/repository/auth.dart';
 
@@ -21,7 +22,7 @@ class RestApi {
         'http://wehelp-apiserver-stage.us.aldryn.io/auth/registration/',
         body: data);
     if (response.statusCode == 201) {
-      print("Success");
+      print("Success registerUser");
     } else {
       throw Exception(response.body);
     }
@@ -36,7 +37,7 @@ class RestApi {
         body: data);
     final parsed = json.decode(response.body);
     if (response.statusCode == 200) {
-      print("Success");
+      print("Success logInUser");
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
@@ -53,7 +54,7 @@ class RestApi {
     final parsed = json.decode(source);
     final userInfo = PrivateUser.fromJson(parsed);
     if (response.statusCode == 200) {
-      print("Success");
+      print("Success getUserInfo");
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
@@ -62,7 +63,6 @@ class RestApi {
 
   static Future<void> changeUserInfo(dynamic json) async {
     /// return auth key.
-    print(json);
     final authKey = await AuthRepository.getKey(); // todo: bad practice
     final response = await http.put(
         "http://wehelp-apiserver-stage.us.aldryn.io/auth/user/",
@@ -72,13 +72,13 @@ class RestApi {
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200) {
-      print("Success");
+      print("Success changeUserInfo");
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }
   }
 
-  static Future<int> postQuestion(dynamic json) async {
+  static Future<void> postQuestion(dynamic json) async {
     final authKey = await AuthRepository.getKey(); // todo: bad practice
     final response = await http.post(
         'http://wehelp-apiserver-stage.us.aldryn.io/api/questions/',
@@ -87,16 +87,29 @@ class RestApi {
           "Authorization": "Token $authKey",
           'Content-Type': 'application/json',
         });
-    print(response.body);
     if (response.statusCode == 201) {
       print("Success posted question.");
     } else {
       throw Exception("Check Internet or data");
     }
-    return response.statusCode;
   }
 
-  static Future<PublicQuestion> getQuestionDetail(int id) async {
+  static Future<void> postAnswer(Map<String, dynamic> data) async {
+    final authKey = await AuthRepository.getKey(); // todo: bad practice
+    final response = await http.post(
+        'http://wehelp-apiserver-stage.us.aldryn.io/api/answers/',
+        body: data,
+        headers: {
+          "Authorization": "Token $authKey",
+        });
+    if (response.statusCode == 201) {
+      print("Success posted question.");
+    } else {
+      throw Exception("Check Internet or data");
+    }
+  }
+
+  static Future<DetailQuestion> getQuestionDetail(int id) async {
     /// return auth key.
     final authKey = await AuthRepository.getKey();
     final response = await http.get(
@@ -104,10 +117,9 @@ class RestApi {
         headers: {"Authorization": "Token $authKey"});
     final source = Utf8Decoder().convert(response.bodyBytes);
     final parsed = json.decode(source);
-    print(parsed);
-    final detailQuestion = PublicQuestion.fromJson(parsed);
+    final detailQuestion = DetailQuestion.fromJson(parsed);
     if (response.statusCode == 200) {
-      print("Success");
+      print("Success getQuestionDetail");
     } else {
       throw Exception("Error when requesting users (status! = 200)");
     }

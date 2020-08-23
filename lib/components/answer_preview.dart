@@ -126,7 +126,7 @@ class AnswerPreview extends StatelessWidget {
           style: TextStyle(fontSize: 14, color: Colors.black),
         ),
         Text(
-          isSolution.toString(),
+          " ", //todo: add is solution
           style: TextStyle(
             fontSize: 14,
             color: Color(0xff3F3D56),

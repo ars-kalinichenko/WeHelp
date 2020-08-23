@@ -1,30 +1,40 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:we_help/components/answer_preview.dart';
 import 'package:we_help/components/icons.dart';
 import 'package:we_help/components/question_preview.dart';
+import 'package:we_help/components/text_button.dart';
 import 'package:we_help/models/answer.dart';
-import 'package:we_help/models/public_question.dart';
 import 'package:we_help/models/public_user.dart';
+import 'package:we_help/models/question_detail.dart';
+import 'package:we_help/screens/questions/answer_input.dart';
 import 'package:we_help/services/rest_api.dart';
 
 class QuestionDetailScreen extends StatefulWidget {
   final int contentId;
   final String title;
   final String description;
+  final String authorName;
+  final String authorSurname;
 
   QuestionDetailScreen({
     Key key,
     @required this.contentId,
     this.title,
     this.description,
+    this.authorName,
+    this.authorSurname,
   }) : super(key: key);
 
   createState() => new _QuestionDetailState(
-        contentId: contentId,
+    contentId: contentId,
         title: title,
         description: description,
+        authorName: authorName,
+        authorSurname: authorSurname,
       );
 }
 
@@ -32,11 +42,15 @@ class _QuestionDetailState extends State<QuestionDetailScreen> {
   final int contentId;
   final String title;
   final String description;
+  final String authorName;
+  final String authorSurname;
 
   _QuestionDetailState({
     @required this.contentId,
     this.title,
     this.description,
+    this.authorName,
+    this.authorSurname,
   });
 
   @override
@@ -44,43 +58,32 @@ class _QuestionDetailState extends State<QuestionDetailScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
-    return FutureBuilder<PublicQuestion>(
+    return FutureBuilder<DetailQuestion>(
       future: RestApi.getQuestionDetail(contentId),
-      builder: (BuildContext context, AsyncSnapshot<PublicQuestion> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<DetailQuestion> snapshot) {
         QuestionPreview questionWidget;
-        List<Answer> answersList = [
-          Answer(
-            id: 1,
-            text:
-                "I/flutter ( 5140): {id: 2, name: koko, description: koko, author: {id: 1, name: Ars, surname: Ars}, tags: [{id: 2, name: Arriva, color: black}], pub_date: 2020-08-22, answers: [], answer_count: 0}",
-            rating: 10,
-            isSolution: true,
-            author: PublicUser(name: "Человек", surname: "Пчеловек"),
-            pubDate: "сегодня",
-            question: 1,
-          )
-        ];
+        List<Answer> answersList = [];
         List<AnswerPreview> answerWidgets = [];
 
         if (snapshot.hasData) {
           questionWidget = questionToPreview(snapshot.data);
+          answersList = snapshot.data.answers;
         } else {
           //todo: to samples
-
           questionWidget = questionToPreview(
-            PublicQuestion(
+            DetailQuestion(
               id: contentId,
-              author: PublicUser(name: "", surname: ""),
-              title: title,
-              content: description,
+              author: PublicUser(name: authorName, surname: authorSurname),
+              name: title,
+              description: description,
               tags: [],
+              answerCount: 0,
             ),
           );
         }
         answerWidgets = answersList
             .map((answer) => AnswerPreview.answerToPreview(answer))
             .toList();
-        print(answerWidgets.length);
         return Scaffold(
           body: ListView(
             children: <Widget>[
@@ -94,6 +97,8 @@ class _QuestionDetailState extends State<QuestionDetailScreen> {
                     height: screenHeight * 0.04,
                   ),
                   _answersList(answerWidgets),
+                  _addAnswer(screenHeight, screenWidth),
+                  SizedBox(height: screenHeight * 0.03),
                 ],
               ),
             ],
@@ -147,10 +152,8 @@ class _QuestionDetailState extends State<QuestionDetailScreen> {
               ),
             ],
           ),
-          SizedBox(
-            height: screenHeight * 0.01,
-          ),
-          questionWidget
+          SizedBox(height: screenHeight * 0.01),
+          questionWidget,
         ],
       ),
     );
@@ -185,12 +188,12 @@ class _QuestionDetailState extends State<QuestionDetailScreen> {
     );
   }
 
-  static QuestionPreview questionToPreview(PublicQuestion question) {
+  static QuestionPreview questionToPreview(DetailQuestion question) {
     return QuestionPreview(
       authorName: question.author.name,
       authorSurname: question.author.surname,
-      title: question.title,
-      description: question.content,
+      title: question.name,
+      description: question.description,
       tags: question.tags,
       answersCount: question.answerCount,
     );
@@ -201,6 +204,58 @@ class _QuestionDetailState extends State<QuestionDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: data,
+    );
+  }
+
+  Widget _addAnswer(double screenHeight, double screenWidth) {
+    return Container(
+      // The wrapper for the entire widget.
+      width: screenWidth * 0.9,
+      height: screenHeight * 0.15,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Color(0xff9C9C9C),
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.0),
+        ),
+      ),
+      child: Column(
+        // Main column
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Знаете как помочь?",
+            style: TextStyle(
+              color: Color(0xff3F3D56),
+              fontSize: 16,
+            ),
+          ),
+          TextButton(
+            text: "Добавить ответ",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return AnswerInputScreen(
+                      questionId: contentId,
+                    );
+                  },
+                ),
+              );
+            },
+            textStyle: TextStyle(
+              color: Color(0xff3F3D56),
+              fontSize: 16,
+              decoration: TextDecoration.underline,
+              fontWeight: FontWeight.w500,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

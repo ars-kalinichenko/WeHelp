@@ -1,4 +1,3 @@
-import 'package:we_help/models/answer.dart';
 import 'package:we_help/models/public_user.dart';
 import 'package:we_help/models/tag.dart';
 
@@ -9,7 +8,6 @@ class PublicQuestion {
   PublicUser author;
   String pubDate;
   int answerCount;
-  List<Answer> answers;
   List<Tag> tags;
 
   PublicQuestion(
