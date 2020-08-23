@@ -57,19 +57,21 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
-
+//todo: reuse
   static List<QuestionPreview> questionToPreview(
       List<PublicQuestion> questions) {
     List<QuestionPreview> previews = [];
     for (final question in questions) {
       previews.add(
         QuestionPreview(
+          id: question.id,
           authorName: question.author.name,
           authorSurname: question.author.surname,
           title: question.title,
           description: question.content,
           tags: question.tags,
-          answersCount: question.answers,
+          answersCount: question.answerCount,
+          clickable: true,
         ),
       );
     }

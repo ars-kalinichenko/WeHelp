@@ -85,6 +85,7 @@ class QuestionDetailScreen extends StatelessWidget {
         StandardInputField(
           color: theme.primaryColor,
           hintText: "Что вы уже пробовали сделать?",
+          keyboardMode: TextCapitalization.sentences,
           onChanged: (value) {
             _detail = value;
           },
@@ -95,6 +96,7 @@ class QuestionDetailScreen extends StatelessWidget {
         Text("Введите теги"),
         StandardInputField(
           color: theme.primaryColor,
+          keyboardMode: TextCapitalization.sentences,
           hintText: "Введите теги через запятую",
           onChanged: (value) {
             _tags = value;

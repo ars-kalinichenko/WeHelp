@@ -1,4 +1,3 @@
-import 'package:we_help/models/review_request.dart';
 import 'package:we_help/models/tag.dart';
 
 class User {
@@ -10,7 +9,6 @@ class User {
   String educationDescription;
   String image;
   double rating;
-  List<ReviewRequest> reviews;
   List<Tag> tags;
 
   User(
@@ -21,7 +19,6 @@ class User {
       this.educationDescription,
       this.image,
       this.rating,
-      this.reviews,
       this.tags});
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -36,7 +33,6 @@ class User {
 //        educationDescription: json["education_description"] as String,
         image: json["image"] as String,
         rating: 4.8,
-//        reviews: json["reviews"] as List<ReviewRequest>,
         tags: listTags);
   }
 }

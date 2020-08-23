@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:we_help/models/post.dart';
-import 'package:we_help/models/review_request.dart';
 import 'package:we_help/models/tag.dart';
 
 class PrivateUser {
@@ -12,7 +11,6 @@ class PrivateUser {
   String educationDescription;
   List<Tag> tags;
   double rating;
-  List<ReviewRequest> reviews;
   List<Post> posts;
   int answerCount;
   int questionCount;
@@ -29,7 +27,6 @@ class PrivateUser {
     this.educationDescription,
     this.tags,
     this.rating,
-    this.reviews,
     this.posts,
     this.answerCount,
     this.questionCount,
@@ -50,7 +47,6 @@ class PrivateUser {
       educationDescription: json["education_description"] as String,
       tags: listTags,
       rating: json["rating"] as double,
-      reviews: [],
       posts: [],
       answerCount: json["answer_count"] as int,
       questionCount: json["question_count"] as int,

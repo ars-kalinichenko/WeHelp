@@ -8,6 +8,7 @@ import 'package:we_help/models/user.dart';
 import 'package:we_help/repository/auth.dart';
 
 class RestApi {
+  //todo: remove
   static const String baseUrl =
       'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
   static final String _authority = "virtserver.swaggerhub.com";
@@ -93,6 +94,24 @@ class RestApi {
       throw Exception("Check Internet or data");
     }
     return response.statusCode;
+  }
+
+  static Future<PublicQuestion> getQuestionDetail(int id) async {
+    /// return auth key.
+    final authKey = await AuthRepository.getKey();
+    final response = await http.get(
+        "http://wehelp-apiserver-stage.us.aldryn.io/api/questions/$id",
+        headers: {"Authorization": "Token $authKey"});
+    final source = Utf8Decoder().convert(response.bodyBytes);
+    final parsed = json.decode(source);
+    print(parsed);
+    final detailQuestion = PublicQuestion.fromJson(parsed);
+    if (response.statusCode == 200) {
+      print("Success");
+    } else {
+      throw Exception("Error when requesting users (status! = 200)");
+    }
+    return detailQuestion;
   }
 
   static Future<List<PublicQuestion>> getActual() async {

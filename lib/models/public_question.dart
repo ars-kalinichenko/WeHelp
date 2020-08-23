@@ -1,3 +1,4 @@
+import 'package:we_help/models/answer.dart';
 import 'package:we_help/models/public_user.dart';
 import 'package:we_help/models/tag.dart';
 
@@ -7,8 +8,8 @@ class PublicQuestion {
   String content;
   PublicUser author;
   String pubDate;
-  int views;
-  int answers;
+  int answerCount;
+  List<Answer> answers;
   List<Tag> tags;
 
   PublicQuestion(
@@ -17,20 +18,19 @@ class PublicQuestion {
       this.content,
       this.author,
       this.pubDate,
-      this.views,
-      this.answers,
+      this.answerCount,
       this.tags});
 
   factory PublicQuestion.fromJson(Map<String, dynamic> json) {
     List<Tag> listTags =
-        json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
+    json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
     return PublicQuestion(
         id: json["id"] as int,
         title: json["name"] as String,
         content: json["description"] as String,
         author: PublicUser.fromJson(json["author"]),
         pubDate: json["pub_date"] as String,
-        answers: json["answer_count"] as int,
+        answerCount: json["answer_count"] as int,
         tags: listTags);
   }
 }

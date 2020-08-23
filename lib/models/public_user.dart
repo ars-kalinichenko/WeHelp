@@ -17,6 +17,6 @@ class PublicUser {
         id: json["id"] as int,
         name: json["name"] as String,
         surname: json["surname"] as String,
-        image: json["image"] as String);
+        image: "google");
   }
 }

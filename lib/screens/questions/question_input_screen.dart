@@ -4,7 +4,7 @@ import 'package:we_help/components/rounded_button.dart';
 import 'package:we_help/components/standard_input_filed.dart';
 import 'package:we_help/components/text_button.dart';
 import 'package:we_help/components/title_with_back_arrow.dart';
-import 'package:we_help/screens/questions/question_detail_screen.dart';
+import 'package:we_help/screens/questions/question_input_detail.dart';
 
 class QuestionInputScreen extends StatelessWidget {
   final String questionRequest;

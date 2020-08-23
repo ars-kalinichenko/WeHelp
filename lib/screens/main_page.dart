@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:we_help/components/bottom_navbar.dart';
 import 'package:we_help/screens/home/home_screen.dart';
-import 'package:we_help/screens/messages/dialogs_screen.dart';
-import 'package:we_help/screens/profile/profile_screen.dart';
 import 'package:we_help/screens/search/search_screen.dart';
+import 'package:we_help/screens/users/profile_screen.dart';
 
 class MainPage extends StatefulWidget {
   /// Application home screen. The user goes to it after authentication.

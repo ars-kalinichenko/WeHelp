@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_help/models/tag.dart';
+import 'package:we_help/screens/questions/question_detail.dart';
 
 class QuestionPreview extends StatelessWidget {
   /// Creates an question preview widget.
@@ -10,8 +11,8 @@ class QuestionPreview extends StatelessWidget {
   final String description;
   final List<Tag> tags;
   final int answersCount;
-  final Function press;
-  final String contentKey;
+  final bool clickable;
+  final int id;
 
   const QuestionPreview({
     Key key,
@@ -21,53 +22,72 @@ class QuestionPreview extends StatelessWidget {
     this.description,
     this.tags,
     this.answersCount,
-    this.press,
-    this.contentKey,
+    this.clickable = false,
+    this.id,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
-    Container container = Container(
-      // The wrapper for the entire widget.
-      padding: EdgeInsets.only(
-        left: size.width * 0.05,
-        right: size.width * 0.05,
-      ),
-      margin: EdgeInsets.only(
-        bottom: size.height * 0.03,
-      ),
-      width: size.width * 0.9,
-      height: size.height * 0.3,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.15),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          )
-        ],
-        borderRadius: BorderRadius.all(
-          Radius.circular(20.0),
+    void toDetailScreen() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return QuestionDetailScreen(
+              contentId: id,
+              title: title,
+              description: description,
+            );
+          },
         ),
-      ),
-      child: Column(
-        // Main column
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _authorText(authorName, authorSurname),
-          _titleText(title),
-          _descriptionText(description),
-          _tagsRow(size, tags),
-          _statisticText(answersCount, "2.5K"),
-        ],
-      ),
-    );
-    return container;
+      );
+    }
+
+    return InkWell(
+        onTap: clickable
+            ? () {
+                toDetailScreen();
+              }
+            : () {},
+        child: Container(
+          // The wrapper for the entire widget.
+          padding: EdgeInsets.only(
+            left: size.width * 0.05,
+            right: size.width * 0.05,
+          ),
+          margin: EdgeInsets.only(
+            bottom: size.height * 0.03,
+          ),
+          width: size.width * 0.9,
+          height: size.height * 0.3,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.15),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3),
+              )
+            ],
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.0),
+            ),
+          ),
+
+          child: Column(
+            // Main column
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _authorText(authorName, authorSurname),
+              _titleText(title),
+              _descriptionText(description),
+              _tagsRow(size, tags),
+              _statisticText(answersCount, "2.5K"),
+            ],
+          ),
+        ));
   }
 
   Widget _authorText(String name, String surname) {
