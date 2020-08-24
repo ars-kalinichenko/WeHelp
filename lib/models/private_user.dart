@@ -52,7 +52,7 @@ class PrivateUser {
       questionCount: json["question_count"] as int,
       image: "",
       password: "",
-      email: "",
+      email: json["email"],
       phone: "",
     );
   }
@@ -63,6 +63,7 @@ class PrivateUser {
         'about_me': aboutMe,
         'education_description': educationDescription,
         'tags': tags,
-    'posts': []
+        'articles': [],
+        "email": email,
       });
 }

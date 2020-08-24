@@ -111,8 +111,7 @@ class SettingsScreen extends StatelessWidget {
             disabledBorder: InputBorder.none),
         initialValue: initText,
         textAlign: TextAlign.center,
-        style: theme.textTheme.headline2
-            .copyWith(decoration: TextDecoration.underline),
+        style: theme.textTheme.headline2,
         onChanged: func,
       ),
     );

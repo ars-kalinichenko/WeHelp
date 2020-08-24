@@ -42,7 +42,8 @@ class _WeHelpAuthState extends State<WeHelpAuth> {
 
         if (snapshot.data == true) {
           childWidget = MainPage();
-        } else {
+        }
+        else {
           childWidget = WelcomeScreen();
         }
         return childWidget;
@@ -50,16 +51,20 @@ class _WeHelpAuthState extends State<WeHelpAuth> {
     );
   }
 
+  static Future<bool> _isLogIn() async {
+    return await AuthRepository.isLogIn();
+  }
+
   static Future<bool> _validateLogIn() async {
-    bool isLogIn = await AuthRepository.isLogIn();
-    bool success = false;
-    if (isLogIn) {
-      if (await _pushAuthData()) {
-        print("The user is authenticated.");
-        success = true;
-      }
+    bool isLogIn = await _isLogIn();
+    if (!isLogIn) {
+      return false;
+    } else if (await _pushAuthData()) {
+      print("The user is authenticated.");
+      return true;
+    } else {
+      return false;
     }
-    return success;
   }
 
   static Future<bool> _pushAuthData() async {

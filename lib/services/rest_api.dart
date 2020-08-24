@@ -71,6 +71,8 @@ class RestApi {
           "Authorization": "Token $authKey",
           'Content-Type': 'application/json',
         });
+    print(response.body);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       print("Success changeUserInfo");
     } else {
