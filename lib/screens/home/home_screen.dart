@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: screenHeight * 0.03,
               ),
-              _actualList(childWidget),
+              _actualList(childWidget, screenHeight),
             ],
           ),
         );
@@ -132,11 +132,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _actualList(List<Widget> data) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: data,
+  Widget _actualList(List<Widget> data, double screenHeight) {
+    return Container(
+      padding: EdgeInsets.only(right: screenHeight * 0.03),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: data,
+      ),
     );
   }
 }
