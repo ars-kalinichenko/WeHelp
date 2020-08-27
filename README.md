@@ -27,6 +27,7 @@ Search page (users) | Search page (posts) | Profile page
 ## Install on Android Device:
 
 You can install the latest version of the application by going to releases: [https://github.com/ars-kalinichenko/WeHelp/releases](https://github.com/ars-kalinichenko/WeHelp/releases)
+
 If you have a 32 bit processor architecture, then choose app-armeabi-v7a (almost all arm devices support this target), if 64 bit - app-arm64-v8a.
 
 ## Dependencies for mobile app:
