@@ -4,16 +4,6 @@
 
 🙋🏻  A mobile application written for android is designed to help people find like-minded people and get answers to their questions.
 
-## Architectural diagram:
-
-Backend:
-
-![back diagram](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/arch_diagram_back.png?raw=true)
-
-Frontend:
-
-![web diagram](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/architectural_diagram_web.png?raw=true)
-
 ## Screenshots:
 Welcome page | Home page | Search page (questions)
 :-------------------------:|:-------------------------:|:-------------------------:
@@ -23,6 +13,15 @@ Search page (users) | Search page (posts) | Profile page
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Search](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/screenshot_6.jpg?raw=true)  |  ![Search](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/screenshot_5.jpg?raw=true) | ![Profile](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/screenshot_4.jpg?raw=true)
 
+## Architectural diagram:
+
+Backend:
+
+![back diagram](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/arch_diagram_back.png?raw=true)
+
+Frontend:
+
+![web diagram](https://github.com/ars-kalinichenko/WeHelp/blob/master/readme_images/architectural_diagram_web.png?raw=true)
 
 ## Install on Android Device:
 
