@@ -86,7 +86,7 @@ class QuestionPreview extends StatelessWidget {
               _titleText(title),
               _descriptionText(description),
               _tagsRow(size, tags),
-              _statisticText(answersCount, "2.5K"),
+              _statisticText(answersCount, " "),
             ],
           ),
         ));

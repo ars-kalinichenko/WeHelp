@@ -15,24 +15,25 @@ class User {
       {this.id,
       this.name,
       this.surname,
-      this.aboutMe,
-      this.educationDescription,
+      this.aboutMe = "...",
+      this.educationDescription = "...",
       this.image,
       this.rating,
       this.tags});
 
   factory User.fromJson(Map<String, dynamic> json) {
-    List<Tag> listTags =
-        json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
+    //todo: remove
+    List<Tag> listTags;
+    try {
+      listTags = json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
+    } catch (e) {
+      listTags = [];
+    }
     return User(
         id: json["id"] as int,
         name: json["name"] as String,
         surname: json["surname"] as String,
-        aboutMe:
-            "Рандомный длинный текст, который должен прятаться после двух строк.",
-//        educationDescription: json["education_description"] as String,
-        image: json["image"] as String,
-        rating: 4.8,
+        rating: double.parse(json["rank"].toStringAsFixed(1)),
         tags: listTags);
   }
 }

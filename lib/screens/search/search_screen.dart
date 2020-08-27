@@ -23,7 +23,7 @@ class SearchScreenState extends State<SearchScreen> {
   static bool _isPeople = false;
   static bool _isPosts = false;
   static String _searchRequest;
-  final _stabilizer = Stabilizer(milliseconds: 500);
+  final _stabilizer = Stabilizer(milliseconds: 1000);
   static List<Widget> _childWidget;
 
   @override
@@ -68,11 +68,13 @@ class SearchScreenState extends State<SearchScreen> {
       width: 0.85,
       onChanged: (value) {
         _searchRequest = value;
-        _stabilizer.run(
-          () {
-            _searchByFilter(_searchRequest);
-          },
-        );
+        setState(() {
+          _stabilizer.run(
+                () {
+              _searchByFilter(_searchRequest);
+            },
+          );
+        });
       },
     );
   }
@@ -180,7 +182,9 @@ class SearchScreenState extends State<SearchScreen> {
           title: question.title,
           description: question.content,
           tags: question.tags,
-          answersCount: 189,
+          answersCount: question.answerCount,
+          clickable: true,
+          id: question.id,
         ),
       );
     }

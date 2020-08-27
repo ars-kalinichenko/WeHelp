@@ -9,13 +9,8 @@ import 'package:we_help/models/user.dart';
 import 'package:we_help/repository/auth.dart';
 
 class RestApi {
-  //todo: remove
-  static const String baseUrl =
-      'https://virtserver.swaggerhub.com/iCatOK/weHelpAPI/1.0.0';
-  static final String _authority = "virtserver.swaggerhub.com";
-  static final String _path = "/iCatOK/weHelpAPI/1.0.0/api";
-
-  // Todo: delete status code from return
+  static final String _authority = "wehelp-apiserver-stage.us.aldryn.io";
+  static final String _path = "/api";
 
   static Future<void> registerUser(Map<String, dynamic> data) async {
     final response = await http.post(
@@ -139,8 +134,8 @@ class RestApi {
   }
 
   static Future<List<User>> searchUsers(String filter) async {
-    final params = {"filter": filter};
-    final uri = Uri.https(_authority, "$_path/users", params);
+    final params = {"query": filter};
+    final uri = Uri.https(_authority, "$_path/users/search/", params);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       return _parseUsers(response.bodyBytes);
@@ -150,8 +145,8 @@ class RestApi {
   }
 
   static Future<List<PublicQuestion>> searchQuestions(String filter) async {
-    final params = {"filter": filter};
-    final uri = Uri.https(_authority, "$_path/questions", params);
+    final params = {"query": filter};
+    final uri = Uri.https(_authority, "$_path/questions/search/", params);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       return _parseQuestions(response.bodyBytes);
@@ -161,8 +156,8 @@ class RestApi {
   }
 
   static Future<List<Post>> searchPosts(String filter) async {
-    final params = {"filter": filter};
-    final uri = Uri.https(_authority, "$_path/articles", params);
+    final params = {"query": filter};
+    final uri = Uri.https(_authority, "$_path/articles/search/", params);
     final response = await http.get(uri);
     if (response.statusCode == 200) {
       return _parsePosts(response.bodyBytes);

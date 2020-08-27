@@ -20,8 +20,12 @@ class PublicQuestion {
       this.tags});
 
   factory PublicQuestion.fromJson(Map<String, dynamic> json) {
-    List<Tag> listTags =
-    json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
+    List<Tag> listTags;
+    try {
+      listTags = json['tags'].map<Tag>((tag) => Tag.fromJson(tag)).toList();
+    } catch (e) {
+      listTags = [];
+    }
     return PublicQuestion(
         id: json["id"] as int,
         title: json["name"] as String,

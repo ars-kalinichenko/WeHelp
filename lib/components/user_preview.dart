@@ -75,7 +75,7 @@ class UserPreview extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _userName(name, surname),
+        _userName(name, surname, size.width),
         SizedBox(
           height: size.height * 0.003,
         ),
@@ -91,11 +91,14 @@ class UserPreview extends StatelessWidget {
     );
   }
 
-  Widget _userName(String name, String surname) {
-    return Text(
-      "$surname $name",
-      style: TextStyle(fontSize: 18, color: Color(0xff0D0D0D)),
-      overflow: TextOverflow.fade,
+  Widget _userName(String name, String surname, double screenWidth) {
+    return SizedBox(
+      width: screenWidth*0.6,
+      child: Text(
+        "$surname $name",
+        style: TextStyle(fontSize: 18, color: Color(0xff0D0D0D)),
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 
